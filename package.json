@@ -16,11 +16,11 @@
     "test": "tsdx test",
     "test:watch": "tsdx test --watch",
     "test:coverage": "tsdx test --coverage",
-    "lint": "tsdx lint",
+    "lint": "tsdx lint src/**/*.tsx",
     "prepare": "tsdx build",
     "size": "size-limit",
     "analyze": "size-limit --why",
-    "storybook": "start-storybook -p 6006",
+    "storybook": "start-storybook -p 6006 --no-manager-cache",
     "build-storybook": "build-storybook",
     "tailwind-config": "tailwind-config-viewer -o"
   },
@@ -29,7 +29,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "tsdx lint",
+      "pre-commit": "tsdx lint src/**/*.tsx",
       "pre-push": "tsdx test"
     }
   },

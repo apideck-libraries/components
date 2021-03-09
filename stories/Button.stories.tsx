@@ -23,32 +23,32 @@ export default meta
 const Template: Story<Props> = args => <Button {...args} />
 
 export const Primary = Template.bind({})
-Primary.args = { text: 'Button' }
+Primary.args = { text: 'Button text' }
 
 export const Secondary = Template.bind({})
-Secondary.args = { text: 'Button', variant: 'secondary' }
+Secondary.args = { text: 'Button text', variant: 'secondary' }
 
 export const Loading = Template.bind({})
-Loading.args = { text: 'Button', isLoading: true }
+Loading.args = { text: 'Button text', isLoading: true }
 
 export const Small = Template.bind({})
-Small.args = { text: 'Small button', size: 'small' }
+Small.args = { text: 'Button text', size: 'small' }
 
 export const Large = Template.bind({})
-Large.args = { text: 'Large button', size: 'large' }
+Large.args = { text: 'Button text', size: 'large' }
 
 export const Larger = Template.bind({})
-Larger.args = { text: 'Larger button', size: 'larger' }
+Larger.args = { text: 'Button text', size: 'larger' }
 
 export const Outline = Template.bind({})
-Outline.args = { text: 'Outline', variant: 'outline' }
+Outline.args = { text: 'Button text', variant: 'outline' }
 
 export const Danger = Template.bind({})
-Danger.args = { text: 'DANGER', variant: 'danger' }
+Danger.args = { text: 'Button text', variant: 'danger' }
 
 export const Disabled = Template.bind({})
 Disabled.args = {
-  text: 'Disabled button',
+  text: 'Button text',
   variant: 'disabled',
   isDisabled: true
 }
