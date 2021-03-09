@@ -1,19 +1,15 @@
-# TSDX React w/ Storybook User Guide
+# React Component Library
 
-Congrats! You just saved yourself hours of work by bootstrapping this project with TSDX. Let’s get you oriented with what’s here and how to use it.
-
-> This TSDX setup is meant for developing React component libraries (not apps!) that can be published to NPM. If you’re looking to build a React-based app, you should use `create-react-app`, `razzle`, `nextjs`, `gatsby`, or `react-static`.
-
-> If you’re new to TypeScript and React, checkout [this handy cheatsheet](https://github.com/sw-yx/react-typescript-cheatsheet/)
+Modern React UI library for fast development of web interfaces
 
 ## Commands
 
-TSDX scaffolds your new library inside `/src`, and also sets up a [Parcel-based](https://parceljs.org) playground for it inside `/example`.
+The library lives inside `/src`, and a [Parcel-based](https://parceljs.org) playground lives inside `/example`.
 
 The recommended workflow is to run TSDX in one terminal:
 
 ```bash
-npm start # or yarn start
+yarn start
 ```
 
 This builds to `/dist` and runs the project in watch mode so any edits you save inside `src` causes a rebuild to `/dist`.
@@ -38,56 +34,67 @@ Then run the example inside another:
 
 ```bash
 cd example
-npm i # or yarn to install dependencies
-npm start # or yarn start
+yarn
+yarn start # or yarn start
 ```
 
 The default example imports and live reloads whatever is in `/dist`, so if you are seeing an out of date component, make sure TSDX is running in watch mode like we recommend above. **No symlinking required**, we use [Parcel's aliasing](https://parceljs.org/module_resolution.html#aliases).
 
-To do a one-off build, use `npm run build` or `yarn build`.
+To do a one-off build, use `yarn build`.
 
-To run tests, use `npm test` or `yarn test`.
+To run tests, use `yarn test`.
 
 ## Configuration
 
-Code quality is set up for you with `prettier`, `husky`, and `lint-staged`. Adjust the respective fields in `package.json` accordingly.
+Code quality is set up for you with `prettier`, `husky`, and `lint-staged`.
+
+### TSDX
+
+This project is bootstrapped with [TSDX](https://tsdx.io/).
+
+### Tailwind
+
+The utility-first CSS framework [Tailwind](https://tailwindcss.com/) is being used to style components.
+Custom color schemes and configuration can be found in `tailwind.config.js`. You can run `yarn tailwind-config` to visualize the Tailwind CSS configuration file.
 
 ### Jest
 
-Jest tests are set up to run with `npm test` or `yarn test`.
+Jest tests are set up to run with `yarn test`. We use Jest with `react-testing-library` for unit testing.
 
 ### Bundle analysis
 
-Calculates the real cost of your library using [size-limit](https://github.com/ai/size-limit) with `npm run size` and visulize it with `npm run analyze`.
+Calculates the real cost of your library using [size-limit](https://github.com/ai/size-limit) with `yarn size` and visualize it with `yarn analyze`.
 
 #### Setup Files
 
-This is the folder structure we set up for you:
+This is the folder structure:
 
 ```txt
 /example
   index.html
-  index.tsx       # test your component here in a demo app
+  index.tsx       # test components here in a demo app
   package.json
   tsconfig.json
 /src
-  index.tsx       # EDIT THIS
+  /components
+    Button.tsx
+  index.tsx
+  tailwind.css
 /test
-  blah.test.tsx   # EDIT THIS
+  Button.test.tsx
 /stories
-  Thing.stories.tsx # EDIT THIS
+  Button.stories.tsx
 /.storybook
   main.js
   preview.js
 .gitignore
 package.json
-README.md         # EDIT THIS
+postcss.config.js
+README.md
+tailwind.config.js
 tsconfig.json
+tsdx.config.js
 ```
-
-#### React Testing Library
-
-We do not set up `react-testing-library` for you yet, we welcome contributions and documentation on this.
 
 ### Rollup
 
@@ -112,11 +119,11 @@ Please see the main `tsdx` [optimizations docs](https://github.com/palmerhq/tsdx
 
 ```js
 // ./types/index.d.ts
-declare var __DEV__: boolean;
+declare var __DEV__: boolean
 
 // inside your code...
 if (__DEV__) {
-  console.log('foo');
+  console.log('foo')
 }
 ```
 
