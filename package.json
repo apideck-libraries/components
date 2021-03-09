@@ -21,21 +21,23 @@
     "size": "size-limit",
     "analyze": "size-limit --why",
     "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook"
+    "build-storybook": "build-storybook",
+    "tailwind-config": "tailwind-config-viewer -o"
   },
   "peerDependencies": {
     "react": ">=16"
   },
   "husky": {
     "hooks": {
-      "pre-commit": "tsdx lint"
+      "pre-commit": "tsdx lint",
+      "pre-push": "tsdx test"
     }
   },
   "prettier": {
-    "printWidth": 80,
-    "semi": true,
+    "printWidth": 100,
     "singleQuote": true,
-    "trailingComma": "es5"
+    "semi": false,
+    "trailingComma": "none"
   },
   "name": "react-unify",
   "author": "Jake Prins",
@@ -75,6 +77,7 @@
     "react-is": "^17.0.1",
     "rollup-plugin-postcss": "^4.0.0",
     "size-limit": "^4.10.1",
+    "tailwind-config-viewer": "^1.5.0",
     "tailwindcss": "npm:@tailwindcss/postcss7-compat",
     "tsdx": "^0.14.1",
     "tslib": "^2.1.0",
