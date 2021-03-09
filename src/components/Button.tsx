@@ -1,4 +1,4 @@
-import './tailwind.css'
+import '../tailwind.css'
 
 import React, { HTMLAttributes, ReactNode, forwardRef } from 'react'
 
