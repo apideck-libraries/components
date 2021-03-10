@@ -4,3 +4,6 @@ node_modules
 .cache
 dist
 coverage
+storybook-static
+.env
+.env.local

@@ -1,8 +1,6 @@
-import '../tailwind.css'
-
-import React, { HTMLAttributes, ReactNode, forwardRef } from 'react'
-
 import classNames from 'classnames'
+import React, { forwardRef, HTMLAttributes, ReactNode } from 'react'
+import '../tailwind.css'
 
 export interface Props extends HTMLAttributes<HTMLButtonElement> {
   children?: ReactNode
@@ -10,7 +8,7 @@ export interface Props extends HTMLAttributes<HTMLButtonElement> {
   type?: 'button' | 'submit' | 'reset'
   variant?: 'primary' | 'secondary' | 'outline' | 'danger' | 'disabled'
   size?: 'small' | 'regular' | 'large' | 'larger'
-  cssClass?: string
+  className?: string
   styles?: { [key: string]: string }
   isDisabled?: boolean
   isLoading?: boolean
@@ -25,7 +23,7 @@ export const Button = forwardRef<HTMLButtonElement, Props>(function Button(
     isDisabled = false,
     variant = 'primary',
     size = 'regular',
-    cssClass = '',
+    className = '',
     isLoading = false,
     text,
     ...other
@@ -68,7 +66,7 @@ export const Button = forwardRef<HTMLButtonElement, Props>(function Button(
         sizeStyles[size],
         { 'opacity-50': isDisabled },
         { 'cursor-not-allowed': isDisabled || isLoading },
-        cssClass
+        className
       )}
       type={type}
       disabled={isDisabled}

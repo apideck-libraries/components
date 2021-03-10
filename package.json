@@ -39,16 +39,16 @@
     "semi": false,
     "trailingComma": "none"
   },
-  "name": "react-unify",
+  "name": "@apideck/components",
   "author": "Jake Prins",
-  "module": "dist/react-unify.esm.js",
+  "module": "dist/components.esm.js",
   "size-limit": [
     {
-      "path": "dist/react-unify.cjs.production.min.js",
+      "path": "dist/components.cjs.production.min.js",
       "limit": "10 KB"
     },
     {
-      "path": "dist/react-unify.esm.js",
+      "path": "dist/components.esm.js",
       "limit": "10 KB"
     }
   ],

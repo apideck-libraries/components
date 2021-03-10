@@ -1,9 +1,6 @@
 import '@testing-library/jest-dom/extend-expect'
-
-import * as React from 'react'
-
 import { fireEvent, render } from '@testing-library/react'
-
+import * as React from 'react'
 import { Primary as Button } from '../stories/Button.stories'
 
 describe('Button', () => {
@@ -59,14 +56,14 @@ describe('Button', () => {
   it('should contain base classes', () => {
     const expected =
       'inline-flex items-center border border-transparent leading-4 font-medium rounded transition duration-300 ease-in-out'
-    const { getByRole } = render(<Button text="test" cssClass="test" />)
+    const { getByRole } = render(<Button text="test" />)
     const buttonElement = getByRole('button')
 
     expect(buttonElement.getAttribute('class')).toContain(expected)
   })
 
   it('should extend classes', () => {
-    const { getByRole } = render(<Button text="test" cssClass="test" />)
+    const { getByRole } = render(<Button text="test" className="test" />)
     const buttonElement = getByRole('button')
 
     expect(buttonElement.classList.contains('test')).toBe(true)
@@ -100,7 +97,7 @@ describe('Button', () => {
       const { getByRole } = render(<Button text="test" variant="primary" />)
       const buttonElement = getByRole('button')
 
-      expect(buttonElement.classList.contains('bg-primary-500')).toBe(true)
+      expect(buttonElement.classList.contains('bg-primary-600')).toBe(true)
     })
 
     it('should render a secondary button', () => {
