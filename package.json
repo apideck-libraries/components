@@ -41,6 +41,12 @@
   },
   "name": "@apideck/components",
   "author": "Jake Prins",
+  "np": {
+    "contents": "dist"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
   "module": "dist/components.esm.js",
   "size-limit": [
     {
