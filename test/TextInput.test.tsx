@@ -1,6 +1,9 @@
 import '@testing-library/jest-dom/extend-expect'
-import { fireEvent, render } from '@testing-library/react'
+
 import * as React from 'react'
+
+import { fireEvent, render } from '@testing-library/react'
+
 import { Default as TextInput } from '../stories/TextInput.stories'
 
 describe('Text Input', () => {
@@ -26,7 +29,7 @@ describe('Text Input', () => {
     })
 
     it('should be disabled', async () => {
-      const { getByPlaceholderText } = render(<TextInput isDisabled={true} {...props} />)
+      const { getByPlaceholderText } = render(<TextInput disabled={true} {...props} />)
       const input = getByPlaceholderText('placeholder') as HTMLTextAreaElement
 
       expect(input).toBeDisabled()

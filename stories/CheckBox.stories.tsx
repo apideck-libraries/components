@@ -32,4 +32,4 @@ export const WithValue = Template.bind({})
 WithValue.args = { name: 'input-name', label: 'Uncheck me', value: true }
 
 export const Disabled = Template.bind({})
-Disabled.args = { name: 'input-name', label: 'Do not check me', isDisabled: true }
+Disabled.args = { name: 'input-name', label: 'Do not check me', disabled: true }

@@ -53,6 +53,6 @@ export const Disabled = Template.bind({})
 Disabled.args = {
   type: 'date',
   name: 'input-name',
-  isDisabled: true,
+  disabled: true,
   containerClassName: 'max-w-sm'
 }

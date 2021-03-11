@@ -8,7 +8,8 @@ export interface Props {
   onChange: (e: Event) => void
   value?: string // yyyy-mm-dd or yyyy-mm-ddT00:00:00.000Z
   placeholder?: string | undefined
-  isDisabled?: boolean
+  disabled?: boolean
+  required?: boolean
   className?: string
   containerClassName?: string
 }
@@ -18,7 +19,7 @@ export const DateInput: React.FC<Props> = ({
   value = '',
   type = 'date',
   placeholder = 'Select date',
-  isDisabled = false,
+  disabled = false,
   className = '',
   containerClassName = '',
   onChange,
@@ -164,14 +165,13 @@ export const DateInput: React.FC<Props> = ({
         readOnly
         value={datePickerValue || 'Choose a date'}
         onClick={() => setShowDatePicker(!showDatePicker)}
-        placeholder={placeholder}
-        disabled={isDisabled}
         data-testid={name}
         className={classNames(
-          'block w-full text-gray-600 border-gray-300 rounded-md sm:text-sm',
-          { 'cursor-not-allowed opacity-50': isDisabled },
+          'block w-full text-gray-600 border-gray-300 rounded-md shadow-sm sm:text-sm',
+          { 'cursor-not-allowed opacity-50': disabled },
           className
         )}
+        disabled={disabled}
         {...other}
       />
       <div className="absolute top-0 right-0 z-10 px-3 py-2">

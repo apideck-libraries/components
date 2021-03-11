@@ -28,7 +28,7 @@ describe('Text Area', () => {
   })
 
   it('should be disabled', async () => {
-    const { getByPlaceholderText } = render(<TextArea isDisabled={true} {...props} />)
+    const { getByPlaceholderText } = render(<TextArea disabled={true} {...props} />)
     const input = getByPlaceholderText('placeholder') as HTMLTextAreaElement
 
     expect(input).toBeDisabled()

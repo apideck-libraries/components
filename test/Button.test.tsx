@@ -1,6 +1,9 @@
 import '@testing-library/jest-dom/extend-expect'
-import { fireEvent, render } from '@testing-library/react'
+
 import * as React from 'react'
+
+import { fireEvent, render } from '@testing-library/react'
+
 import { Primary as Button } from '../stories/Button.stories'
 
 describe('Button', () => {
@@ -31,8 +34,8 @@ describe('Button', () => {
     expect(buttonElement).toHaveTextContent('cool button')
   })
 
-  it('should disable the button is isDisabled prop is true', () => {
-    const { getByRole } = render(<Button isDisabled>Disabled button</Button>)
+  it('should disable the button is disabled prop is true', () => {
+    const { getByRole } = render(<Button disabled>Disabled button</Button>)
     const buttonElement = getByRole('button')
     expect(buttonElement).toBeDisabled()
   })

@@ -1,5 +1,3 @@
-import '../styles/tailwind.css'
-
 import React, { HTMLAttributes, forwardRef } from 'react'
 
 import classNames from 'classnames'
@@ -9,26 +7,27 @@ export interface Props extends HTMLAttributes<HTMLInputElement> {
   label?: string
   value?: boolean
   className?: string
-  isDisabled?: boolean
+  disabled?: boolean
+  required?: boolean
 }
 
 export const CheckBox = forwardRef<HTMLInputElement, Props>(function CheckBox(
-  { className = '', label, value, isDisabled, name, ...other },
+  { className = '', label, value, disabled, name, ...other },
   ref
 ) {
   return (
     <>
       <input
         className={classNames(
-          'w-5 h-5 text-primary-600 border-gray-300 rounded-md focus:ring-primary-500 focus:border-primary-500',
-          { 'cursor-not-allowed opacity-50': isDisabled },
+          'w-5 h-5 text-primary-600 border-gray-300 shadow-sm rounded-md focus:ring-primary-500 focus:border-primary-500',
+          { 'cursor-not-allowed opacity-50': disabled },
           className
         )}
         name={name}
         id={name}
         type="checkbox"
         defaultChecked={value}
-        disabled={isDisabled}
+        disabled={disabled}
         ref={ref}
         data-testid={name}
         {...other}
@@ -37,7 +36,7 @@ export const CheckBox = forwardRef<HTMLInputElement, Props>(function CheckBox(
         <label
           htmlFor={name}
           className={classNames('inline-block pt-2 ml-2 text-sm text-gray-600', {
-            'cursor-not-allowed': isDisabled
+            'cursor-not-allowed': disabled
           })}
         >
           {label}

@@ -44,7 +44,7 @@ describe('Check Box', () => {
   })
 
   it('should be disabled', async () => {
-    const { getByTestId } = render(<CheckBox isDisabled={true} {...props} />)
+    const { getByTestId } = render(<CheckBox disabled={true} {...props} />)
     const input = getByTestId(props.name) as HTMLInputElement
 
     expect(input).toBeDisabled()

@@ -63,13 +63,13 @@ describe('Text Area', () => {
   })
 
   it('should should be a multi-select', async () => {
-    const { getByTestId } = render(<Select isMultiple={true} defaultValue={[]} {...props} />)
+    const { getByTestId } = render(<Select multiple={true} defaultValue={[]} {...props} />)
     const input = getByTestId(props.name) as HTMLSelectElement
     expect(input.type).toEqual('select-multiple')
   })
 
   it('should should be disabled', async () => {
-    const { getByTestId } = render(<Select isDisabled={true} {...props} />)
+    const { getByTestId } = render(<Select disabled={true} {...props} />)
     const input = getByTestId(props.name) as HTMLSelectElement
     expect(input).toBeDisabled()
   })

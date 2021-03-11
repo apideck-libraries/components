@@ -8,7 +8,7 @@ export interface Props extends HTMLAttributes<HTMLButtonElement> {
   variant?: 'primary' | 'secondary' | 'outline' | 'danger' | 'danger-outline'
   size?: 'small' | 'regular' | 'large' | 'larger'
   className?: string
-  isDisabled?: boolean
+  disabled?: boolean
   isLoading?: boolean
   text?: string
 }
@@ -17,7 +17,7 @@ export const Button = forwardRef<HTMLButtonElement, Props>(function Button(
   {
     children,
     type = 'button',
-    isDisabled = false,
+    disabled = false,
     variant = 'primary',
     size = 'regular',
     className = '',
@@ -62,12 +62,12 @@ export const Button = forwardRef<HTMLButtonElement, Props>(function Button(
         baseStyles,
         variantStyles[variant],
         sizeStyles[size],
-        { 'opacity-50': isDisabled },
-        { 'cursor-not-allowed': isDisabled || isLoading },
+        { 'opacity-50': disabled },
+        { 'cursor-not-allowed': disabled || isLoading },
         className
       )}
       type={type}
-      disabled={isDisabled}
+      disabled={disabled}
       ref={ref}
       {...other}
     >

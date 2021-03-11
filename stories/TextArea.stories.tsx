@@ -39,4 +39,4 @@ export const WithValue = Template.bind({})
 WithValue.args = { name: 'input-name', value: 'Text Area with value' }
 
 export const Disabled = Template.bind({})
-Disabled.args = { name: 'input-name', isDisabled: true }
+Disabled.args = { name: 'input-name', disabled: true }

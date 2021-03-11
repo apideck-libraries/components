@@ -104,7 +104,7 @@ describe('Date Input', () => {
   })
 
   it('should be disabled', () => {
-    render(<DateInput isDisabled={true} {...props} />)
+    render(<DateInput disabled={true} {...props} />)
     const input = screen.getByTestId('DateInput') as HTMLInputElement
 
     expect(input).toBeDisabled()
@@ -112,7 +112,7 @@ describe('Date Input', () => {
 
   it('should contain the disabled classes', () => {
     const expected = 'cursor-not-allowed opacity-50'
-    render(<DateInput isDisabled={true} {...props} />)
+    render(<DateInput disabled={true} {...props} />)
     const input = screen.getByTestId('DateInput') as HTMLInputElement
 
     expect(input.getAttribute('class')).toContain(expected)

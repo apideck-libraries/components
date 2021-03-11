@@ -1,5 +1,3 @@
-import '../styles/tailwind.css'
-
 import React, { HTMLAttributes, forwardRef } from 'react'
 
 import classNames from 'classnames'
@@ -7,23 +5,24 @@ import classNames from 'classnames'
 export interface Props extends HTMLAttributes<HTMLTextAreaElement> {
   name: string
   value?: string
-  isDisabled?: boolean
+  required?: boolean
+  disabled?: boolean
   className?: string
 }
 
 export const TextArea = forwardRef<HTMLTextAreaElement, Props>(function TextArea(
-  { className = '', isDisabled = false, ...other },
+  { className = '', disabled = false, ...other },
   ref
 ) {
   return (
     <textarea
       className={classNames(
         'w-full border-gray-300 rounded-md shadow-sm sm:text-sm focus:ring-primary-500 focus:border-primary-500',
-        { 'cursor-not-allowed opacity-50': isDisabled },
+        { 'cursor-not-allowed opacity-50': disabled },
         className
       )}
+      disabled={disabled}
       id={other.name}
-      disabled={isDisabled}
       ref={ref}
       {...other}
     />
