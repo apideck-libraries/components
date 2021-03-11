@@ -1,6 +1,5 @@
-import React, { useEffect, useRef, useState } from 'react'
-
 import classNames from 'classnames'
+import React, { useEffect, useRef, useState } from 'react'
 import useOnClickOutside from '../utils/useOutsideClick'
 
 export interface Props {
@@ -110,6 +109,7 @@ export const DateInput: React.FC<Props> = ({
     }
 
     if (day) handleValueChanged()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [time, day])
 
   useEffect(() => {
