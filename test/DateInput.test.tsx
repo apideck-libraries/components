@@ -135,7 +135,7 @@ describe('Date Input', () => {
   })
 
   it('should contain base classes', () => {
-    const expected = 'block w-full text-gray-600 border-gray-300 rounded-md sm:text-sm'
+    const expected = 'block w-full text-gray-600 border-gray-300 rounded-md shadow-sm sm:text-sm'
     render(<DateInput {...props} />)
     const input = screen.getByTestId('DateInput') as HTMLInputElement
 
