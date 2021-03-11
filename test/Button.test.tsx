@@ -55,7 +55,7 @@ describe('Button', () => {
 
   it('should contain base classes', () => {
     const expected =
-      'inline-flex items-center border border-transparent leading-4 font-medium rounded transition duration-300 ease-in-out'
+      'inline-flex items-center justify-center border border-transparent leading-4 font-medium rounded transition duration-300 ease-in-out'
     const { getByRole } = render(<Button text="test" />)
     const buttonElement = getByRole('button')
 
@@ -107,13 +107,6 @@ describe('Button', () => {
       expect(buttonElement.classList.contains('bg-primary-100')).toBe(true)
     })
 
-    it('should show a danger button', () => {
-      const { getByRole } = render(<Button text="test" variant="danger" />)
-      const buttonElement = getByRole('button')
-
-      expect(buttonElement.classList.contains('bg-red-500')).toBe(true)
-    })
-
     it('should show a outline button', () => {
       const { getByRole } = render(<Button text="test" variant="outline" />)
       const buttonElement = getByRole('button')
@@ -121,11 +114,18 @@ describe('Button', () => {
       expect(buttonElement.classList.contains('border-gray-300')).toBe(true)
     })
 
-    it('should show a disabled button', () => {
-      const { getByRole } = render(<Button text="test" variant="disabled" />)
+    it('should show a danger button', () => {
+      const { getByRole } = render(<Button text="test" variant="danger" />)
       const buttonElement = getByRole('button')
 
-      expect(buttonElement.classList.contains('opacity-50')).toBe(true)
+      expect(buttonElement.classList.contains('bg-red-500')).toBe(true)
+    })
+
+    it('should show a danger outline button', () => {
+      const { getByRole } = render(<Button text="test" variant="danger-outline" />)
+      const buttonElement = getByRole('button')
+
+      expect(buttonElement.classList.contains('border-red-300')).toBe(true)
     })
   })
 

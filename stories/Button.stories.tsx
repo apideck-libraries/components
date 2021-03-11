@@ -46,9 +46,5 @@ Outline.args = { text: 'Button text', variant: 'outline' }
 export const Danger = Template.bind({})
 Danger.args = { text: 'Button text', variant: 'danger' }
 
-export const Disabled = Template.bind({})
-Disabled.args = {
-  text: 'Button text',
-  variant: 'disabled',
-  isDisabled: true
-}
+export const DangerOutline = Template.bind({})
+DangerOutline.args = { text: 'Button text', variant: 'danger-outline' }

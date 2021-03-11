@@ -1,15 +1,13 @@
 import classNames from 'classnames'
 import React, { forwardRef, HTMLAttributes, ReactNode } from 'react'
-import '../tailwind.css'
+import '../styles/tailwind.css'
 
 export interface Props extends HTMLAttributes<HTMLButtonElement> {
   children?: ReactNode
-  onClick?: () => void
   type?: 'button' | 'submit' | 'reset'
-  variant?: 'primary' | 'secondary' | 'outline' | 'danger' | 'disabled'
+  variant?: 'primary' | 'secondary' | 'outline' | 'danger' | 'danger-outline'
   size?: 'small' | 'regular' | 'large' | 'larger'
   className?: string
-  styles?: { [key: string]: string }
   isDisabled?: boolean
   isLoading?: boolean
   text?: string
@@ -19,7 +17,6 @@ export const Button = forwardRef<HTMLButtonElement, Props>(function Button(
   {
     children,
     type = 'button',
-    onClick,
     isDisabled = false,
     variant = 'primary',
     size = 'regular',
@@ -31,17 +28,18 @@ export const Button = forwardRef<HTMLButtonElement, Props>(function Button(
   ref
 ) {
   const baseStyles =
-    'inline-flex items-center border border-transparent leading-4 font-medium rounded transition duration-300 ease-in-out'
+    'inline-flex items-center justify-center border border-transparent leading-4 font-medium rounded transition duration-300 ease-in-out'
 
   const variantStyles = {
     primary:
-      'bg-primary-600 text-white shadow hover:shadow-lg active:bg-primary-600 hover:bg-primary-700 focus:shadow-outline-primary',
+      'bg-primary-600 text-white shadow hover:shadow-md active:bg-primary-600 hover:bg-primary-700 focus:shadow-outline-primary',
     secondary:
-      'text-primary-700 bg-primary-100 hover:bg-primary-200 shadow hover:shadow-lg focus:shadow-outline-primary',
-    outline: 'border border-gray-300 text-gray-600 shadow hover:shadow-md',
+      'text-primary-700 bg-primary-100 hover:bg-primary-200 shadow hover:shadow-md focus:shadow-outline-primary',
+    outline: 'border border-gray-300 text-gray-600 shadow hover:shadow-md hover:text-gray-700',
     danger:
-      'bg-red-500 text-white shadow hover:shadow-lg active:bg-red-600 hover:bg-red-700 focus:shadow-outline-red',
-    disabled: 'opacity-50 cursor-not-allowed'
+      'bg-red-500 text-white shadow hover:shadow-md active:bg-red-600 hover:bg-red-700 focus:shadow-outline-red',
+    'danger-outline':
+      'border border-red-300 text-red-600 shadow hover:shadow-md active:border-red-400 hover:border-red-400'
   }
 
   const sizeStyles = {
@@ -70,7 +68,6 @@ export const Button = forwardRef<HTMLButtonElement, Props>(function Button(
       )}
       type={type}
       disabled={isDisabled}
-      onClick={onClick}
       ref={ref}
       {...other}
     >
