@@ -1,4 +1,5 @@
 export { Button } from './components/Button'
 export { CheckBox } from './components/CheckBox'
 export { Select } from './components/Select'
+export { TextArea } from './components/TextArea'
 export { TextInput } from './components/TextInput'
