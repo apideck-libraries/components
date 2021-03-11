@@ -30,13 +30,13 @@ const options = [
   }
 ]
 export const Default = Template.bind({})
-Default.args = { type: 'text', name: 'input-name', options }
+Default.args = { name: 'input-name', options }
 
 export const WithValue = Template.bind({})
-WithValue.args = { type: 'text', name: 'input-name', options, defaultValue: options[1].value }
+WithValue.args = { name: 'input-name', options, defaultValue: options[1].value }
 
 export const Disabled = Template.bind({})
-Disabled.args = { type: 'text', name: 'input-name', options, isDisabled: true }
+Disabled.args = { name: 'input-name', options, isDisabled: true }
 
 export const Multiple = Template.bind({})
-Multiple.args = { type: 'text', name: 'input-name', options, isMultiple: true }
+Multiple.args = { name: 'input-name', options, isMultiple: true }
