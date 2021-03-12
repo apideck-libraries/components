@@ -22,7 +22,7 @@
     "analyze": "size-limit --why",
     "storybook": "start-storybook -p 6006 --no-manager-cache",
     "build-storybook": "build-storybook",
-    "tailwind-config": "tailwind-config-viewer -o"
+    "view-tailwind": "tailwind-config-viewer -o"
   },
   "peerDependencies": {
     "react": ">=16"

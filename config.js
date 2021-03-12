@@ -1,4 +1,5 @@
 const deepMerge = require('deepmerge')
+
 const apideckConfig = {
   purge: ['./src/**/*.tsx'],
   darkMode: false,
@@ -34,7 +35,7 @@ const arrayMergeFn = (destinationArray, sourceArray) => {
 }
 
 const wrapper = tailwindConfig => {
-  return deepMerge(tailwindConfig, apideckConfig, { arrayMerge: arrayMergeFn })
+  return deepMerge(apideckConfig, tailwindConfig, { arrayMerge: arrayMergeFn })
 }
 
 module.exports = wrapper

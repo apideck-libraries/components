@@ -6,6 +6,7 @@ export interface Props extends HTMLAttributes<HTMLTextAreaElement> {
   name: string
   value?: string
   disabled?: boolean
+  required?: boolean
   valid?: boolean
 }
 
