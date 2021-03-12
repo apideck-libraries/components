@@ -1,5 +1,5 @@
 {
-  "version": "0.1.7-2",
+  "version": "0.1.7-3",
   "license": "MIT",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
@@ -28,8 +28,8 @@
     "react": ">=16"
   },
   "dependencies": {
-    "deepmerge": "4.2.2",
-    "@tailwindcss/forms": "^0.2.1"
+    "@tailwindcss/forms": "^0.2.1",
+    "deepmerge": "4.2.2"
   },
   "husky": {
     "hooks": {
