@@ -1,3 +1,4 @@
+export const tailwindConfig = require('../config')
 export { Button } from './components/Button'
 export { CheckBox } from './components/CheckBox'
 export { DateInput } from './components/DateInput'
