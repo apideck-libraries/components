@@ -40,3 +40,9 @@ WithValue.args = { type: 'text', name: 'input-name', value: 'Input with some tex
 
 export const Disabled = Template.bind({})
 Disabled.args = { type: 'text', name: 'input-name', disabled: true }
+
+export const Valid = Template.bind({})
+Valid.args = { type: 'text', name: 'input-name', valid: true }
+
+export const InValid = Template.bind({})
+InValid.args = { type: 'text', name: 'input-name', valid: false }

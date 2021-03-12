@@ -163,11 +163,12 @@ export const DateInput: React.FC<Props> = ({
       <input
         type="text"
         readOnly
-        value={datePickerValue || 'Choose a date'}
+        value={datePickerValue}
+        placeholder={placeholder}
         onClick={() => setShowDatePicker(!showDatePicker)}
         data-testid={name}
         className={classNames(
-          'block w-full text-gray-600 border-gray-300 rounded-md shadow-sm sm:text-sm',
+          'block w-full text-gray-600 border-gray-300 rounded-md shadow-sm sm:text-sm focus:ring-primary-500 focus:border-primary-500',
           { 'cursor-not-allowed opacity-50': disabled },
           className
         )}
@@ -176,7 +177,7 @@ export const DateInput: React.FC<Props> = ({
       />
       <div className="absolute top-0 right-0 z-10 px-3 py-2">
         <svg
-          className="w-5 h-5 text-gray-500"
+          className="w-5 h-5 text-gray-400"
           fill="none"
           viewBox="0 0 24 24"
           stroke="currentColor"
@@ -193,7 +194,7 @@ export const DateInput: React.FC<Props> = ({
         data-testid="datePicker"
         ref={datePickerRef}
         className={classNames(
-          'absolute top-0 right-0 z-20 p-4 mt-12 bg-white rounded-md shadow max-w-sm',
+          'absolute top-0 right-0 z-20 p-4 mt-12 bg-white rounded-md shadow-md max-w-sm',
           {
             hidden: !showDatePicker
           }
@@ -297,9 +298,7 @@ export const DateInput: React.FC<Props> = ({
                     'text-sm leading-loose text-center transition duration-100 ease-in-out rounded-md cursor-pointer',
                     {
                       'font-bold': isToday(dayNumber),
-                      'text-gray-700 hover:bg-primary-200':
-                        !isToday(dayNumber) && dayNumber !== day,
-                      'bg-primary-600 text-white': dayNumber === day
+                      'text-gray-700 hover:bg-primary-200': !isToday(dayNumber)
                     }
                   )}
                 >

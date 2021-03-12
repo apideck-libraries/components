@@ -1,9 +1,6 @@
 import '@testing-library/jest-dom/extend-expect'
-
-import * as React from 'react'
-
 import { fireEvent, render } from '@testing-library/react'
-
+import * as React from 'react'
 import { Default as TextInput } from '../stories/TextInput.stories'
 
 describe('Text Input', () => {
@@ -49,6 +46,13 @@ describe('Text Input', () => {
       const input = getByPlaceholderText(props.placeholder) as HTMLInputElement
 
       expect(input.classList.contains('test')).toBe(true)
+    })
+
+    it('should render valid classes', () => {
+      const { getByPlaceholderText } = render(<TextInput valid={true} {...props} />)
+      const input = getByPlaceholderText(props.placeholder) as HTMLInputElement
+
+      expect(input.classList.contains('border-green-600')).toBe(true)
     })
   })
   describe('When type is number', () => {

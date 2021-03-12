@@ -1,9 +1,6 @@
 import '@testing-library/jest-dom/extend-expect'
-
-import * as React from 'react'
-
 import { fireEvent, render } from '@testing-library/react'
-
+import * as React from 'react'
 import { Default as Select } from '../stories/Select.stories'
 
 describe('Text Area', () => {
@@ -79,5 +76,19 @@ describe('Text Area', () => {
     const input = getByTestId(props.name) as HTMLSelectElement
 
     expect(input.classList.contains('test')).toBe(true)
+  })
+
+  it('should render valid classes', () => {
+    const { getByTestId } = render(<Select valid={true} {...props} />)
+    const input = getByTestId(props.name) as HTMLSelectElement
+
+    expect(input.classList.contains('border-green-600')).toBe(true)
+  })
+
+  it('should render invalid classes', () => {
+    const { getByTestId } = render(<Select valid={false} {...props} />)
+    const input = getByTestId(props.name) as HTMLSelectElement
+
+    expect(input.classList.contains('border-red-600')).toBe(true)
   })
 })

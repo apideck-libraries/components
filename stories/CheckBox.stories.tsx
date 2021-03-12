@@ -33,3 +33,9 @@ WithValue.args = { name: 'input-name', label: 'Uncheck me', value: true }
 
 export const Disabled = Template.bind({})
 Disabled.args = { name: 'input-name', label: 'Do not check me', disabled: true }
+
+export const Valid = Template.bind({})
+Valid.args = { name: 'input-name', valid: true }
+
+export const InValid = Template.bind({})
+InValid.args = { name: 'input-name', valid: false }

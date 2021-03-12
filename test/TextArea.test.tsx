@@ -1,9 +1,7 @@
 import '@testing-library/jest-dom/extend-expect'
-
-import * as React from 'react'
-
-import { Default as TextArea } from '../stories/TextArea.stories'
 import { render } from '@testing-library/react'
+import * as React from 'react'
+import { Default as TextArea } from '../stories/TextArea.stories'
 
 describe('Text Area', () => {
   const props = {
@@ -39,5 +37,19 @@ describe('Text Area', () => {
     const input = getByPlaceholderText('placeholder') as HTMLTextAreaElement
 
     expect(input.classList.contains('test')).toBe(true)
+  })
+
+  it('should render valid classes', () => {
+    const { getByPlaceholderText } = render(<TextArea valid={true} {...props} />)
+    const input = getByPlaceholderText(props.placeholder) as HTMLTextAreaElement
+
+    expect(input.classList.contains('border-green-600')).toBe(true)
+  })
+
+  it('should render invalid classes', () => {
+    const { getByPlaceholderText } = render(<TextArea valid={false} {...props} />)
+    const input = getByPlaceholderText(props.placeholder) as HTMLTextAreaElement
+
+    expect(input.classList.contains('border-red-600')).toBe(true)
   })
 })

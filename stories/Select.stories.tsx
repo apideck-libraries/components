@@ -40,3 +40,9 @@ Disabled.args = { name: 'input-name', options, disabled: true }
 
 export const Multiple = Template.bind({})
 Multiple.args = { name: 'input-name', options, multiple: true }
+
+export const Valid = Template.bind({})
+Valid.args = { name: 'input-name', options, valid: true }
+
+export const InValid = Template.bind({})
+InValid.args = { name: 'input-name', options, valid: false }
