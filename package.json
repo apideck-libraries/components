@@ -28,7 +28,8 @@
     "react": ">=16"
   },
   "dependencies": {
-    "deepmerge": "4.2.2"
+    "deepmerge": "4.2.2",
+    "@tailwindcss/forms": "^0.2.1"
   },
   "husky": {
     "hooks": {
@@ -51,11 +52,11 @@
   "size-limit": [
     {
       "path": "dist/components.cjs.production.min.js",
-      "limit": "10 KB"
+      "limit": "20 KB"
     },
     {
       "path": "dist/components.esm.js",
-      "limit": "10 KB"
+      "limit": "20 KB"
     }
   ],
   "repository": {
@@ -71,7 +72,6 @@
     "@storybook/addon-links": "^6.1.21",
     "@storybook/addons": "^6.1.21",
     "@storybook/react": "^6.1.21",
-    "@tailwindcss/forms": "^0.2.1",
     "@tailwindcss/postcss7-compat": "^2.0.3",
     "@testing-library/jest-dom": "^5.11.9",
     "@testing-library/react": "^11.2.5",
