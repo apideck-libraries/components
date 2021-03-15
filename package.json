@@ -31,9 +31,7 @@
   },
   "dependencies": {
     "@tailwindcss/forms": "^0.2.1",
-    "@tailwindcss/postcss7-compat": "^2.0.3",
-    "deepmerge": "4.2.2",
-    "tailwindcss": "npm:@tailwindcss/postcss7-compat"
+    "deepmerge": "4.2.2"
   },
   "husky": {
     "hooks": {
@@ -76,6 +74,8 @@
     "@storybook/addon-links": "^6.1.21",
     "@storybook/addons": "^6.1.21",
     "@storybook/react": "^6.1.21",
+    "@tailwindcss/postcss7-compat": "^2.0.3",
+    "tailwindcss": "npm:@tailwindcss/postcss7-compat",
     "@testing-library/jest-dom": "^5.11.9",
     "@testing-library/react": "^11.2.5",
     "@testing-library/user-event": "^12.8.3",
