@@ -1,6 +1,6 @@
 const deepMerge = require('deepmerge')
 
-const apideckConfig = {
+const apideckComponentsConfig = {
   purge: ['./src/**/*.tsx'],
   darkMode: false,
   theme: {
@@ -27,15 +27,16 @@ const apideckConfig = {
   plugins: [require('@tailwindcss/forms')]
 }
 
-const arrayMergeFn = (destinationArray, sourceArray) => {
+const arrayMerge = (destinationArray, sourceArray) => {
   return destinationArray.concat(sourceArray).reduce((acc, cur) => {
     if (acc.includes(cur)) return acc
     return [...acc, cur]
   }, [])
 }
 
-const wrapper = tailwindConfig => {
-  return deepMerge(apideckConfig, tailwindConfig, { arrayMerge: arrayMergeFn })
+// Takes a Tailwind configuration object and merges it with the current configuration
+const tailwindConfigWrapper = tailwindConfig => {
+  return deepMerge(apideckComponentsConfig, tailwindConfig, { arrayMerge })
 }
 
-module.exports = wrapper
+module.exports = tailwindConfigWrapper
