@@ -7,7 +7,7 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        node: ['10.x', '12.x', '14.x']
+        node: ['12.13.0', '14.x']
         os: [ubuntu-latest, windows-latest, macOS-latest]
 
     steps:
@@ -23,10 +23,10 @@ jobs:
         uses: bahmutov/npm-install@v1
 
       - name: Lint
-        run: npm run lint
+        run: yarn run lint
 
       - name: Test
-        run: npm run test --ci --coverage --maxWorkers=2
+        run: yarn run test --ci --coverage --maxWorkers=2
 
       - name: Build
-        run: npm run build
+        run: yarn run build
