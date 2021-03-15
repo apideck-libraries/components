@@ -1,5 +1,5 @@
 {
-  "version": "0.1.7-3",
+  "version": "0.1.7",
   "license": "MIT",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
@@ -30,10 +30,10 @@
     "tailwindcss": ">=2"
   },
   "dependencies": {
-    "tailwindcss": "npm:@tailwindcss/postcss7-compat",
     "@tailwindcss/forms": "^0.2.1",
     "@tailwindcss/postcss7-compat": "^2.0.3",
-    "deepmerge": "4.2.2"
+    "deepmerge": "4.2.2",
+    "tailwindcss": "npm:@tailwindcss/postcss7-compat"
   },
   "husky": {
     "hooks": {
