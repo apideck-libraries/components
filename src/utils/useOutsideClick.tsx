@@ -4,12 +4,10 @@ interface RefObject<T> {
   readonly current: T | null
 }
 
-const useOnClickOutside = (ref: RefObject<HTMLElement>, handler: (event: Event) => void) => {
+export const useOutsideClick = (ref: RefObject<HTMLElement>, handler: (event: Event) => void) => {
   useEffect(() => {
     const listener = (event: Event) => {
-      // Do nothing if clicking ref's element or descendent elements
       if (!ref.current || ref.current.contains(event.target as Node)) return
-
       handler(event)
     }
 
@@ -22,5 +20,3 @@ const useOnClickOutside = (ref: RefObject<HTMLElement>, handler: (event: Event) 
     }
   }, [ref, handler])
 }
-
-export default useOnClickOutside
