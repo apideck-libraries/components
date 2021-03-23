@@ -1,6 +1,8 @@
-import classNames from 'classnames'
-import React, { forwardRef, HTMLAttributes, ReactNode } from 'react'
 import '../styles/tailwind.css'
+
+import React, { HTMLAttributes, ReactNode, forwardRef } from 'react'
+
+import classNames from 'classnames'
 
 export interface Props extends HTMLAttributes<HTMLButtonElement> {
   children?: ReactNode
@@ -49,11 +51,19 @@ export const Button = forwardRef<HTMLButtonElement, Props>(function Button(
     larger: 'px-6 py-4 text-md'
   }
 
-  const iconStyles = {
+  const iconSizeStyles = {
     small: 'h-3 w-3',
     regular: 'h-4 w-4',
     large: 'h-5 w-5',
     larger: 'h-6 w-6'
+  }
+
+  const iconStyles = {
+    primary: 'text-white ',
+    secondary: 'text-primary-700',
+    outline: 'text-gray-600hover:text-gray-700',
+    danger: 'text-white ',
+    'danger-outline': 'text-red-600 hover:border-red-400'
   }
 
   return (
@@ -74,7 +84,11 @@ export const Button = forwardRef<HTMLButtonElement, Props>(function Button(
       {isLoading && (
         <svg
           data-testid="loading-svg"
-          className={classNames(iconStyles[size], 'animate-spin -ml-1 mr-3 text-white')}
+          className={classNames(
+            iconSizeStyles[size],
+            iconStyles[variant],
+            'animate-spin -ml-1 mr-3'
+          )}
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
           viewBox="0 0 24 24"

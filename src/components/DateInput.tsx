@@ -1,6 +1,7 @@
-import classNames from 'classnames'
 import React, { useEffect, useRef, useState } from 'react'
-import useOnClickOutside from '../utils/useOutsideClick'
+
+import classNames from 'classnames'
+import { useOutsideClick } from '../utils'
 
 export interface Props {
   name: string
@@ -55,7 +56,7 @@ export const DateInput: React.FC<Props> = ({
     'December'
   ]
 
-  useOnClickOutside(datePickerRef, () => setShowDatePicker(false))
+  useOutsideClick(datePickerRef, () => setShowDatePicker(false))
 
   useEffect(() => {
     const getNumberOfDays = () => {
@@ -312,5 +313,3 @@ export const DateInput: React.FC<Props> = ({
     </div>
   )
 }
-
-export default DateInput
