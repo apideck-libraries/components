@@ -1,12 +1,16 @@
-import React, { ReactNode, createContext, useCallback, useContext, useState } from 'react'
+import React, {
+  CSSProperties,
+  ReactNode,
+  createContext,
+  useCallback,
+  useContext,
+  useState
+} from 'react'
 
 import { Modal } from '../components'
 
 interface ContextProps {
-  addModal: (
-    content: any,
-    options?: { className?: string; style?: { [key: string]: string | number } }
-  ) => void
+  addModal: (content: any, options?: { className?: string; style?: CSSProperties }) => void
   removeModal: () => void
 }
 

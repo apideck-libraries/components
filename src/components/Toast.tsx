@@ -1,15 +1,8 @@
 import React, { useEffect, useState } from 'react'
 
+import { Toast as Props } from '../types/Toast'
 import { Transition } from '@headlessui/react'
 import { useToast } from '../utils'
-
-export interface Props {
-  title: string
-  description: string
-  type?: 'success' | 'warning' | 'error' | 'info'
-  id?: number
-  autoClose?: boolean
-}
 
 export const Toast: React.FC<Props> = ({ title, description, type = 'info', id, autoClose }) => {
   const [shouldShow, setShouldShow] = useState(false)

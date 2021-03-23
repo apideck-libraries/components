@@ -1,7 +1,8 @@
 import { Meta, Story } from '@storybook/react'
-import { Props, Toast } from '../src/components/Toast'
 
+import { Toast as Props } from '../src/types/Toast'
 import React from 'react'
+import { Toast } from '../src/components/Toast'
 
 const meta: Meta = {
   title: 'Toast',

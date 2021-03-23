@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { CSSProperties, useEffect, useState } from 'react'
 
 import { Transition } from '@headlessui/react'
 import { createPortal } from 'react-dom'
@@ -7,7 +7,7 @@ export interface Props extends React.HTMLAttributes<HTMLDivElement> {
   onClose: () => void
   isOpen: boolean
   className?: string
-  style?: { [key: string]: string | number }
+  style?: CSSProperties
 }
 
 export const Modal = React.forwardRef<HTMLDivElement, Props>(function Modal(props, ref) {
