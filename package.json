@@ -1,5 +1,5 @@
 {
-  "version": "0.1.8",
+  "version": "0.2.0",
   "license": "MIT",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
@@ -25,10 +25,10 @@
     "view-tailwind": "tailwind-config-viewer -o"
   },
   "peerDependencies": {
+    "@headlessui/react": ">= 0.3",
     "react": ">=16",
     "react-dom": ">=16",
-    "tailwindcss": ">=2",
-    "@headlessui/react": ">= 0.3"
+    "tailwindcss": ">=2"
   },
   "dependencies": {
     "@tailwindcss/forms": "^0.2.1",
