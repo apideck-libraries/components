@@ -8,6 +8,7 @@ export interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
   isLoading?: boolean
   className?: string
 }
+
 export const Toggle = forwardRef<HTMLButtonElement, Props>(function Toggle(
   { isEnabled = false, isLoading = false, className = '', onToggle, ...other },
   ref

@@ -10,6 +10,11 @@ Install the component library
 yarn add @apideck/components
 ```
 
+If you haven't already, make sure you have installed the the peer dependencies:
+
+- [Tailwindcss](https://tailwindcss.com/)
+- [HeadlessUI](https://headlessui.dev/)
+
 Add or update a `tailwind.config.js` file at the root of your project and wrap your custom Tailwind configuration with the config wrapper from the components library:
 
 ```js

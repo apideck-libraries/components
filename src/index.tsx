@@ -7,7 +7,8 @@ export {
   Select,
   TextArea,
   TextInput,
-  Toast
+  Toast,
+  Toggle
 } from './components'
 export {
   useModal,
