@@ -41,7 +41,7 @@ export const Button = forwardRef<HTMLButtonElement, Props>(function Button(
     danger:
       'bg-red-500 text-white shadow hover:shadow-md active:bg-red-600 hover:bg-red-700 focus:shadow-outline-red',
     'danger-outline':
-      'border border-red-300 text-red-600 shadow hover:shadow-md active:border-red-400 hover:border-red-400'
+      'border border-red-300 text-red-600 shadow hover:shadow-md active:border-red-400 hover:border-red-400 focus:shadow-outline-red'
   }
 
   const sizeStyles = {
