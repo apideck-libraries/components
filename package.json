@@ -22,7 +22,8 @@
     "analyze": "size-limit --why",
     "storybook": "start-storybook -p 6006 --no-manager-cache",
     "build-storybook": "build-storybook",
-    "view-tailwind": "tailwind-config-viewer -o"
+    "view-tailwind": "tailwind-config-viewer -o",
+    "release": "NODE_ENV=production tsdx build && np"
   },
   "peerDependencies": {
     "@headlessui/react": ">= 0.3",
