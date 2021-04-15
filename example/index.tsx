@@ -1,8 +1,11 @@
-import * as React from 'react'
 import 'react-app-polyfill/ie11'
-import * as ReactDOM from 'react-dom'
-import { Button, CheckBox, DateInput, Select, TextArea, TextInput } from '../.'
 import '../src/styles/tailwind.css'
+import '../src/styles/card.css'
+
+import * as React from 'react'
+import * as ReactDOM from 'react-dom'
+
+import { Button, CheckBox, DateInput, Select, TextArea, TextInput } from '../.'
 
 const App = () => {
   return (

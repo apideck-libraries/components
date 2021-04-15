@@ -19,7 +19,7 @@ export interface Option {
   href?: string
 }
 
-export const Dropdown = forwardRef<HTMLInputElement, Props>(function Dropdown(
+export const Dropdown = forwardRef<HTMLDivElement, Props>(function Dropdown(
   {
     options,
     className = '',
@@ -28,7 +28,8 @@ export const Dropdown = forwardRef<HTMLInputElement, Props>(function Dropdown(
     align = 'right',
     minWidth = 180,
     onSelect,
-    selectedOption
+    selectedOption,
+    ...other
   },
   ref
 ) {
@@ -45,6 +46,7 @@ export const Dropdown = forwardRef<HTMLInputElement, Props>(function Dropdown(
       className={classNames('relative inline-block', className)}
       ref={ref}
       data-testid="dropdown"
+      {...other}
     >
       {({ open }) => (
         <>

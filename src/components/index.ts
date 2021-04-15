@@ -1,3 +1,4 @@
+import '../styles/tailwind.css'
 export { Button } from './Button'
 export { CheckBox } from './CheckBox'
 export { DateInput } from './DateInput'

@@ -1,5 +1,3 @@
-import '../styles/tailwind.css'
-
 import React, { HTMLAttributes, ReactNode, forwardRef } from 'react'
 
 import classNames from 'classnames'
