@@ -3,6 +3,7 @@ export {
   Button,
   CheckBox,
   DateInput,
+  Dropdown,
   Modal,
   Select,
   TextArea,
