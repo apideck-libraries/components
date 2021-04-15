@@ -1,6 +1,7 @@
 export const tailwindConfig = require('../tailwind-config')
 export {
   Button,
+  Card,
   CheckBox,
   DateInput,
   Dropdown,
