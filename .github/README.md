@@ -78,27 +78,34 @@ This is the folder structure:
 /src
   /components
     Button.tsx
+    Card.tsx
     CheckBox.tsx
+    Dropdown.tsx
+    index.ts
     DateInput.tsx
+    Modal.tsx
     Select.tsx
     TextArea.tsx
     TextInput.tsx
+    Toast.tsx
   index.tsx
   /styles
+    card.css
     tailwind.css
   /types
     dates.d.ts
   /utils
+    index.ts
+    useModal.tsx
     useOutsideClick.tsx
+    usePrevious.tsx
+    useToast.tsx
 /tests
   Button.test.tsx
-  CheckBox.tsx
-  DateInput.tsx
-  Select.tsx
-  TextArea.tsx
-  TextInput.tsx
+  ...
 /stories
   Button.stories.tsx
+  ...
 /.storybook
   main.js
   preview.js

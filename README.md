@@ -70,10 +70,14 @@ export default App
 Current list of components:
 
 - Button
+- Card
 - CheckBox
+- Dropdown
 - DateInput
+- Modal
 - Select
 - TextArea
 - TextInput
+- Toast
 
 Please refer to the [GitHub README](https://github.com/apideck-io/components#readme) for full documentation.
