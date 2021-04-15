@@ -79,7 +79,7 @@ export const Dropdown = forwardRef<HTMLInputElement, Props>(function Dropdown(
               static
               data-testid="dropdown-items"
               className={classNames(
-                'absolute right-0 z-10 mt-2 origin-top-right bg-white border divide-y rounded-md outline-none border-cool-gray-200 divide-cool-gray-100',
+                'absolute shadow-sm right-0 z-10 mt-2 origin-top-right bg-white border divide-y rounded-md outline-none border-cool-gray-200 divide-cool-gray-100',
                 { 'right-0': align === 'right', 'left-0': align === 'left' }
               )}
               style={{ minWidth }}
