@@ -36,7 +36,7 @@ export const Card = forwardRef<HTMLDivElement, Props>(function Card(
       ) : (
         ''
       )}
-      <div className="flex flex-col justify-between flex-1 p-5 bg-white">
+      <div className="flex flex-col justify-between flex-1 p-5 bg-white dark:bg-gray-900">
         <div className="flex-1">
           {subTitle && (
             <p className="text-sm font-medium text-primary-600">
@@ -44,8 +44,8 @@ export const Card = forwardRef<HTMLDivElement, Props>(function Card(
             </p>
           )}
           <div className="mt-2">
-            <p className="text-xl font-semibold text-gray-800">{title}</p>
-            <p className="mt-3 text-base text-gray-500">{description}</p>
+            <h2 className="text-xl font-semibold text-gray-800 dark:text-white">{title}</h2>
+            <p className="mt-3 text-base text-gray-500 dark:text-gray-400">{description}</p>
           </div>
         </div>
       </div>

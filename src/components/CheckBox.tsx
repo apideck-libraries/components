@@ -1,7 +1,7 @@
 import React, { HTMLAttributes, forwardRef } from 'react'
 
 import classNames from 'classnames'
-
+import styles from '../styles/input'
 export interface Props extends HTMLAttributes<HTMLInputElement> {
   name: string
   label?: string
@@ -22,13 +22,12 @@ export const CheckBox = forwardRef<HTMLInputElement, Props>(function CheckBox(
         className={classNames(
           'w-5 h-5 text-primary-600 border-gray-300 shadow-sm rounded-md focus:ring-primary-500 focus:border-primary-500',
           { 'cursor-not-allowed opacity-50': disabled },
+          styles.dark,
           {
-            'border-green-600 focus:border-green-400 focus:shadow-outline-green':
-              valid !== undefined && valid
+            [styles.valid]: valid !== undefined && valid
           },
           {
-            'border-red-600 focus:border-red-400 focus:shadow-outline-red':
-              valid !== undefined && !valid
+            [styles.invalid]: valid !== undefined && !valid
           },
           className
         )}
@@ -44,9 +43,12 @@ export const CheckBox = forwardRef<HTMLInputElement, Props>(function CheckBox(
       {label && (
         <label
           htmlFor={name}
-          className={classNames('inline-block ml-2 text-sm text-gray-600', {
-            'cursor-not-allowed': disabled
-          })}
+          className={classNames(
+            'inline-block ml-2 text-sm text-gray-600 dark:text-white dark:focus:text-white dark:bg-gray-900 dark:focus:bg-gray-900',
+            {
+              'cursor-not-allowed': disabled
+            }
+          )}
         >
           {label}
         </label>
