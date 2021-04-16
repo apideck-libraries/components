@@ -52,7 +52,7 @@ export const Dropdown = forwardRef<HTMLDivElement, Props>(function Dropdown(
         <>
           <Menu.Button
             className={classNames(
-              'flex items-center justify-between w-full px-4 py-2 text-sm font-medium border rounded-md shadow-sm text-gray-800 bg-white border-gray-200 group hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-cool-gray-100 focus:ring-gray-300',
+              'flex items-center justify-between w-full px-4 py-2 text-sm font-medium border rounded-md shadow-sm text-gray-800 bg-white border-gray-200 group hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-cool-gray-100 focus:ring-gray-300 dark:bg-gray-800 dark:text-gray-200 dark:border-gray-500 dark:hover:bg-gray-700',
               buttonClassName
             )}
           >
@@ -81,7 +81,7 @@ export const Dropdown = forwardRef<HTMLDivElement, Props>(function Dropdown(
               static
               data-testid="dropdown-items"
               className={classNames(
-                'absolute shadow-sm right-0 z-10 mt-2 origin-top-right bg-white border divide-y rounded-md outline-none border-cool-gray-200 divide-cool-gray-100',
+                'absolute shadow-sm right-0 z-10 mt-2 origin-top-right bg-white dark:bg-gray-800 border divide-y rounded-md outline-none border-cool-gray-200 divide-cool-gray-100 dark:divide-gray-400',
                 { 'right-0': align === 'right', 'left-0': align === 'left' }
               )}
               style={{ minWidth }}
@@ -95,8 +95,10 @@ export const Dropdown = forwardRef<HTMLDivElement, Props>(function Dropdown(
                           onClick={() => onClick(option)}
                           data-testid={`item-${i}`}
                           className={`${
-                            active ? 'bg-gray-100 text-gray-900' : 'text-gray-900'
-                          } flex items-center justify-between min-w-0 mx-2 cursor-pointer rounded-md py-1.5 overflow-hidden `}
+                            active
+                              ? 'bg-gray-100 text-gray-900 dark:bg-gray-700 dark:text-gray-100'
+                              : 'text-gray-900'
+                          } flex items-center justify-between min-w-0 mx-2 cursor-pointer rounded-md py-1.5 overflow-hidden dark:text-gray-100`}
                         >
                           {option.href?.length ? (
                             <a href={option.href} className="flex-1 min-w-0 px-2 text-sm truncate">

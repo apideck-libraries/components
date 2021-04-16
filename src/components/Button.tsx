@@ -32,7 +32,7 @@ export const Button = forwardRef<HTMLButtonElement, Props>(function Button(
 
   const variantStyles = {
     primary:
-      'bg-primary-600 text-white shadow hover:shadow-md active:bg-primary-600 hover:bg-primary-700 focus:shadow-outline-primary dark:bg-gray-800 dark:text-gray-400 dark:border-gray-500 dark:hover:bg-gray-700',
+      'bg-primary-600 text-white shadow hover:shadow-md active:bg-primary-600 hover:bg-primary-700 focus:shadow-outline-primary dark:bg-gray-800 dark:text-gray-200 dark:border-gray-500 dark:hover:bg-gray-700',
     secondary:
       'text-primary-700 bg-primary-100 hover:bg-primary-200 shadow hover:shadow-md focus:shadow-outline-primary',
     outline:
