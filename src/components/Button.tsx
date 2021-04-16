@@ -32,11 +32,11 @@ export const Button = forwardRef<HTMLButtonElement, Props>(function Button(
 
   const variantStyles = {
     primary:
-      'bg-primary-600 text-white shadow hover:shadow-md active:bg-primary-600 hover:bg-primary-700 focus:shadow-outline-primary dark:border-gray-700 dark:bg-transparent dark:text-primary-800 dark:hover:text-primary-400 dark:hover:bg-gray-700',
+      'bg-primary-600 text-white shadow hover:shadow-md active:bg-primary-600 hover:bg-primary-700 focus:shadow-outline-primary dark:border-gray-700 dark:bg-gray-700 dark:text-primary-800 dark:hover:text-primary-400 dark:hover:bg-gray-700',
     secondary:
       'text-primary-700 bg-primary-100 hover:bg-primary-200 shadow hover:shadow-md focus:shadow-outline-primary',
     outline:
-      'border border-gray-300 text-gray-600 shadow hover:shadow-md hover:text-gray-700 dark:border-gray-700 dark:text-gray-600 dark:hover:text-gray-400',
+      'border border-gray-300 text-gray-600 shadow hover:shadow-md hover:text-gray-700 dark:border-gray-500 dark:text-gray-400 dark:hover:text-gray-200',
     danger:
       'bg-red-500 text-white shadow hover:shadow-md active:bg-red-600 hover:bg-red-700 focus:shadow-outline-red',
     'danger-outline':

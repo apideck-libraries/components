@@ -115,7 +115,7 @@ export const Toast: React.FC<Props> = ({ title, description, type = 'info', id, 
         leave="transition ease-in duration-200"
         leaveFrom="opacity-100"
         leaveTo="opacity-0"
-        className={`w-full max-w-sm bg-white dark:bg-gray-900  border-l-2 rounded-md shadow-lg pointer-events-auto ${borderStyle[type]}`}
+        className={`w-full max-w-sm bg-white dark:bg-gray-800  border-l-2 rounded-md shadow-lg pointer-events-auto ${borderStyle[type]}`}
         data-testid="toast"
       >
         <div className="overflow-hidden rounded-lg shadow-xs">

@@ -44,7 +44,7 @@ export const CheckBox = forwardRef<HTMLInputElement, Props>(function CheckBox(
         <label
           htmlFor={name}
           className={classNames(
-            'inline-block ml-2 text-sm text-gray-600 dark:text-white dark:focus:text-white dark:bg-gray-900 dark:focus:bg-gray-900',
+            'inline-block ml-2 text-sm text-gray-600 dark:text-white dark:focus:text-white dark:bg-gray-800 dark:focus:bg-gray-900',
             {
               'cursor-not-allowed': disabled
             }

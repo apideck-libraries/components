@@ -36,7 +36,7 @@ export const Card = forwardRef<HTMLDivElement, Props>(function Card(
       ) : (
         ''
       )}
-      <div className="flex flex-col justify-between flex-1 p-5 bg-white dark:bg-gray-900">
+      <div className="flex flex-col justify-between flex-1 p-5 bg-white dark:bg-gray-800">
         <div className="flex-1">
           {subTitle && (
             <p className="text-sm font-medium text-primary-600">
