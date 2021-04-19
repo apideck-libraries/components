@@ -66,7 +66,7 @@ export const Card = forwardRef<HTMLDivElement, Props>(function Card(
             )}
             <p className="mt-1 text-base text-gray-500 dark:text-gray-400">{description}</p>
             {icons && (
-              <div className="flex mt-3 -space-x-1" data-testid="icons">
+              <div className="flex mt-4 -space-x-1" data-testid="icons">
                 {icons.slice(0, 8).map((icon, i) => (
                   <img
                     key={i}
