@@ -53,27 +53,30 @@ export const Card = forwardRef<HTMLDivElement, Props>(function Card(
       <div className="flex flex-col justify-between flex-1 p-5 bg-white dark:bg-gray-800">
         <div className="flex-1">
           {tag && (
-            <p className="text-sm font-medium text-primary-600">
-              <span className="hover:underline">{tag}</span>
-            </p>
+            <p className="text-sm font-medium text-primary-600 dark:text-primary-500">{tag}</p>
           )}
           <div className="mt-2">
             <h2 className="text-xl font-semibold text-gray-800 dark:text-white">{title}</h2>
             {subTitle && (
-              <p className="mt-1 text-sm font-medium text-primary-600">
-                <span className="hover:underline">{subTitle}</span>
+              <p className="mt-1 text-sm font-medium text-primary-600 dark:text-primary-500">
+                {subTitle}
               </p>
             )}
             <p className="mt-1 text-base text-gray-500 dark:text-gray-400">{description}</p>
             {icons && (
               <div className="flex mt-4 -space-x-1" data-testid="icons">
-                {icons.slice(0, 8).map((icon, i) => (
+                {icons.slice(0, 7).map((icon, i) => (
                   <img
                     key={i}
                     src={icon}
-                    className="inline-block w-6 h-6 bg-white rounded-full ring-2 ring-white dark:bg-gray-800 dark:ring-gray-800"
+                    className="inline-block w-8 h-8 bg-white rounded-full ring-2 ring-white dark:bg-gray-800 dark:ring-gray-800"
                   />
                 ))}
+                {icons.length > 7 && (
+                  <span className="inline-flex items-center justify-center w-8 h-8 text-sm text-white rounded-full bg-primary-600 ring-2 ring-white dark:bg-gray-800 dark:ring-gray-800">
+                    {`+${icons.length - 7}`}
+                  </span>
+                )}
               </div>
             )}
             {children}

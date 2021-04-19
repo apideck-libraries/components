@@ -39,7 +39,10 @@ const icons = [
   'https://res.cloudinary.com/apideck/image/upload/v1529455982/catalog/hubspot/icon128x128.png',
   'https://res.cloudinary.com/apideck/image/upload/v1551284663/catalog/zendesk-sell/icon128x128.png',
   'https://res.cloudinary.com/apideck/image/upload/v1529455988/catalog/pipedrive/icon128x128.png',
-  'https://res.cloudinary.com/apideck/image/upload/v1535538972/catalog/copper/icon128x128.png'
+  'https://res.cloudinary.com/apideck/image/upload/v1535538972/catalog/copper/icon128x128.png',
+  'https://res.cloudinary.com/apideck/image/upload/v1531304652/catalog/closeio/icon128x128.png',
+  'https://res.cloudinary.com/apideck/image/upload/v1531056034/catalog/microsoft-dynamics/icon128x128.png',
+  'https://res.cloudinary.com/apideck/image/upload/v1529456151/catalog/zoho-crm/icon128x128.png'
 ]
 
 export const WithIcons = Template.bind({})
