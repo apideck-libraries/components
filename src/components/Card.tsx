@@ -59,7 +59,7 @@ export const Card = forwardRef<HTMLDivElement, Props>(function Card(
           )}
           <div className="mt-2">
             <h2 className="text-xl font-semibold text-gray-800 dark:text-white">{title}</h2>
-            {!subTitle && subTitle && (
+            {subTitle && (
               <p className="mt-1 text-sm font-medium text-primary-600">
                 <span className="hover:underline">{subTitle}</span>
               </p>
