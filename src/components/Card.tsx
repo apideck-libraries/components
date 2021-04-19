@@ -1,21 +1,35 @@
 import '../styles/card.css'
 
-import React, { CSSProperties, forwardRef } from 'react'
+import React, { CSSProperties, forwardRef, ReactNode } from 'react'
 
 import classNames from 'classnames'
 
 export interface Props {
-  title: string
+  children?: ReactNode
+  className?: string
   description?: string
   image?: string
-  subTitle?: string
-  withShadow?: boolean
-  className?: string
+  icons?: string[]
   style?: CSSProperties
+  subTitle?: string
+  tag?: string
+  title?: string
+  withShadow?: boolean
 }
 
 export const Card = forwardRef<HTMLDivElement, Props>(function Card(
-  { title, subTitle, description, image, withShadow = true, className = '', ...other },
+  {
+    title,
+    subTitle,
+    tag,
+    description,
+    image,
+    icons,
+    withShadow = true,
+    className = '',
+    children,
+    ...other
+  },
   ref
 ) {
   return (
@@ -38,14 +52,31 @@ export const Card = forwardRef<HTMLDivElement, Props>(function Card(
       )}
       <div className="flex flex-col justify-between flex-1 p-5 bg-white dark:bg-gray-800">
         <div className="flex-1">
-          {subTitle && (
+          {tag && (
             <p className="text-sm font-medium text-primary-600">
-              <span className="hover:underline">{subTitle}</span>
+              <span className="hover:underline">{tag}</span>
             </p>
           )}
           <div className="mt-2">
             <h2 className="text-xl font-semibold text-gray-800 dark:text-white">{title}</h2>
-            <p className="mt-3 text-base text-gray-500 dark:text-gray-400">{description}</p>
+            {!subTitle && subTitle && (
+              <p className="mt-1 text-sm font-medium text-primary-600">
+                <span className="hover:underline">{subTitle}</span>
+              </p>
+            )}
+            <p className="mt-1 text-base text-gray-500 dark:text-gray-400">{description}</p>
+            {icons && (
+              <div className="flex mt-3 -space-x-1" data-testid="icons">
+                {icons.slice(0, 8).map((icon, i) => (
+                  <img
+                    key={i}
+                    src={icon}
+                    className="inline-block w-6 h-6 bg-white rounded-full ring-2 ring-white dark:bg-gray-800 dark:ring-gray-800"
+                  />
+                ))}
+              </div>
+            )}
+            {children}
           </div>
         </div>
       </div>

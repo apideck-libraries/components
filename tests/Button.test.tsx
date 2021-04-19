@@ -107,7 +107,7 @@ describe('Button', () => {
       const { getByRole } = render(<Button text="test" variant="secondary" />)
       const buttonElement = getByRole('button')
 
-      expect(buttonElement.classList.contains('bg-primary-100')).toBe(true)
+      expect(buttonElement.classList.contains('bg-primary-50')).toBe(true)
     })
 
     it('should show a outline button', () => {

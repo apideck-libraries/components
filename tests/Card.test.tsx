@@ -8,7 +8,7 @@ import { render } from '@testing-library/react'
 describe('Card', () => {
   const props = {
     title: 'Integration settings',
-    subTitle: 'Live',
+    tag: 'Live',
     description: 'A sample project for managing integration settings with the Vault API.'
   }
 
@@ -48,5 +48,15 @@ describe('Card', () => {
     )
     const image = getByAltText(props.title)
     expect(image).toBeInTheDocument()
+  })
+
+  it('should show icons', async () => {
+    const icons = [
+      'https://res.cloudinary.com/apideck/image/upload/v1529455970/catalog/activecampaign/icon128x128.png',
+      'https://res.cloudinary.com/apideck/image/upload/v1529456047/catalog/salesforce/icon128x128.png'
+    ]
+    const { getByTestId } = render(<Card subTitle="999 connectors" icons={icons} {...props} />)
+    const cardIcons = getByTestId('icons')
+    expect(cardIcons).toBeInTheDocument()
   })
 })
