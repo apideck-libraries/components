@@ -69,11 +69,11 @@ export const Card = forwardRef<HTMLDivElement, Props>(function Card(
                   <img
                     key={i}
                     src={icon}
-                    className="inline-block w-8 h-8 bg-white rounded-full ring-2 ring-white dark:bg-gray-800 dark:ring-gray-800"
+                    className="inline-block bg-white rounded-full w-7 h-7 ring-2 ring-white dark:bg-gray-800 dark:ring-gray-800"
                   />
                 ))}
                 {icons.length > 7 && (
-                  <span className="inline-flex items-center justify-center w-8 h-8 text-sm text-white rounded-full bg-primary-600 ring-2 ring-white dark:bg-gray-800 dark:ring-gray-800">
+                  <span className="inline-flex items-center justify-center text-sm text-white rounded-full w-7 h-7 bg-primary-600 ring-2 ring-white dark:bg-gray-800 dark:ring-gray-800">
                     {`+${icons.length - 7}`}
                   </span>
                 )}
