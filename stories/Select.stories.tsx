@@ -46,3 +46,6 @@ Valid.args = { name: 'input-name', options, valid: true }
 
 export const InValid = Template.bind({})
 InValid.args = { name: 'input-name', options, valid: false }
+
+export const WithPlaceholder = Template.bind({})
+WithPlaceholder.args = { name: 'input-name', options, placeholder: 'Select an API' }

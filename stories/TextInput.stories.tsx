@@ -38,6 +38,13 @@ Default.args = { type: 'text', name: 'input-name' }
 export const WithValue = Template.bind({})
 WithValue.args = { type: 'text', name: 'input-name', value: 'Input with some text value' }
 
+export const WithPlaceholder = Template.bind({})
+WithPlaceholder.args = {
+  type: 'text',
+  name: 'input-name',
+  placeholder: 'Input with some placeholder'
+}
+
 export const Disabled = Template.bind({})
 Disabled.args = { type: 'text', name: 'input-name', disabled: true }
 

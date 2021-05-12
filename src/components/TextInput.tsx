@@ -2,6 +2,7 @@ import React, { HTMLAttributes, forwardRef } from 'react'
 
 import classNames from 'classnames'
 import styles from '../styles/input'
+
 export interface Props extends HTMLAttributes<HTMLInputElement> {
   name: string
   type?: string
@@ -19,7 +20,7 @@ export const TextInput = forwardRef<HTMLInputElement, Props>(function TextInput(
   return (
     <input
       className={classNames(
-        'w-full text-gray-600 border-gray-300 rounded-md sm:text-sm shadow-sm focus:ring-primary-500 focus:border-primary-500',
+        'w-full text-gray-600 border-gray-300 rounded-md sm:text-sm shadow-sm focus:ring-primary-500 focus:border-primary-500 placeholder-gray-400',
         styles.dark,
         { 'cursor-not-allowed opacity-50': disabled },
         {

@@ -169,7 +169,7 @@ export const DateInput: React.FC<Props> = ({
         onClick={() => setShowDatePicker(!showDatePicker)}
         data-testid={name}
         className={classNames(
-          'block w-full text-gray-600 border-gray-300 rounded-md shadow-sm sm:text-sm focus:ring-primary-500 focus:border-primary-500',
+          'block w-full text-gray-600 border-gray-300 rounded-md shadow-sm sm:text-sm focus:ring-primary-500 focus:border-primary-500 placeholder-gray-400',
           { 'cursor-not-allowed opacity-50': disabled },
           className
         )}

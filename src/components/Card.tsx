@@ -1,6 +1,6 @@
 import '../styles/card.css'
 
-import React, { CSSProperties, forwardRef, ReactNode } from 'react'
+import React, { CSSProperties, ReactNode, forwardRef } from 'react'
 
 import classNames from 'classnames'
 
@@ -45,7 +45,7 @@ export const Card = forwardRef<HTMLDivElement, Props>(function Card(
     >
       {image ? (
         <div className="flex-shrink-0">
-          <img className="w-full object-fit " src={image} alt={title} />
+          <img className="w-full object-fit" src={image} alt={title} />
         </div>
       ) : (
         ''
@@ -69,6 +69,7 @@ export const Card = forwardRef<HTMLDivElement, Props>(function Card(
                   <img
                     key={i}
                     src={icon}
+                    alt="icon"
                     className="inline-block bg-white rounded-full w-7 h-7 ring-2 ring-white dark:bg-gray-800 dark:ring-gray-800"
                   />
                 ))}
