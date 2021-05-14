@@ -41,7 +41,7 @@ export const ToastProvider = ({ children }: { children: ReactNode }) => {
         removeToast
       }}
     >
-      <div className="fixed top-0 right-0 z-50 w-full max-w-sm">
+      <div className="fixed top-0 right-0 z-50 w-full max-w-sm" style={{ zIndex: 100 }}>
         {toasts?.map((toast: Toast, i: number) => (
           <ToastComponent key={i} {...toast} />
         ))}
