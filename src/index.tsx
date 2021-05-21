@@ -10,7 +10,8 @@ export {
   TextArea,
   TextInput,
   Toast,
-  Toggle
+  Toggle,
+  Tooltip
 } from './components'
 export {
   useModal,
