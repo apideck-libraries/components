@@ -2,6 +2,7 @@ import React, { HTMLAttributes, forwardRef } from 'react'
 
 import classNames from 'classnames'
 import styles from '../styles/input'
+
 export interface Props extends HTMLAttributes<HTMLInputElement> {
   name: string
   label?: string
@@ -34,7 +35,7 @@ export const CheckBox = forwardRef<HTMLInputElement, Props>(function CheckBox(
         name={name}
         id={name}
         type="checkbox"
-        defaultChecked={value}
+        checked={value}
         disabled={disabled}
         ref={ref}
         data-testid={name}
