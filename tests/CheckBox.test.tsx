@@ -1,6 +1,9 @@
 import '@testing-library/jest-dom/extend-expect'
-import { fireEvent, render } from '@testing-library/react'
+
 import * as React from 'react'
+
+import { fireEvent, render } from '@testing-library/react'
+
 import { Default as CheckBox } from '../stories/CheckBox.stories'
 
 describe('Check Box', () => {
@@ -34,7 +37,7 @@ describe('Check Box', () => {
   })
 
   it('should be checked', async () => {
-    const { getByTestId } = render(<CheckBox value={true} {...props} />)
+    const { getByTestId } = render(<CheckBox defaultChecked={true} {...props} />)
     const input = getByTestId(props.name) as HTMLInputElement
 
     expect(input.checked).toEqual(true)

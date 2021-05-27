@@ -17,15 +17,7 @@ export interface Props extends HTMLAttributes<HTMLSelectElement> {
 }
 
 export const Select = forwardRef<HTMLSelectElement, Props>(function Select(
-  {
-    className = '',
-    disabled = false,
-    defaultValue = '',
-    placeholder = 'Select an option',
-    options,
-    valid,
-    ...other
-  },
+  { className = '', disabled = false, placeholder = 'Select an option', options, valid, ...other },
   ref
 ) {
   return (
@@ -44,7 +36,6 @@ export const Select = forwardRef<HTMLSelectElement, Props>(function Select(
       )}
       ref={ref}
       disabled={disabled}
-      defaultValue={defaultValue}
       data-testid={other.name}
       {...other}
     >

@@ -1,6 +1,9 @@
 import '@testing-library/jest-dom/extend-expect'
-import { fireEvent, render } from '@testing-library/react'
+
 import * as React from 'react'
+
+import { fireEvent, render } from '@testing-library/react'
+
 import { Default as Select } from '../stories/Select.stories'
 
 describe('Text Area', () => {
@@ -35,7 +38,7 @@ describe('Text Area', () => {
   })
 
   it('should render the options', async () => {
-    const { getByTestId, getByText } = render(<Select {...props} />)
+    const { getByTestId, getByText } = render(<Select defaultValue="" {...props} />)
     const input = getByTestId(props.name) as HTMLSelectElement
 
     expect(input.value).toEqual('')
@@ -43,6 +46,13 @@ describe('Text Area', () => {
     props.options.forEach(option => {
       expect(getByText(option.label)).toBeInTheDocument()
     })
+  })
+
+  it('should set the default value', async () => {
+    const { getByTestId } = render(<Select defaultValue="2" {...props} />)
+    const input = getByTestId(props.name) as HTMLSelectElement
+
+    expect(input.value).toEqual('2')
   })
 
   it('should select a value', async () => {
