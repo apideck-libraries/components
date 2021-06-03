@@ -88,6 +88,14 @@ describe('Text Area', () => {
     expect(input.classList.contains('test')).toBe(true)
   })
 
+  it('should render small classes', () => {
+    const { getByTestId } = render(<Select size="small" {...props} />)
+    const input = getByTestId(props.name) as HTMLSelectElement
+
+    expect(input.classList.contains('px-2')).toBe(true)
+    expect(input.classList.contains('py-1')).toBe(true)
+  })
+
   it('should render valid classes', () => {
     const { getByTestId } = render(<Select valid={true} {...props} />)
     const input = getByTestId(props.name) as HTMLSelectElement

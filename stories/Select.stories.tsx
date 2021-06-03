@@ -36,16 +36,24 @@ export const WithValue = Template.bind({})
 WithValue.args = { name: 'input-name', options, defaultValue: options[1].value }
 
 export const Disabled = Template.bind({})
-Disabled.args = { name: 'input-name', options, disabled: true }
+Disabled.args = { name: 'input-name', options, disabled: true, className: 'max-w-xs' }
 
 export const Multiple = Template.bind({})
-Multiple.args = { name: 'input-name', options, multiple: true }
+Multiple.args = { name: 'input-name', options, multiple: true, className: 'max-w-xs' }
+
+export const Small = Template.bind({})
+Small.args = { name: 'input-name', options, size: 'small', className: 'max-w-xs' }
 
 export const Valid = Template.bind({})
-Valid.args = { name: 'input-name', options, valid: true }
+Valid.args = { name: 'input-name', options, valid: true, className: 'max-w-xs' }
 
 export const InValid = Template.bind({})
-InValid.args = { name: 'input-name', options, valid: false }
+InValid.args = { name: 'input-name', options, valid: false, className: 'max-w-xs' }
 
 export const WithPlaceholder = Template.bind({})
-WithPlaceholder.args = { name: 'input-name', options, placeholder: 'Select an API' }
+WithPlaceholder.args = {
+  name: 'input-name',
+  options,
+  placeholder: 'Select an API',
+  className: 'max-w-sm'
+}
