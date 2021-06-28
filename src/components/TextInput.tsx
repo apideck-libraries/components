@@ -11,6 +11,7 @@ export interface Props extends HTMLAttributes<HTMLInputElement> {
   disabled?: boolean
   className?: string
   valid?: boolean
+  autocomplete?: string
 }
 
 export const TextInput = forwardRef<HTMLInputElement, Props>(function TextInput(
