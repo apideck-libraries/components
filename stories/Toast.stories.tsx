@@ -40,9 +40,23 @@ Error.args = {
   type: 'error'
 }
 
-export const AutoClosing = Template.bind({})
-AutoClosing.args = {
+export const AutoClose = Template.bind({})
+AutoClose.args = {
   title: 'Closing Toast',
   description: 'Sadly, I am here just to disappear again',
   autoClose: true
+}
+
+export const CloseAfter = Template.bind({})
+CloseAfter.args = {
+  title: 'Closing after 6 seconds',
+  description: 'Sadly, I am here just to disappear again',
+  closeAfter: 6000
+}
+
+export const CloseText = Template.bind({})
+CloseText.args = {
+  title: 'Toast with closing text',
+  description: 'No icon to close toaster this but some text. Crazy.',
+  closeText: 'Close'
 }

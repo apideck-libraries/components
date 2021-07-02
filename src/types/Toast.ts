@@ -4,4 +4,6 @@ export interface Toast {
   type?: 'success' | 'warning' | 'error' | 'info'
   id?: number
   autoClose?: boolean
+  closeAfter?: number
+  closeText?: string
 }

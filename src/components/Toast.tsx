@@ -4,7 +4,15 @@ import { Toast as Props } from '../types/Toast'
 import { Transition } from '@headlessui/react'
 import { useToast } from '../utils'
 
-export const Toast: React.FC<Props> = ({ title, description, type = 'info', id, autoClose }) => {
+export const Toast: React.FC<Props> = ({
+  title,
+  description,
+  type = 'info',
+  id,
+  autoClose,
+  closeAfter,
+  closeText
+}) => {
   const [shouldShow, setShouldShow] = useState(false)
   const { removeToast } = useToast()
 
@@ -14,13 +22,13 @@ export const Toast: React.FC<Props> = ({ title, description, type = 'info', id, 
   }, [])
 
   useEffect(() => {
-    if (autoClose) {
+    if (autoClose || closeAfter) {
       const timer = setTimeout(() => {
         setShouldShow(false)
         setTimeout(() => {
           removeToast(id)
         }, 300)
-      }, 3500)
+      }, closeAfter || 3500)
       return () => {
         clearTimeout(timer)
       }
@@ -118,8 +126,8 @@ export const Toast: React.FC<Props> = ({ title, description, type = 'info', id, 
         className={`w-full max-w-sm bg-white dark:bg-gray-800  border-l-2 rounded-md shadow-lg pointer-events-auto ${borderStyle[type]}`}
         data-testid="toast"
       >
-        <div className="overflow-hidden rounded-lg shadow-xs">
-          <div className="p-3">
+        <div className="flex overflow-hidden rounded-lg shadow-xs">
+          <div className="flex flex-col w-full p-3">
             <div className="flex items-start">
               <div className="flex-shrink-0">{icon[type]}</div>
               <div className="ml-2 w-0 flex-1 pt-0.5">
@@ -130,13 +138,19 @@ export const Toast: React.FC<Props> = ({ title, description, type = 'info', id, 
                   {description}
                 </p>
               </div>
-              <span
-                className="float-right cursor-pointer"
-                onClick={() => removeToast(id)}
-                data-testid="remove"
-              >
+            </div>
+          </div>
+          <div className="flex border-l border-gray-200 group">
+            <button
+              className="flex items-center justify-center w-full p-3 text-sm font-medium text-gray-600 border border-transparent rounded-none rounded-r-lg hover:text-gray-500 focus:outline-none focus:ring-1 focus:ring-gray-300"
+              onClick={() => removeToast(id)}
+              data-testid="remove"
+            >
+              {closeText ? (
+                <span>{closeText}</span>
+              ) : (
                 <svg
-                  className="text-gray-600 fill-current hover:text-gray-500 dark:text-gray-300 dark:hover:text-gray-100"
+                  className="text-gray-400 fill-current w-7 h-7 group-hover:text-gray-500 dark:text-gray-300 dark:group-hover:text-gray-100"
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 24 24"
                   width="22"
@@ -144,8 +158,8 @@ export const Toast: React.FC<Props> = ({ title, description, type = 'info', id, 
                 >
                   <path d="M16.24 14.83a1 1 0 0 1-1.41 1.41L12 13.41l-2.83 2.83a1 1 0 0 1-1.41-1.41L10.59 12 7.76 9.17a1 1 0 0 1 1.41-1.41L12 10.59l2.83-2.83a1 1 0 0 1 1.41 1.41L13.41 12l2.83 2.83z" />
                 </svg>
-              </span>
-            </div>
+              )}
+            </button>
           </div>
         </div>
       </Transition>
