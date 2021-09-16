@@ -11,7 +11,8 @@ export const Toast: React.FC<Props> = ({
   id,
   autoClose,
   closeAfter,
-  closeText
+  closeText,
+  image
 }) => {
   const [shouldShow, setShouldShow] = useState(false)
   const { removeToast } = useToast()
@@ -134,9 +135,12 @@ export const Toast: React.FC<Props> = ({
                 <p className="text-sm font-medium leading-5 text-gray-900 dark:text-white">
                   {title}
                 </p>
-                <p className="mt-1 text-sm leading-5 text-gray-500 dark:text-gray-300">
-                  {description}
-                </p>
+                {description ? (
+                  <p className="mt-1 text-sm leading-5 text-gray-500 dark:text-gray-300">
+                    {description}
+                  </p>
+                ) : null}
+                {image ? <img src={image} className="mt-2 rounded-md" /> : null}
               </div>
             </div>
           </div>

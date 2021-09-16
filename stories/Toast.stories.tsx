@@ -14,7 +14,7 @@ const meta: Meta = {
 
 export default meta
 
-const Template: Story<Props> = args => <Toast {...args} />
+const Template: Story<Props> = (args) => <Toast {...args} />
 
 export const Default = Template.bind({})
 Default.args = { title: 'Info Toast', description: 'I am here to inform you about some stuff' }
@@ -58,5 +58,14 @@ export const CloseText = Template.bind({})
 CloseText.args = {
   title: 'Toast with closing text',
   description: 'No icon to close toaster this but some text. Crazy.',
+  closeText: 'Close'
+}
+
+export const WithImage = Template.bind({})
+WithImage.args = {
+  title: 'Toast with image',
+  type: 'success',
+  image:
+    'https://lh3.googleusercontent.com/zWgPq0NdLCZIEnOT6YE9JXhEPcabm0zyLf7teTpdc62fvFLv3xaL0Kj06YDEZmxi3QZpHO9E5Ngc7s3Dri9197yAZ-kwpE8tH72bCQ=w600',
   closeText: 'Close'
 }
