@@ -128,7 +128,7 @@ export const Toast: React.FC<Props> = ({
         data-testid="toast"
       >
         <div className="flex overflow-hidden rounded-lg shadow-xs">
-          <div className="flex flex-col w-full p-3">
+          <div className="flex flex-col justify-center w-full p-3">
             <div className="flex items-start">
               <div className="flex-shrink-0">{icon[type]}</div>
               <div className="ml-2 w-0 flex-1 pt-0.5">
