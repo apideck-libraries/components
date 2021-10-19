@@ -124,14 +124,14 @@ export const Toast: React.FC<Props> = ({
         leave="transition ease-in duration-200"
         leaveFrom="opacity-100"
         leaveTo="opacity-0"
-        className={`w-full max-w-sm bg-white dark:bg-gray-800  border-l-2 rounded-md shadow-lg pointer-events-auto ${borderStyle[type]}`}
+        className={`w-full max-w-sm xl:max-w-md bg-white dark:bg-gray-800  border-l-2 rounded-md shadow-lg pointer-events-auto ${borderStyle[type]}`}
         data-testid="toast"
       >
         <div className="flex overflow-hidden rounded-lg shadow-xs">
           <div className="flex flex-col justify-center w-full p-3">
             <div className="flex items-start">
               <div className="flex-shrink-0">{icon[type]}</div>
-              <div className="ml-2 w-0 flex-1 pt-0.5">
+              <div className="ml-2 w-0 flex-1 pt-0.5 overflow-hidden">
                 <p className="text-sm font-medium leading-5 text-gray-900 dark:text-white">
                   {title}
                 </p>

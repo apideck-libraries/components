@@ -12,6 +12,7 @@ export interface Props extends HTMLAttributes<HTMLInputElement> {
   defaultChecked?: boolean
   required?: boolean
   valid?: boolean
+  checked?: boolean
 }
 
 export const CheckBox = forwardRef<HTMLInputElement, Props>(function CheckBox(
