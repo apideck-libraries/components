@@ -53,8 +53,8 @@ export const Button = forwardRef<HTMLButtonElement, Props>(function Button(
   const iconSizeStyles = {
     small: 'h-3 w-3',
     regular: 'h-4 w-4',
-    large: 'h-5 w-5',
-    larger: 'h-6 w-6'
+    large: 'h-4 w-4',
+    larger: 'h-5 w-5'
   }
 
   const iconStyles = {

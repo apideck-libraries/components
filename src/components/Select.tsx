@@ -15,6 +15,7 @@ export interface Props extends HTMLAttributes<HTMLSelectElement> {
   valid?: boolean
   placeholder?: string
   size?: 'small' | 'regular'
+  allowEmpty?: boolean
 }
 
 export const Select = forwardRef<HTMLSelectElement, Props>(function Select(
@@ -25,6 +26,7 @@ export const Select = forwardRef<HTMLSelectElement, Props>(function Select(
     options,
     valid,
     size = 'regular',
+    allowEmpty = false,
     ...other
   },
   ref
@@ -48,7 +50,7 @@ export const Select = forwardRef<HTMLSelectElement, Props>(function Select(
       data-testid={other.name}
       {...other}
     >
-      <option disabled value="">
+      <option disabled={!allowEmpty} value="">
         {placeholder}
       </option>
 
