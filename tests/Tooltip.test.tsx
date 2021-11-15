@@ -49,12 +49,12 @@ describe('Tooltip', () => {
     expect(tt).toBeNull()
   })
 
-  it('should set the opacity to 1 on mouse enter', () => {
+  it('should set the display on block on mouse enter', () => {
     const { getByTestId } = render(<Tooltip text="Hey there">Tooltip</Tooltip>)
     fireEvent.mouseEnter(getByTestId('tooltip-container'))
     const tooltip = getByTestId('tooltip')
     const style = window.getComputedStyle(tooltip)
-    expect(style.opacity).toBe('1')
+    expect(style.display).toBe('block')
   })
 
   it('should set the opacity to 1 on mouse leave', () => {
