@@ -17,8 +17,13 @@ export const Tooltip = ({ children, text, alignPointerRight = false, styles, ...
 
   const handleMouseEnter = () => {
     if (ref?.current?.style) {
-      ref.current.style.opacity = '1'
-      ref.current.style.marginTop = '10px'
+      ref.current.style.display = 'block'
+      setTimeout(() => {
+        if (ref?.current?.style) {
+          ref.current.style.opacity = '1'
+          ref.current.style.marginTop = '10px'
+        }
+      }, 100)
     }
   }
 
@@ -26,6 +31,11 @@ export const Tooltip = ({ children, text, alignPointerRight = false, styles, ...
     if (ref?.current?.style) {
       ref.current.style.opacity = '0'
       ref.current.style.marginTop = '0px'
+      setTimeout(() => {
+        if (ref?.current?.style) {
+          ref.current.style.display = 'none'
+        }
+      }, 100)
     }
   }
   return (
@@ -37,8 +47,8 @@ export const Tooltip = ({ children, text, alignPointerRight = false, styles, ...
       {...other}
     >
       <div
-        className="absolute z-10 flex items-center px-3 py-2 text-sm text-gray-800 whitespace-no-wrap transition-all duration-100 bg-white border border-gray-200 rounded shadow-sm"
-        style={{ top: '100%', opacity: 0, ...styles }}
+        className="absolute z-10 flex items-center px-3 py-2 text-sm text-gray-800 whitespace-no-wrap transition-all duration-150 bg-white border border-gray-200 rounded shadow-sm"
+        style={{ top: '100%', opacity: 0, display: 'none', ...styles }}
         data-testid="tooltip"
         ref={ref}
       >
