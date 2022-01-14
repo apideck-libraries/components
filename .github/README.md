@@ -159,4 +159,4 @@ The appropriate paths are configured in `package.json` and `dist/index.js` accor
 
 ## Publishing to NPM
 
-Using [np](https://github.com/sindresorhus/np) is recommended.
+Using [np](https://github.com/sindresorhus/np) is recommended. Install globally and run the `np` command in your terminal to publish.
