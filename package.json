@@ -26,10 +26,10 @@
     "release": "NODE_ENV=production tsdx build && np"
   },
   "peerDependencies": {
-    "@headlessui/react": ">= 0.3",
+    "@headlessui/react": ">= 1",
     "react": ">=16",
     "react-dom": ">=16",
-    "tailwindcss": ">=2"
+    "tailwindcss": ">=3"
   },
   "dependencies": {
     "@tailwindcss/forms": "^0.4.0",
