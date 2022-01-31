@@ -84,6 +84,7 @@
     "@types/react": "^17.0.38",
     "@types/react-dom": "^17.0.11",
     "autoprefixer": "^10.4.2",
+    "babel-jest": "^27.4.6",
     "babel-loader": "^8.2.3",
     "classnames": "^2.2.6",
     "husky": "4.3.8",
