@@ -1,11 +1,10 @@
 const config = require('./tailwind-config')
 
 module.exports = config({
+  content: [],
   darkMode: 'class',
-  purge: [],
   theme: {
     extend: {}
   },
-  variants: {},
   plugins: []
 })
