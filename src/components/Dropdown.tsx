@@ -1,5 +1,5 @@
 import { Menu, Transition } from '@headlessui/react'
-import React, { forwardRef, useState } from 'react'
+import React, { ReactNode, forwardRef, useState } from 'react'
 
 import classNames from 'classnames'
 
@@ -9,14 +9,16 @@ export interface Props {
   buttonClassName?: string
   buttonLabel?: string
   minWidth?: number
+  trigger?: ReactNode
   align?: 'left' | 'right'
   selectedOption?: Option
   onSelect?: (option: Option) => void
 }
 
 export interface Option {
-  label: string
+  label: string | ReactNode
   href?: string
+  onClick?: () => void
 }
 
 export const Dropdown = forwardRef<HTMLDivElement, Props>(function Dropdown(
@@ -29,6 +31,7 @@ export const Dropdown = forwardRef<HTMLDivElement, Props>(function Dropdown(
     minWidth = 180,
     onSelect,
     selectedOption,
+    trigger,
     ...other
   },
   ref
@@ -37,6 +40,7 @@ export const Dropdown = forwardRef<HTMLDivElement, Props>(function Dropdown(
 
   const onClick = (option: Option) => {
     setActiveOption(option)
+    if (option.onClick) option.onClick()
     if (onSelect) onSelect(option)
   }
 
@@ -50,23 +54,25 @@ export const Dropdown = forwardRef<HTMLDivElement, Props>(function Dropdown(
     >
       {({ open }) => (
         <>
-          <Menu.Button
-            className={classNames(
-              'flex items-center justify-between w-full px-4 py-2 text-sm font-medium border rounded-md shadow-sm text-gray-800 bg-white border-gray-200 group hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-cool-gray-100 focus:ring-gray-300 dark:ring-gray-500 dark:bg-gray-800 dark:text-gray-200 dark:border-gray-500 dark:hover:bg-gray-700',
-              buttonClassName
-            )}
-          >
-            <div>
-              <span>{activeOption?.label || buttonLabel}</span>
-            </div>
-            <svg className="w-5 h-5 ml-2 -mr-1" viewBox="0 0 20 20" fill="currentColor">
-              <path
-                fillRule="evenodd"
-                d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-                clipRule="evenodd"
-              />
-            </svg>
-          </Menu.Button>
+          {trigger ? (
+            <Menu.Button>{trigger}</Menu.Button>
+          ) : (
+            <Menu.Button
+              className={classNames(
+                'flex items-center justify-between w-full px-4 py-2 text-sm font-medium border rounded-md shadow-sm text-gray-800 bg-white border-gray-200 group hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-cool-gray-100 focus:ring-gray-300 dark:ring-gray-500 dark:bg-gray-800 dark:text-gray-200 dark:border-gray-500 dark:hover:bg-gray-700',
+                buttonClassName
+              )}
+            >
+              <div>{activeOption?.label || buttonLabel}</div>
+              <svg className="w-5 h-5 ml-2 -mr-1" viewBox="0 0 20 20" fill="currentColor">
+                <path
+                  fillRule="evenodd"
+                  d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                  clipRule="evenodd"
+                />
+              </svg>
+            </Menu.Button>
+          )}
           <Transition
             show={open}
             enter="transition ease-out duration-100"
