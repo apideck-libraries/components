@@ -34,7 +34,7 @@ export const Button = forwardRef<HTMLButtonElement, Props>(function Button(
     primary:
       'bg-primary-600 text-white shadow hover:shadow-md active:bg-primary-600 hover:bg-primary-700 focus:shadow-outline-primary dark:bg-gray-800 dark:text-gray-200 dark:border-gray-500 dark:hover:bg-gray-700',
     secondary:
-      'text-primary-700 bg-primary-50 hover:bg-primary-100 shadow hover:shadow-md focus:shadow-outline-primary',
+      'border border-primary-200 text-primary-700 bg-primary-50 hover:bg-primary-100 shadow hover:shadow-md focus:shadow-outline-primary',
     outline:
       'border border-gray-300 text-gray-600 shadow hover:shadow-md hover:text-gray-700 dark:border-gray-500 dark:text-gray-400 dark:hover:text-gray-200',
     danger:
