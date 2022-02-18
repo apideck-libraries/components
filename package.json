@@ -11,18 +11,18 @@
   },
   "scripts": {
     "start": "tsdx watch",
-    "build": "NODE_ENV=production tsdx build && yarn build-tailwind",
+    "build": "tsdx build && yarn build-tailwind",
     "test": "tsdx test",
     "test:watch": "tsdx test --watch",
     "test:coverage": "tsdx test --coverage",
     "lint": "tsdx lint src/**/*.tsx",
-    "prepare": "NODE_ENV=production tsdx build && yarn build-tailwind",
+    "prepare": "tsdx build && yarn build-tailwind",
     "size": "size-limit",
     "analyze": "size-limit --why",
     "storybook": "start-storybook -p 6006 --no-manager-cache",
     "build-storybook": "build-storybook",
     "view-tailwind": "tailwind-config-viewer -o",
-    "release": "NODE_ENV=production tsdx build && np",
+    "release": "tsdx build && np",
     "build-tailwind": "NODE_ENV=production npx tailwindcss -o ./dist/styles.css --minify"
   },
   "peerDependencies": {
@@ -75,7 +75,6 @@
   "homepage": "https://github.com/apideck-io/components#readme",
   "devDependencies": {
     "@babel/core": "^7.16.12",
-    "@rollup/plugin-commonjs": "^21.0.1",
     "@size-limit/preset-small-lib": "^4.10.1",
     "@storybook/addon-essentials": "^6.4.17",
     "@storybook/addon-info": "^5.3.21",

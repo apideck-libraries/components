@@ -1,6 +1,7 @@
 const postcss = require('rollup-plugin-postcss')
 const peerDepsExternal = require('rollup-plugin-peer-deps-external')
 const commonjs = require('@rollup/plugin-commonjs')
+const { nodeResolve } = require('@rollup/plugin-node-resolve')
 const pkg = require('./package.json')
 
 module.exports = {
@@ -18,7 +19,7 @@ module.exports = {
       nodeResolve({
         ignoreGlobal: false,
         include: ['node_modules/**'],
-        extensions: ['.js', '.jsx', '.ts', '.tsx'],
+        extensions: ['.js', '.jsx', '.ts', '.tsx']
       }),
       postcss({
         config: {
