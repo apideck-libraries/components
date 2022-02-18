@@ -24,7 +24,31 @@ const App = () => {
 export default App
 ```
 
-If you install this library in a project that uses Tailwind CSS and want to overwrite the primary color you can add your custom colors to the `primary` color option inside your Tailwind configuration:
+### Using Tailwind?
+
+The components library is styled using [Tailwind CSS](https://tailwindcss.com/). If you were to use it in a project that also uses Tailwind CSS, you should include the package in the content or purge path of the `tailwind.config.js`.
+
+```js
+// tailwind.config.js
+
+// Tailwind 3+
+module.exports = {
+  content: [
+    './node_modules/@apideck/components/**/*.js',
+  ],
+  ...
+}
+
+// Tailwind 1 or 2
+module.exports = {
+  purge: [
+    './node_modules/@apideck/components/**/*.js',
+  ],
+  ...
+}
+```
+
+If want to overwrite the primary color you can add your custom colors to the `primary` color option inside your Tailwind configuration:
 
 ```
 ...
