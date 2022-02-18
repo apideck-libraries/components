@@ -30,7 +30,7 @@
     "react-dom": ">=16"
   },
   "dependencies": {
-    "@headlessui/react": ">= 1",
+    "@headlessui/react": "^1.4.3",
     "classnames": "^2.2.6",
     "deepmerge": "4.2.2"
   },
@@ -75,7 +75,6 @@
   "homepage": "https://github.com/apideck-io/components#readme",
   "devDependencies": {
     "@babel/core": "^7.16.12",
-    "@headlessui/react": "^1.4.3",
     "@rollup/plugin-commonjs": "^21.0.1",
     "@size-limit/preset-small-lib": "^4.10.1",
     "@storybook/addon-essentials": "^6.4.17",
@@ -91,7 +90,7 @@
     "@types/react": "^17.0.38",
     "@types/react-dom": "^17.0.11",
     "autoprefixer": "^10.4.2",
-    "babel-jest": "^27.4.6",
+    "babel-jest": "^25.5.1",
     "babel-loader": "^8.2.3",
     "husky": "4.3.8",
     "identity-obj-proxy": "^3.0.0",
