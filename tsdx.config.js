@@ -19,7 +19,6 @@ module.exports = {
         ignoreGlobal: false,
         include: ['node_modules/**'],
         extensions: ['.js', '.jsx', '.ts', '.tsx'],
-        skip: ['react', 'react-dom']
       }),
       postcss({
         config: {
