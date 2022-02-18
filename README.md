@@ -1,6 +1,8 @@
 # React Component Library
 
-Modern React UI library for fast development of web interfaces
+An open-source UI component library for efficient development of beautiful React applications.
+
+Go to [developers.apideck.com/components](https://developers.apideck.com/components) for the full documentation.
 
 ## Usage
 
@@ -10,27 +12,19 @@ Install the component library
 yarn add @apideck/components
 ```
 
-If you haven't already, make sure you have installed the the peer dependencies:
-
-- [Tailwindcss](https://tailwindcss.com/)
-- [HeadlessUI](https://headlessui.dev/)
-
-Add or update a `tailwind.config.js` file at the root of your project and wrap your custom Tailwind configuration with the config wrapper from the components library:
+Use components inside your project:
 
 ```js
-const config = require('@apideck/components/tailwind-config')
+import { Button } from '@apideck/components'
 
-module.exports = config({
-  purge: [],
-  theme: {
-    extend: {}
-  },
-  variants: {},
-  plugins: []
-})
+const App = () => {
+  return <Button variant="primary" size="large" text="Yo, world!" />
+}
+
+export default App
 ```
 
-If you want to overwrite the primary colors of the components you can add your custom colors to the `primary` color prop inside your Tailwind configuration:
+If you install this library in a project that uses Tailwind CSS and want to overwrite the primary color you can add your custom colors to the `primary` color option inside your Tailwind configuration:
 
 ```
 ...
@@ -55,29 +49,27 @@ theme: {
 ...
 ```
 
-Use components inside your project:
+### Components
 
-```js
-import { Button } from '@apideck/components'
+- [Button](https://developers.apideck.com/components/button)
+- [Card](https://developers.apideck.com/components/card)
+- [CheckBox](https://developers.apideck.com/components/checkbox)
+- [DateInput](https://developers.apideck.com/components/dateinput)
+- [Dropdown](https://developers.apideck.com/components/dropdown)
+- [Modal](https://developers.apideck.com/components/modal)
+- [Select](https://developers.apideck.com/components/select)
+- [TextArea](https://developers.apideck.com/components/textarea)
+- [TextInput](https://developers.apideck.com/components/textinput)
+- [Toast](https://developers.apideck.com/components/toast)
+- [Toggle](https://developers.apideck.com/components/toggle)
+- [Tooltip](https://developers.apideck.com/components/tooltip)
 
-const App = () => {
-  return <Button>Yo, world!</Button>
-}
+### Utils
 
-export default App
-```
+- `useModal` and `ModalProvider`
+- `useToast` and `ToastProvider`
+- `useOutsideClick`
+- `usePrevious`
+- `useDebounce`
 
-Current list of components:
-
-- Button
-- Card
-- CheckBox
-- Dropdown
-- DateInput
-- Modal
-- Select
-- TextArea
-- TextInput
-- Toast
-
-Please refer to the [GitHub README](https://github.com/apideck-io/components#readme) for full documentation.
+Please refer to the [Apideck docs](https://developers.apideck.com/components) for the full documentation.

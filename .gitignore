@@ -7,4 +7,3 @@ coverage
 storybook-static
 .env
 .env.local
-styles.css

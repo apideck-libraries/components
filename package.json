@@ -24,15 +24,14 @@
     "build-storybook": "build-storybook",
     "view-tailwind": "tailwind-config-viewer -o",
     "release": "NODE_ENV=production tsdx build && np",
-    "build-tailwind": "NODE_ENV=production npx tailwindcss -o ./styles.css --minify"
+    "build-tailwind": "NODE_ENV=production npx tailwindcss -o ./dist/styles.css --minify"
   },
   "peerDependencies": {
-    "@headlessui/react": ">= 1",
     "react": ">=16",
-    "react-dom": ">=16",
-    "tailwindcss": ">=3"
+    "react-dom": ">=16"
   },
   "dependencies": {
+    "@headlessui/react": ">= 1",
     "classnames": "^2.2.6",
     "deepmerge": "4.2.2"
   },
