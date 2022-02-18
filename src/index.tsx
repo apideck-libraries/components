@@ -1,4 +1,3 @@
-export const tailwindConfig = require('../tailwind-config')
 export {
   Button,
   Card,
