@@ -4,26 +4,26 @@
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
   "files": [
-    "dist",
-    "tailwind-config.js"
+    "dist"
   ],
   "engines": {
     "node": ">=10"
   },
   "scripts": {
     "start": "tsdx watch",
-    "build": "NODE_ENV=production tsdx build",
+    "build": "NODE_ENV=production tsdx build && yarn build-tailwind",
     "test": "tsdx test",
     "test:watch": "tsdx test --watch",
     "test:coverage": "tsdx test --coverage",
     "lint": "tsdx lint src/**/*.tsx",
-    "prepare": "NODE_ENV=production tsdx build",
+    "prepare": "NODE_ENV=production tsdx build && yarn build-tailwind",
     "size": "size-limit",
     "analyze": "size-limit --why",
     "storybook": "start-storybook -p 6006 --no-manager-cache",
     "build-storybook": "build-storybook",
     "view-tailwind": "tailwind-config-viewer -o",
-    "release": "NODE_ENV=production tsdx build && np"
+    "release": "NODE_ENV=production tsdx build && np",
+    "build-tailwind": "NODE_ENV=production npx tailwindcss -o ./dist/styles.css --minify"
   },
   "peerDependencies": {
     "@headlessui/react": ">= 1",
@@ -32,7 +32,6 @@
     "tailwindcss": ">=3"
   },
   "dependencies": {
-    "@tailwindcss/forms": "^0.4.0",
     "deepmerge": "4.2.2"
   },
   "husky": {
@@ -49,6 +48,12 @@
   },
   "name": "@apideck/components",
   "author": "Jake Prins",
+  "keywords": [
+    "react",
+    "tailwindcss",
+    "components",
+    "apideck"
+  ],
   "publishConfig": {
     "access": "public"
   },
@@ -77,6 +82,7 @@
     "@storybook/addon-links": "next",
     "@storybook/addon-postcss": "^2.0.0",
     "@storybook/react": "^6.4.17",
+    "@tailwindcss/forms": "^0.4.0",
     "@testing-library/jest-dom": "^5.11.9",
     "@testing-library/react": "^11.2.5",
     "@testing-library/user-event": "^12.8.3",
