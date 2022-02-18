@@ -1,12 +1,18 @@
 const postcss = require('rollup-plugin-postcss')
 const peerDepsExternal = require('rollup-plugin-peer-deps-external')
 const commonjs = require('@rollup/plugin-commonjs')
+const pkg = require('./package.json')
 
 module.exports = {
   rollup(config) {
     if (config.output.format === 'umd') {
       delete config.external
     }
+    config.external = [
+      ...Object.keys(pkg.dependencies || {}),
+      ...Object.keys(pkg.peerDependencies || {}),
+      './src'
+    ]
     config.plugins.push(
       peerDepsExternal(),
       nodeResolve({
