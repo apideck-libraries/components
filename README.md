@@ -24,9 +24,14 @@ const App = () => {
 export default App
 ```
 
+If you are NOT using Tailwind CSS in your project, make your to include the styles in your project:
+
+```js
+import '@apideck/react-vault/dist/styles.css';
+```
 ### Using Tailwind?
 
-The components library is styled using [Tailwind CSS](https://tailwindcss.com/). If you were to use it in a project that also uses Tailwind CSS, you should include the package in the content or purge path of the `tailwind.config.js`.
+The components library is styled using [Tailwind CSS](https://tailwindcss.com/). If you were to use it in a project that also uses Tailwind CSS, you do not have to include the `styles.css` file but you should include the package path in the content or purge path of the `tailwind.config.js`.
 
 ```js
 // tailwind.config.js
