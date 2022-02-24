@@ -24,34 +24,28 @@ const App = () => {
 export default App
 ```
 
-If you are NOT using Tailwind CSS in your project, make your to include the styles in your project:
+If you are NOT using Tailwind CSS in your project, make sure to include the styles in your project:
 
 ```js
-import '@apideck/react-vault/dist/styles.css';
+import '@apideck/react-vault/dist/styles.css'
 ```
-### Using Tailwind?
 
 The components library is styled using [Tailwind CSS](https://tailwindcss.com/). If you were to use it in a project that also uses Tailwind CSS, you do not have to include the `styles.css` file but you should include the package path in the content or purge path of the `tailwind.config.js`.
+Also make sure you have the Tailwindcss Forms plugin installed.
 
 ```js
 // tailwind.config.js
 
-// Tailwind 3+
 module.exports = {
   content: [
     './node_modules/@apideck/components/**/*.js',
   ],
-  ...
-}
-
-// Tailwind 1 or 2
-module.exports = {
-  purge: [
-    './node_modules/@apideck/components/**/*.js',
-  ],
+  plugins: [require('@tailwindcss/forms')]
   ...
 }
 ```
+
+Also install the
 
 If want to overwrite the primary color you can add your custom colors to the `primary` color option inside your Tailwind configuration:
 

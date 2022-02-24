@@ -1,5 +1,3 @@
-import '../styles/card.css'
-
 import React, { CSSProperties, ReactNode, forwardRef } from 'react'
 
 import classNames from 'classnames'
@@ -39,7 +37,7 @@ export const Card = forwardRef<HTMLDivElement, Props>(function Card(
       className={classNames(
         'flex flex-col overflow-hidden cursor-pointer transition duration-100 rounded-lg shadow-sm ring-1 ring-black ring-opacity-5 hover:ring-primary-300 dark:ring-0 dark:hover:ring-0',
         className,
-        { withShadow }
+        { 'with-shadow': withShadow }
       )}
       {...other}
     >

@@ -33,13 +33,13 @@ describe('Card', () => {
   it('should have shadow styles', async () => {
     const { getByTestId } = render(<Card withShadow={true} {...props} />)
     const card = getByTestId('card')
-    expect(card.classList.contains('withShadow')).toBe(true)
+    expect(card.classList.contains('with-shadow')).toBe(true)
   })
 
   it('should not have shadow styles', async () => {
     const { getByTestId } = render(<Card withShadow={false} {...props} />)
     const card = getByTestId('card')
-    expect(card.classList.contains('withShadow')).toBe(false)
+    expect(card.classList.contains('with-shadow')).toBe(false)
   })
 
   it('should not have an image', async () => {
