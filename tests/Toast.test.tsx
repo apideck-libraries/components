@@ -71,6 +71,6 @@ describe('Toast', () => {
     jest.useFakeTimers()
     render(<Toast title="Info Toast" description="Some info" type="error" autoClose={true} />)
     expect(setTimeout).toHaveBeenCalledTimes(1)
-    expect(setTimeout).toHaveBeenCalledWith(expect.any(Function), 3500)
+    expect(setTimeout).toHaveBeenCalledWith(expect.any(Function), 4500)
   })
 })
