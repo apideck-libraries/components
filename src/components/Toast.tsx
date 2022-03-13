@@ -29,7 +29,7 @@ export const Toast: React.FC<Props> = ({
         setTimeout(() => {
           removeToast(id)
         }, 300)
-      }, closeAfter || 3500)
+      }, closeAfter || 4500)
       return () => {
         clearTimeout(timer)
       }
