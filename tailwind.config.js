@@ -1,5 +1,8 @@
 module.exports = {
-  content: ['./src/**/*.{html,js,jsx,ts,tsx}'],
+  content: [
+    './src/**/*.{html,js,jsx,ts,tsx}',
+    ...(process.env.NODE_ENV === 'development' ? ['./stories/**/*.stories.@(ts|tsx|js|jsx)'] : [])
+  ],
   darkMode: 'class',
   theme: {
     extend: {
