@@ -57,9 +57,9 @@ export const Chip = forwardRef<HTMLDivElement, Props>((props, ref) => {
   }
 
   const iconSizeStyles = {
-    small: `mr-1 ${iconInline ? 'pl-0.5 py-0.5' : 'px-0 py-0'}`,
-    regular: `mr-2 ${iconInline ? 'pl-1 py-1' : 'px-0 py-0'}`,
-    large: `mr-3 ${iconInline ? 'pl-1 py-1' : 'px-0 py-0'}`
+    small: `mr-1 ${iconInline ? (iconUrl ? 'pl-0.5 py-0.5' : 'pl-2 py-2') : 'px-0 py-0'}`,
+    regular: `mr-2 ${iconInline ? (iconUrl ? 'pl-1 py-1' : 'pl-4 py-4') : 'px-0 py-0'}`,
+    large: `mr-3 ${iconInline ? (iconUrl ? 'pl-1 py-1' : 'pl-5 py-5') : 'px-0 py-0'}`
   }
 
   const chipStyle = chipSizeStyles[size]

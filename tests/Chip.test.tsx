@@ -61,14 +61,13 @@ describe('Chip', () => {
     })
 
     it('should render an inline image', () => {
-      const ImageComponent = () => <div>dummy img component</div>
       const { getByTestId } = render(
-        <Chip label="test" iconComponent={<ImageComponent />} iconInline />
+        <Chip label="test" iconUrl="https://picsum.photos/50/50" iconInline />
       )
-      const imageComponentWrapper = getByTestId('chip-image-component')
+      const imageWrapper = getByTestId('chip-image-url')
       const expected = 'pl-1 py-1'
 
-      expect(imageComponentWrapper.getAttribute('class')).toContain(expected)
+      expect(imageWrapper.getAttribute('class')).toContain(expected)
     })
   })
 
@@ -86,7 +85,7 @@ describe('Chip', () => {
         <Chip label="test" iconComponent={<ImageComponent />} iconInline />
       )
       const imageComponentWrapper = getByTestId('chip-image-component')
-      const expected = 'pl-1 py-1'
+      const expected = 'pl-4 py-4'
 
       expect(imageComponentWrapper.getAttribute('class')).toContain(expected)
     })
