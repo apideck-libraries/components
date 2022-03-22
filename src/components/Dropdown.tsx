@@ -1,7 +1,6 @@
 import { Menu, Transition } from '@headlessui/react'
-import React, { ReactNode, forwardRef, useState } from 'react'
-
 import classNames from 'classnames'
+import React, { forwardRef, ReactNode, useState } from 'react'
 
 export interface Props {
   options: Option[]
@@ -55,7 +54,7 @@ export const Dropdown = forwardRef<HTMLDivElement, Props>(function Dropdown(
       {({ open }) => (
         <>
           {trigger ? (
-            <Menu.Button>{trigger}</Menu.Button>
+            <Menu.Button className={buttonClassName}>{trigger}</Menu.Button>
           ) : (
             <Menu.Button
               className={classNames(
