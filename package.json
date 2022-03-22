@@ -33,7 +33,6 @@
   "dependencies": {
     "@headlessui/react": "^1.4.3",
     "classnames": "^2.2.6",
-    "deepmerge": "4.2.2",
     "patch-package": "^6.4.7",
     "postinstall-postinstall": "^2.1.0"
   },
