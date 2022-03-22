@@ -93,7 +93,7 @@ export const Chip = forwardRef<HTMLDivElement, Props>((props, ref) => {
                 className={classNames('inline-flex items-center h-full mr-2', iconStyle)}
                 data-testid="chip-image-url"
               >
-                <img src={iconUrl} alt="icon" className={classNames('h-full rounded-full')} />
+                <img src={iconUrl} alt="icon" className={'h-full rounded-full'} />
               </div>
             )
           )}
