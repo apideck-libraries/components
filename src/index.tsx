@@ -2,6 +2,7 @@ export {
   Button,
   Card,
   CheckBox,
+  Chip,
   DateInput,
   Dropdown,
   Modal,

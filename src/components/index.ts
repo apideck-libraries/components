@@ -1,6 +1,7 @@
 export { Button } from './Button'
 export { Card } from './Card'
 export { CheckBox } from './CheckBox'
+export { Chip } from './Chip'
 export { DateInput } from './DateInput'
 export { Dropdown } from './Dropdown'
 export { Modal } from './Modal'
