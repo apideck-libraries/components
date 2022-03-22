@@ -7,7 +7,7 @@ import React, {
   useState
 } from 'react'
 
-import { Modal } from '../components'
+import { Modal } from '../components/Modal'
 
 interface ContextProps {
   addModal: (content: any, options?: { className?: string; style?: CSSProperties }) => void

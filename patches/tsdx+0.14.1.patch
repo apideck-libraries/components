@@ -1,0 +1,17 @@
+diff --git a/node_modules/tsdx/dist/createEslintConfig.js b/node_modules/tsdx/dist/createEslintConfig.js
+index 6fd37ce..7fd3db1 100644
+--- a/node_modules/tsdx/dist/createEslintConfig.js
++++ b/node_modules/tsdx/dist/createEslintConfig.js
+@@ -9,8 +9,10 @@ async function createEslintConfig({ pkg, rootDir, writeFile, }) {
+     const config = {
+         extends: [
+             'react-app',
+-            'prettier/@typescript-eslint',
+-            'plugin:prettier/recommended',
++            // Fix for https://github.com/jaredpalmer/tsdx/issues/1056
++            // 'prettier/@typescript-eslint',
++            // 'plugin:prettier/recommended',
++            'prettier'
+         ],
+         settings: {
+             react: {
