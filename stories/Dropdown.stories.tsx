@@ -1,7 +1,6 @@
-import { Dropdown, Props } from '../src/components/Dropdown'
 import { Meta, Story } from '@storybook/react'
-
 import React from 'react'
+import { Dropdown, Props } from '../src/components/Dropdown'
 
 const meta: Meta = {
   title: 'Dropdown',
@@ -43,6 +42,26 @@ AlignRight.args = {
   options,
   align: 'right',
   className: 'ml-20',
+  buttonClassName:
+    'text-primary-800 bg-primary-100 border-primary-200 group hover:bg-primary-200 focus:ring-primary-600'
+}
+
+export const Upward = Template.bind({})
+Upward.args = {
+  options,
+  className: 'mt-36',
+  align: 'left',
+  upward: true,
+  buttonClassName:
+    'text-primary-800 bg-primary-100 border-primary-200 group hover:bg-primary-200 focus:ring-primary-600'
+}
+
+export const UpwardAlignRight = Template.bind({})
+UpwardAlignRight.args = {
+  options,
+  className: 'ml-20 mt-36',
+  align: 'right',
+  upward: true,
   buttonClassName:
     'text-primary-800 bg-primary-100 border-primary-200 group hover:bg-primary-200 focus:ring-primary-600'
 }

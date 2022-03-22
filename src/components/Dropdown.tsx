@@ -7,9 +7,11 @@ export interface Props {
   className?: string
   buttonClassName?: string
   buttonLabel?: string
+  itemsClassName?: string
   minWidth?: number
   trigger?: ReactNode
   align?: 'left' | 'right'
+  upward?: boolean
   selectedOption?: Option
   onSelect?: (option: Option) => void
 }
@@ -26,8 +28,10 @@ export const Dropdown = forwardRef<HTMLDivElement, Props>(function Dropdown(
     className = '',
     buttonClassName = '',
     buttonLabel = 'Options',
+    itemsClassName = '',
     align = 'right',
     minWidth = 180,
+    upward = false,
     onSelect,
     selectedOption,
     trigger,
@@ -74,7 +78,7 @@ export const Dropdown = forwardRef<HTMLDivElement, Props>(function Dropdown(
           )}
           <Transition
             show={open}
-            enter="transition ease-out duration-100"
+            enter="transition ease-out duration-300"
             enterFrom="transform opacity-0 scale-95"
             enterTo="transform opacity-100 scale-100"
             leave="transition ease-in duration-75"
@@ -86,8 +90,14 @@ export const Dropdown = forwardRef<HTMLDivElement, Props>(function Dropdown(
               static
               data-testid="dropdown-items"
               className={classNames(
-                'absolute shadow-sm right-0 z-10 mt-2 origin-top-right bg-white dark:bg-gray-800 border divide-y rounded-md outline-none border-cool-gray-200 divide-cool-gray-100 dark:divide-gray-400 dark:border-gray-500',
-                { 'right-0': align === 'right', 'left-0': align === 'left' }
+                'absolute shadow-sm z-10 bg-white origin-top-right dark:bg-gray-800 border divide-y rounded-md outline-none border-cool-gray-200 divide-cool-gray-100 dark:divide-gray-400 dark:border-gray-500',
+                {
+                  'right-0': align === 'right',
+                  'left-0 ': align === 'left',
+                  'transform -translate-y-full -mt-12': upward,
+                  'mt-2': !upward
+                },
+                itemsClassName
               )}
               style={{ minWidth }}
             >
