@@ -1,9 +1,6 @@
 import '@testing-library/jest-dom/extend-expect'
-
-import * as React from 'react'
-
 import { fireEvent, render } from '@testing-library/react'
-
+import * as React from 'react'
 import { Default as Toggle } from '../stories/Toggle.stories'
 
 describe('Toggle', () => {
@@ -23,7 +20,7 @@ describe('Toggle', () => {
   it('should show loading state', async () => {
     const { getByTestId } = render(<Toggle isLoading={true} onToggle={() => {}} />)
     const toggler = getByTestId('toggler')
-    expect(toggler.classList.contains('animate-ping')).toBe(true)
+    expect(toggler.classList.contains('p-1')).toBe(true)
   })
 
   it('should call the provided function on toggle', () => {
