@@ -17,7 +17,7 @@ export const Toggle = forwardRef<HTMLButtonElement, Props>(function Toggle(
       type="button"
       onClick={() => onToggle()}
       className={classNames(
-        'relative inline-flex flex-shrink-0 h-6 transition-colors duration-200 ease-in-out border-2 border-transparent rounded-full cursor-pointer w-11 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-600',
+        'relative inline-flex flex-shrink-0 h-6 transition-colors duration-200 ease-in-out border-2 border-transparent rounded-full cursor-pointer w-11 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-200',
         {
           'bg-primary-600': isEnabled,
           'bg-gray-200': !isEnabled
