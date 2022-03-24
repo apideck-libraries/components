@@ -1,7 +1,6 @@
 import { Meta, Story } from '@storybook/react'
-import { Props, Toggle } from '../src/components/Toggle'
-
 import React from 'react'
+import { Props, Toggle } from '../src/components/Toggle'
 
 const meta: Meta = {
   title: 'Toggle',
@@ -13,7 +12,7 @@ const meta: Meta = {
 
 export default meta
 
-const Template: Story<Props> = args => <Toggle {...args} />
+const Template: Story<Props> = (args) => <Toggle {...args} />
 
 export const Default = Template.bind({})
 Default.args = { isEnabled: false, onToggle: () => {} }
@@ -23,3 +22,9 @@ Enabled.args = { isEnabled: true, onToggle: () => {} }
 
 export const Loading = Template.bind({})
 Loading.args = { isLoading: true, onToggle: () => {} }
+
+export const HasIcons = Template.bind({})
+HasIcons.args = { hasIcons: true, onToggle: () => {} }
+
+export const EnabledAndHasIcons = Template.bind({})
+EnabledAndHasIcons.args = { hasIcons: true, isEnabled: true, onToggle: () => {} }
