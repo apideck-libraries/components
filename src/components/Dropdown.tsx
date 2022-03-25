@@ -21,6 +21,7 @@ export interface Option {
   href?: string
   onClick?: () => void
   borderTop?: boolean
+  className?: string
 }
 
 export const Dropdown = forwardRef<HTMLDivElement, Props>(function Dropdown(
@@ -103,7 +104,7 @@ export const Dropdown = forwardRef<HTMLDivElement, Props>(function Dropdown(
               style={{ minWidth }}
             >
               <div className="py-2">
-                {options.map((option: any, i: number) => {
+                {options.map((option: Option, i: number) => {
                   return (
                     <Menu.Item key={i}>
                       {({ active }) => {
@@ -123,7 +124,8 @@ export const Dropdown = forwardRef<HTMLDivElement, Props>(function Dropdown(
                               {
                                 'mt-1.5 pt-1.5 border-t border-gray-100 dark:border-gray-500':
                                   option.borderTop
-                              }
+                              },
+                              option.className || ''
                             )}
                           >
                             {option.href?.length ? (
