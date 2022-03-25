@@ -20,6 +20,7 @@ export interface Option {
   label: string | ReactNode
   href?: string
   onClick?: () => void
+  borderTop?: boolean
 }
 
 export const Dropdown = forwardRef<HTMLDivElement, Props>(function Dropdown(
@@ -105,27 +106,36 @@ export const Dropdown = forwardRef<HTMLDivElement, Props>(function Dropdown(
                 {options.map((option: any, i: number) => {
                   return (
                     <Menu.Item key={i}>
-                      {({ active }) => (
-                        <div
-                          onClick={() => onClick(option)}
-                          data-testid={`item-${i}`}
-                          className={`${
-                            active
-                              ? 'bg-gray-100 text-gray-900 dark:bg-gray-700 dark:text-gray-100'
-                              : 'text-gray-900'
-                          } flex items-center justify-between min-w-0 mx-2 cursor-pointer rounded-md py-1.5 overflow-hidden dark:text-gray-100`}
-                        >
-                          {option.href?.length ? (
-                            <a href={option.href} className="flex-1 min-w-0 px-2 text-sm truncate">
-                              {option.label}
-                            </a>
-                          ) : (
-                            <span className="flex-1 min-w-0 px-1 text-sm truncate">
-                              {option.label}
-                            </span>
-                          )}
-                        </div>
-                      )}
+                      {({ active }) => {
+                        const labelClassName = classNames(
+                          active
+                            ? 'bg-gray-100 text-gray-900 dark:bg-gray-700 dark:text-gray-100'
+                            : 'text-gray-900',
+                          'flex-1 min-w-0 px-2 text-sm truncate cursor-pointer rounded-md py-1.5 mx-2'
+                        )
+
+                        return (
+                          <div
+                            onClick={() => onClick(option)}
+                            data-testid={`item-${i}`}
+                            className={classNames(
+                              'flex items-center justify-between min-w-0 cursor-pointer overflow-hidden',
+                              {
+                                'mt-1.5 pt-1.5 border-t border-gray-100 dark:border-gray-500':
+                                  option.borderTop
+                              }
+                            )}
+                          >
+                            {option.href?.length ? (
+                              <a href={option.href} className={labelClassName}>
+                                {option.label}
+                              </a>
+                            ) : (
+                              <span className={labelClassName}>{option.label}</span>
+                            )}
+                          </div>
+                        )
+                      }}
                     </Menu.Item>
                   )
                 })}

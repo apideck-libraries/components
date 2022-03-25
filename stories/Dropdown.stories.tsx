@@ -119,3 +119,20 @@ Trigger.args = {
     </button>
   )
 }
+
+export const BorderTop = Template.bind({})
+BorderTop.args = {
+  options: [
+    { label: 'Create', href: `https://app.apideck.com/unify/unified-apis/lead` },
+    {
+      label: 'Edit',
+      onClick: () => console.log('Lets Edit')
+    },
+    {
+      borderTop: true,
+      label: 'Delete',
+      href: `https://insomnia.rest/run?label=TrueLayer%20API&uri=https%3A%2F%2Fspecs.apideck.com%2Fcrm.yml`
+    }
+  ],
+  align: 'left'
+}
