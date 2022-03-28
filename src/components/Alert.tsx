@@ -1,0 +1,165 @@
+import classNames from 'classnames'
+import React, { forwardRef, HTMLAttributes, ReactNode } from 'react'
+
+export interface Props extends HTMLAttributes<HTMLDivElement> {
+  title: string
+  type?: 'button' | 'submit' | 'reset'
+  variant?: 'info' | 'warning' | 'danger' | 'success'
+  className?: string
+  description?: string | ReactNode
+  onClose?: VoidFunction
+}
+
+export const Alert = forwardRef<HTMLDivElement, Props>(function Alert(
+  { children, title, description, variant = 'info', className = '', onClose },
+  ref
+) {
+  const iconClassNames = classNames('h-5 w-5', {
+    'text-yellow-400': variant === 'warning',
+    'text-red-400': variant === 'danger',
+    'text-green-400': variant === 'success',
+    'text-primary-400': variant === 'info'
+  })
+
+  const icon: { warning: ReactNode; success: ReactNode; danger: ReactNode; info: ReactNode } = {
+    warning: (
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        className={iconClassNames}
+        viewBox="0 0 20 20"
+        fill="currentColor"
+      >
+        <path
+          fillRule="evenodd"
+          d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z"
+          clipRule="evenodd"
+        />
+      </svg>
+    ),
+    success: (
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        className={iconClassNames}
+        viewBox="0 0 20 20"
+        fill="currentColor"
+      >
+        <path
+          fillRule="evenodd"
+          d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+          clipRule="evenodd"
+        />
+      </svg>
+    ),
+    info: (
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        className={iconClassNames}
+        viewBox="0 0 20 20"
+        fill="currentColor"
+      >
+        <path
+          fillRule="evenodd"
+          d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z"
+          clipRule="evenodd"
+        />
+      </svg>
+    ),
+    danger: (
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        className={iconClassNames}
+        viewBox="0 0 20 20"
+        fill="currentColor"
+      >
+        <path
+          fillRule="evenodd"
+          d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z"
+          clipRule="evenodd"
+        />
+      </svg>
+    )
+  }
+
+  return (
+    <div
+      className={classNames(
+        'rounded-md p-4',
+        {
+          'bg-yellow-50': variant === 'warning',
+          'bg-red-50': variant === 'danger',
+          'bg-green-50': variant === 'success',
+          'bg-primary-50': variant === 'info'
+        },
+        className
+      )}
+      ref={ref}
+      data-testid="alert"
+    >
+      <div className="flex">
+        <div className="flex-shrink-0">{icon[variant]}</div>
+        <div className="ml-3">
+          <h3
+            data-testid="alert-title"
+            className={classNames('text-sm font-medium', {
+              'text-yellow-800': variant === 'warning',
+              'text-red-800': variant === 'danger',
+              'text-green-800': variant === 'success',
+              'text-primary-800': variant === 'info'
+            })}
+          >
+            {title}
+          </h3>
+          {description || children ? (
+            <div
+              data-testid="alert-description"
+              className={classNames('mt-2 text-sm ', {
+                'text-yellow-700': variant === 'warning',
+                'text-red-700': variant === 'danger',
+                'text-green-700': variant === 'success',
+                'text-primary-700': variant === 'info'
+              })}
+            >
+              {description || children}
+            </div>
+          ) : null}
+        </div>
+        {onClose ? (
+          <div className="ml-auto pl-3">
+            <div className="-mx-1.5 -my-1.5">
+              <button
+                data-testid="alert-close-btn"
+                type="button"
+                onClick={onClose}
+                className={classNames(
+                  'inline-flex rounded-md p-1.5 focus:outline-none focus:ring-2 focus:ring-offset-2',
+                  {
+                    'bg-yellow-50 text-yellow-500 hover:bg-yellow-100 focus:ring-offset-yellow-50 focus:ring-yellow-600':
+                      variant === 'warning',
+                    'bg-red-50 text-red-500 hover:bg-red-100 focus:ring-offset-red-50 focus:ring-red-600':
+                      variant === 'danger',
+                    'bg-green-50 text-green-500 hover:bg-green-100 focus:ring-offset-green-50 focus:ring-green-600':
+                      variant === 'success',
+                    'bg-primary-50 text-primary-500 hover:bg-primary-100 focus:ring-offset-primary-50 focus:ring-primary-600':
+                      variant === 'info'
+                  }
+                )}
+              >
+                <span className="sr-only">Dismiss</span>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="h-6 w-6"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  strokeWidth={2}
+                >
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              </button>
+            </div>
+          </div>
+        ) : null}
+      </div>
+    </div>
+  )
+})
