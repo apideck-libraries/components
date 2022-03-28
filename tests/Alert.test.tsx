@@ -29,6 +29,13 @@ describe('Alert', () => {
       const { getByTestId } = render(<Alert title="test" variant="info" />)
       const alertElement = getByTestId('alert')
 
+      expect(alertElement.classList.contains('bg-blue-50')).toBe(true)
+    })
+
+    it('should render a primary alert', () => {
+      const { getByTestId } = render(<Alert title="test" variant="primary" />)
+      const alertElement = getByTestId('alert')
+
       expect(alertElement.classList.contains('bg-primary-50')).toBe(true)
     })
 

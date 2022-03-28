@@ -4,7 +4,7 @@ import React, { forwardRef, HTMLAttributes, ReactNode } from 'react'
 export interface Props extends HTMLAttributes<HTMLDivElement> {
   title: string
   type?: 'button' | 'submit' | 'reset'
-  variant?: 'info' | 'warning' | 'danger' | 'success'
+  variant?: 'info' | 'warning' | 'danger' | 'success' | 'primary'
   className?: string
   description?: string | ReactNode
   onClose?: VoidFunction
@@ -18,10 +18,17 @@ export const Alert = forwardRef<HTMLDivElement, Props>(function Alert(
     'text-yellow-400': variant === 'warning',
     'text-red-400': variant === 'danger',
     'text-green-400': variant === 'success',
-    'text-primary-400': variant === 'info'
+    'text-blue-400': variant === 'info',
+    'text-primary-400': variant === 'primary'
   })
 
-  const icon: { warning: ReactNode; success: ReactNode; danger: ReactNode; info: ReactNode } = {
+  const icon: {
+    warning: JSX.Element
+    success: JSX.Element
+    danger: JSX.Element
+    info: JSX.Element
+    primary: JSX.Element
+  } = {
     warning: (
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -64,6 +71,20 @@ export const Alert = forwardRef<HTMLDivElement, Props>(function Alert(
         />
       </svg>
     ),
+    primary: (
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        className={iconClassNames}
+        viewBox="0 0 20 20"
+        fill="currentColor"
+      >
+        <path
+          fillRule="evenodd"
+          d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z"
+          clipRule="evenodd"
+        />
+      </svg>
+    ),
     danger: (
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -88,7 +109,8 @@ export const Alert = forwardRef<HTMLDivElement, Props>(function Alert(
           'bg-yellow-50': variant === 'warning',
           'bg-red-50': variant === 'danger',
           'bg-green-50': variant === 'success',
-          'bg-primary-50': variant === 'info'
+          'bg-blue-50': variant === 'info',
+          'bg-primary-50': variant === 'primary'
         },
         className
       )}
@@ -104,7 +126,8 @@ export const Alert = forwardRef<HTMLDivElement, Props>(function Alert(
               'text-yellow-800': variant === 'warning',
               'text-red-800': variant === 'danger',
               'text-green-800': variant === 'success',
-              'text-primary-800': variant === 'info'
+              'text-blue-800': variant === 'info',
+              'text-primary-800': variant === 'primary'
             })}
           >
             {title}
@@ -116,7 +139,8 @@ export const Alert = forwardRef<HTMLDivElement, Props>(function Alert(
                 'text-yellow-700': variant === 'warning',
                 'text-red-700': variant === 'danger',
                 'text-green-700': variant === 'success',
-                'text-primary-700': variant === 'info'
+                'text-blue-700': variant === 'info',
+                'text-primary-700': variant === 'primary'
               })}
             >
               {description || children}
@@ -139,8 +163,10 @@ export const Alert = forwardRef<HTMLDivElement, Props>(function Alert(
                       variant === 'danger',
                     'bg-green-50 text-green-500 hover:bg-green-100 focus:ring-offset-green-50 focus:ring-green-600':
                       variant === 'success',
+                    'bg-blue-50 text-blue-500 hover:bg-blue-100 focus:ring-offset-blue-50 focus:ring-blue-600':
+                      variant === 'info',
                     'bg-primary-50 text-primary-500 hover:bg-primary-100 focus:ring-offset-primary-50 focus:ring-primary-600':
-                      variant === 'info'
+                      variant === 'primary'
                   }
                 )}
               >
