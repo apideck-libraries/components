@@ -120,22 +120,25 @@ export const Alert = forwardRef<HTMLDivElement, Props>(function Alert(
       <div className="flex">
         <div className="flex-shrink-0">{icon[variant]}</div>
         <div className="ml-3">
-          <h3
-            data-testid="alert-title"
-            className={classNames('text-sm font-medium', {
-              'text-yellow-800': variant === 'warning',
-              'text-red-800': variant === 'danger',
-              'text-green-800': variant === 'success',
-              'text-blue-800': variant === 'info',
-              'text-primary-800': variant === 'primary'
-            })}
-          >
-            {title}
-          </h3>
+          {title ? (
+            <h3
+              data-testid="alert-title"
+              className={classNames('text-sm font-medium', {
+                'text-yellow-800': variant === 'warning',
+                'text-red-800': variant === 'danger',
+                'text-green-800': variant === 'success',
+                'text-blue-800': variant === 'info',
+                'text-primary-800': variant === 'primary'
+              })}
+            >
+              {title}
+            </h3>
+          ) : null}
           {description || children ? (
             <div
               data-testid="alert-description"
-              className={classNames('mt-2 text-sm ', {
+              className={classNames('text-sm ', {
+                'mt-2': title,
                 'text-yellow-700': variant === 'warning',
                 'text-red-700': variant === 'danger',
                 'text-green-700': variant === 'success',
