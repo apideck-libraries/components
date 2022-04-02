@@ -1,6 +1,5 @@
-import React, { HTMLAttributes, forwardRef } from 'react'
-
 import classNames from 'classnames'
+import React, { forwardRef, HTMLAttributes } from 'react'
 import styles from '../styles/input'
 
 export interface Props extends HTMLAttributes<HTMLTextAreaElement> {
@@ -9,6 +8,7 @@ export interface Props extends HTMLAttributes<HTMLTextAreaElement> {
   disabled?: boolean
   required?: boolean
   valid?: boolean
+  autoFocus?: boolean
 }
 
 export const TextArea = forwardRef<HTMLTextAreaElement, Props>(function TextArea(

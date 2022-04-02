@@ -1,6 +1,5 @@
-import React, { HTMLAttributes, forwardRef } from 'react'
-
 import classNames from 'classnames'
+import React, { forwardRef, HTMLAttributes } from 'react'
 import styles from '../styles/input'
 
 export interface Props extends HTMLAttributes<HTMLInputElement> {
@@ -12,6 +11,7 @@ export interface Props extends HTMLAttributes<HTMLInputElement> {
   className?: string
   valid?: boolean
   autoComplete?: string
+  autoFocus?: boolean
 }
 
 export const TextInput = forwardRef<HTMLInputElement, Props>(function TextInput(
