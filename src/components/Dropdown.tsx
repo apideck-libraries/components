@@ -68,7 +68,7 @@ export const Dropdown = forwardRef<HTMLDivElement, Props>(function Dropdown(
                 buttonClassName
               )}
             >
-              <div>{activeOption?.label || buttonLabel}</div>
+              {activeOption?.label || buttonLabel}
               <svg className="w-5 h-5 ml-2 -mr-1" viewBox="0 0 20 20" fill="currentColor">
                 <path
                   fillRule="evenodd"
