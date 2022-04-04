@@ -34,7 +34,8 @@
     "@headlessui/react": "^1.4.3",
     "classnames": "^2.2.6",
     "patch-package": "^6.4.7",
-    "postinstall-postinstall": "^2.1.0"
+    "postinstall-postinstall": "^2.1.0",
+    "use-clipboard-copy": "^0.2.0"
   },
   "husky": {
     "hooks": {

@@ -107,5 +107,32 @@ describe('Text Input', () => {
 
       expect(input.value).toBe('jake@apideck.com')
     })
+    describe('When sensitive is true', () => {
+      it('should show the show button', async () => {
+        const { getByTestId } = render(<TextInput {...props} sensitive={true} />)
+        const button = getByTestId('show-button')
+
+        expect(button).toBeInTheDocument()
+      })
+      it('should toggle the type of the input when pressing the show button', async () => {
+        const screen = render(<TextInput {...props} sensitive={true} />)
+        const button = screen.getByTestId('show-button')
+        const input = screen.getByPlaceholderText(props.placeholder) as HTMLInputElement
+
+        expect(input.type).toBe('password')
+        fireEvent.click(button)
+        expect(input.type).toBe('text')
+        fireEvent.click(button)
+        expect(input.type).toBe('password')
+      })
+    })
+    describe('When canBeCopied is true', () => {
+      it('should show the copy button', async () => {
+        const { getByTestId } = render(<TextInput {...props} canBeCopied={true} />)
+        const button = getByTestId('copy-button')
+
+        expect(button).toBeInTheDocument()
+      })
+    })
   })
 })

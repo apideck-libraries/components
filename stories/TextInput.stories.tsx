@@ -1,7 +1,6 @@
 import { Meta, Story } from '@storybook/react'
-import { Props, TextInput } from '../src/components/TextInput'
-
 import React from 'react'
+import { Props, TextInput } from '../src/components/TextInput'
 
 const meta: Meta = {
   title: 'TextInput',
@@ -30,7 +29,7 @@ const meta: Meta = {
 
 export default meta
 
-const Template: Story<Props> = args => <TextInput {...args} />
+const Template: Story<Props> = (args) => <TextInput {...args} />
 
 export const Default = Template.bind({})
 Default.args = { type: 'text', name: 'input-name' }
@@ -46,10 +45,24 @@ WithPlaceholder.args = {
 }
 
 export const Disabled = Template.bind({})
-Disabled.args = { type: 'text', name: 'input-name', disabled: true }
+Disabled.args = { type: 'text', name: 'input-name', disabled: true, value: 'I am disabled, sorry' }
 
 export const Valid = Template.bind({})
 Valid.args = { type: 'text', name: 'input-name', valid: true }
 
 export const InValid = Template.bind({})
 InValid.args = { type: 'text', name: 'input-name', valid: false }
+
+export const Sensitive = Template.bind({})
+Sensitive.args = { name: 'input-name', sensitive: true }
+
+export const CanBeCopied = Template.bind({})
+CanBeCopied.args = { type: 'text', name: 'input-name', canBeCopied: true }
+
+export const SensitiveAndCanBeCopied = Template.bind({})
+SensitiveAndCanBeCopied.args = {
+  type: 'text',
+  name: 'input-name',
+  canBeCopied: true,
+  sensitive: true
+}
