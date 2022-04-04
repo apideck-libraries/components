@@ -32,10 +32,19 @@ export default meta
 const Template: Story<Props> = (args) => <TextInput {...args} />
 
 export const Default = Template.bind({})
-Default.args = { type: 'text', name: 'input-name' }
+Default.args = {
+  type: 'text',
+  name: 'input-name',
+  onChange: (e: any) => console.log(e.currentTarget.value)
+}
 
 export const WithValue = Template.bind({})
-WithValue.args = { type: 'text', name: 'input-name', value: 'Input with some text value' }
+WithValue.args = {
+  type: 'text',
+  name: 'input-name',
+  value: 'Input with some text value',
+  onChange: (e: any) => console.log(e.currentTarget.value)
+}
 
 export const WithPlaceholder = Template.bind({})
 WithPlaceholder.args = {
@@ -57,7 +66,13 @@ export const Sensitive = Template.bind({})
 Sensitive.args = { name: 'input-name', sensitive: true, className: 'max-w-sm' }
 
 export const CanBeCopied = Template.bind({})
-CanBeCopied.args = { type: 'text', name: 'input-name', canBeCopied: true, className: 'max-w-sm' }
+CanBeCopied.args = {
+  type: 'text',
+  name: 'input-name',
+  canBeCopied: true,
+  className: 'max-w-sm',
+  onChange: (e: any) => console.log(e.currentTarget.value)
+}
 
 export const SensitiveCopied = Template.bind({})
 SensitiveCopied.args = {

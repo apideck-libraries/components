@@ -70,7 +70,7 @@ export const TextInput = forwardRef<HTMLInputElement, Props>(function TextInput(
             onClick={() => setShow(!show)}
             className={classNames(
               'absolute right-0 bg-white dark:bg-gray-800 top-[5px] p-1 mr-3 flex items-center justify-center text-gray-400 hover:text-gray-500 dark:text-white transition-all duration-200 rounded-md hover:bg-gray-100 focus:outline-none',
-              canBeCopied ? 'mr-[36px]' : 'mr-[11px]'
+              canBeCopied ? 'mr-[37px]' : 'mr-[11px]'
             )}
             data-testid="show-button"
           >
@@ -121,7 +121,7 @@ export const Input = forwardRef<HTMLInputElement, Props>(function TextInput(
       className={classNames(
         'w-full text-gray-600 border-gray-300 rounded-md sm:text-sm shadow-sm focus:ring-primary-500 focus:border-primary-500 placeholder-gray-400',
         styles.dark,
-        { 'cursor-not-allowed opacity-70 text-gray-500': disabled },
+        { 'cursor-not-allowed opacity-60 text-gray-500': disabled },
         {
           [styles.valid]: valid !== undefined && valid
         },
