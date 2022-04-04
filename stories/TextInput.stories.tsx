@@ -54,15 +54,27 @@ export const InValid = Template.bind({})
 InValid.args = { type: 'text', name: 'input-name', valid: false }
 
 export const Sensitive = Template.bind({})
-Sensitive.args = { name: 'input-name', sensitive: true }
+Sensitive.args = { name: 'input-name', sensitive: true, className: 'max-w-sm' }
 
 export const CanBeCopied = Template.bind({})
-CanBeCopied.args = { type: 'text', name: 'input-name', canBeCopied: true }
+CanBeCopied.args = { type: 'text', name: 'input-name', canBeCopied: true, className: 'max-w-sm' }
 
-export const SensitiveAndCanBeCopied = Template.bind({})
-SensitiveAndCanBeCopied.args = {
+export const SensitiveCopied = Template.bind({})
+SensitiveCopied.args = {
   type: 'text',
   name: 'input-name',
   canBeCopied: true,
-  sensitive: true
+  sensitive: true,
+  className: 'max-w-sm'
+}
+
+export const SensitiveCopiedDisabled = Template.bind({})
+SensitiveCopiedDisabled.args = {
+  type: 'text',
+  name: 'input-name',
+  canBeCopied: true,
+  sensitive: true,
+  className: 'max-w-sm',
+  disabled: true,
+  value: 'apikey1234apikey1234apikey1234apikey1234apikey1234apikey1234apikey1234apikey1234'
 }

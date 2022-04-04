@@ -29,18 +29,18 @@ export const TextInput = forwardRef<HTMLInputElement, Props>(function TextInput(
     const inputType = sensitive ? 'password' : type
 
     return (
-      <div className="relative">
+      <div className={classNames('relative', props.className)}>
         <Input {...props} type={show ? 'text' : inputType} ref={inputRef} />
         {canBeCopied && (
           <button
             onClick={() => clipboard.copy(inputRef.current?.value)}
-            className="absolute right-2 top-1 bottom-1 p-1 items-center justify-center text-gray-500 transition-all duration-200 rounded-full hover:bg-gray-100 focus:outline-none"
+            className="absolute right-0 bg-white dark:bg-gray-800 top-[5px] p-1 mr-2 flex items-center justify-center text-gray-400 hover:text-gray-500 dark:text-white transition-all duration-200 rounded-md hover:bg-gray-100 focus:outline-none"
             data-testid="copy-button"
           >
             {clipboard.copied ? (
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                className="h-5 w-5 text-gray-500 dark:text-white"
+                className="h-5 w-5"
                 viewBox="0 0 20 20"
                 fill="currentColor"
               >
@@ -54,7 +54,7 @@ export const TextInput = forwardRef<HTMLInputElement, Props>(function TextInput(
             ) : (
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                className="h-5 w-5 text-gray-500 dark:text-white"
+                className="h-5 w-5"
                 viewBox="0 0 20 20"
                 fill="currentColor"
               >
@@ -68,15 +68,15 @@ export const TextInput = forwardRef<HTMLInputElement, Props>(function TextInput(
           <button
             onClick={() => setShow(!show)}
             className={classNames(
-              'absolute mr-0.5 top-1 bottom-1 p-1 items-center justify-center text-gray-500 transition-all duration-200 rounded-full hover:bg-gray-100 focus:outline-none',
-              canBeCopied ? 'right-8' : 'right-2'
+              'absolute right-0 bg-white dark:bg-gray-800 top-[5px] p-1 mr-3 flex items-center justify-center text-gray-400 hover:text-gray-500 dark:text-white transition-all duration-200 rounded-md hover:bg-gray-100 focus:outline-none',
+              canBeCopied ? 'mr-[36px]' : 'mr-2'
             )}
             data-testid="show-button"
           >
             {show ? (
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                className="h-5 w-5 text-gray-500 dark:text-white"
+                className="h-5 w-5"
                 viewBox="0 0 20 20"
                 fill="currentColor"
               >
@@ -90,7 +90,7 @@ export const TextInput = forwardRef<HTMLInputElement, Props>(function TextInput(
             ) : (
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                className="h-5 w-5 text-gray-500 dark:text-white"
+                className="h-5 w-5"
                 viewBox="0 0 20 20"
                 fill="currentColor"
               >
