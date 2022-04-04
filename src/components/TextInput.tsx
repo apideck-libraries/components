@@ -13,6 +13,7 @@ export interface Props extends HTMLAttributes<HTMLInputElement> {
   valid?: boolean
   autoComplete?: string
   autoFocus?: boolean
+  readOnly?: boolean
   sensitive?: boolean
   canBeCopied?: boolean
 }
