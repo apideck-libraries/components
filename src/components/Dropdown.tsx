@@ -1,6 +1,6 @@
 import { Menu, Transition } from '@headlessui/react'
 import classNames from 'classnames'
-import React, { forwardRef, ReactNode, useState } from 'react'
+import React, { forwardRef, ReactNode, useEffect, useState } from 'react'
 
 export interface Props {
   options: Option[]
@@ -48,6 +48,12 @@ export const Dropdown = forwardRef<HTMLDivElement, Props>(function Dropdown(
     if (option.onClick) option.onClick()
     if (onSelect) onSelect(option)
   }
+
+  useEffect(() => {
+    if (selectedOption) {
+      setActiveOption(selectedOption)
+    }
+  }, [selectedOption])
 
   return (
     <Menu
