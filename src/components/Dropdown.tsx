@@ -25,7 +25,7 @@ export interface Option {
   borderTop?: boolean
   className?: string
   imageUrl?: string
-  value?: string
+  value?: string | number
 }
 
 export const Dropdown = forwardRef<HTMLDivElement, Props>(function Dropdown(
