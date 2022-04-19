@@ -31,7 +31,7 @@ export const TextInput = forwardRef<HTMLInputElement, Props>(function TextInput(
 
     return (
       <div className={classNames('relative', props.className)}>
-        <Input {...props} type={show ? 'text' : inputType} ref={inputRef} />
+        <Input autoFocus {...props} type={show ? 'text' : inputType} ref={inputRef} />
         {canBeCopied && (
           <button
             onClick={() => clipboard.copy(inputRef.current?.value)}

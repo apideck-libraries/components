@@ -136,3 +136,75 @@ BorderTop.args = {
   ],
   align: 'left'
 }
+
+const connectorOptions = [
+  {
+    value: 'exact-online',
+    label: 'Exact Online',
+    imageUrl:
+      'https://res.cloudinary.com/apideck/image/upload/v1548122132/catalog/exact-online/icon128x128.png'
+  },
+  {
+    value: 'myob',
+    label: 'MYOB',
+    imageUrl:
+      'https://res.cloudinary.com/apideck/image/upload/v1554586086/catalog/myob/icon128x128.jpg'
+  },
+  {
+    value: 'quickbooks',
+    label: 'QuickBooks',
+    imageUrl:
+      'https://res.cloudinary.com/apideck/image/upload/v1529456366/catalog/quickbooks/icon128x128.png'
+  },
+  {
+    value: 'xero',
+    label: 'Xero',
+    imageUrl:
+      'https://res.cloudinary.com/apideck/image/upload/v1529456372/catalog/xero/icon128x128.png'
+  },
+  {
+    value: 'sage-hr',
+    label: 'Sage HR',
+    imageUrl: 'https://res.cloudinary.com/apideck/image/upload/v1634905030/icons/sage-hr.jpg'
+  },
+  {
+    value: 'activecampaign',
+    label: 'ActiveCampaign',
+    imageUrl:
+      'https://res.cloudinary.com/apideck/image/upload/v1529455970/catalog/activecampaign/icon128x128.png'
+  },
+  {
+    value: 'close',
+    label: 'Close',
+    imageUrl:
+      'https://res.cloudinary.com/apideck/image/upload/v1531304652/catalog/closeio/icon128x128.png'
+  },
+  {
+    value: 'copper',
+    label: 'Copper',
+    imageUrl:
+      'https://res.cloudinary.com/apideck/image/upload/v1535538972/catalog/copper/icon128x128.png'
+  }
+]
+
+export const IsSearchable = Template.bind({})
+IsSearchable.args = {
+  options: connectorOptions,
+  align: 'left',
+  isSearchable: true
+}
+
+export const IsScrollable = Template.bind({})
+IsScrollable.args = {
+  options: [...connectorOptions, ...connectorOptions],
+  align: 'left',
+  isScrollable: true
+}
+
+export const IsSearchableAndScrollable = Template.bind({})
+IsSearchableAndScrollable.args = {
+  options: [...connectorOptions, ...connectorOptions],
+  align: 'left',
+  isSearchable: true,
+  isScrollable: true
+}
