@@ -63,8 +63,8 @@ export const Dropdown = forwardRef<HTMLDivElement, Props>(function Dropdown(
     setSearchTerm(text)
     const results = options.filter(
       (option: Option) =>
-        option.value?.toLowerCase().includes(text.toLowerCase()) ||
-        (option.label as string)?.toLowerCase().includes(text.toLowerCase())
+        option.value?.toString()?.toLowerCase().includes(text.toLowerCase()) ||
+        option.label?.toString()?.toLowerCase().includes(text.toLowerCase())
     )
     setFilteredOptions(results)
   }
