@@ -19,6 +19,8 @@ export interface Props extends HTMLAttributes<HTMLInputElement> {
   canBeCopied?: boolean
   searchable?: boolean
   onCloseIconClick?: () => void
+  searchIconClassName?: string
+  closeIconClassName?: string
 }
 
 export const TextInput = forwardRef<HTMLInputElement, Props>(function TextInput(
@@ -28,6 +30,8 @@ export const TextInput = forwardRef<HTMLInputElement, Props>(function TextInput(
     canBeCopied = false,
     searchable = false,
     onCloseIconClick,
+    searchIconClassName = '',
+    closeIconClassName = '',
     ...props
   },
   ref
@@ -43,7 +47,12 @@ export const TextInput = forwardRef<HTMLInputElement, Props>(function TextInput(
       <div className={classNames('relative', props.className)}>
         {searchable && (
           <Fragment>
-            <div className="absolute left-0 flex items-center pt-[9px] pl-2 pointer-events-none">
+            <div
+              className={classNames(
+                'absolute left-0 flex items-center pt-[9px] pl-2 pointer-events-none',
+                searchIconClassName
+              )}
+            >
               <svg
                 className="w-5 h-5 text-gray-400"
                 xmlns="http://www.w3.org/2000/svg"
@@ -59,7 +68,12 @@ export const TextInput = forwardRef<HTMLInputElement, Props>(function TextInput(
               </svg>
             </div>
             {onCloseIconClick && (
-              <div className="absolute right-0 flex items-center pt-[9px] pr-2">
+              <div
+                className={classNames(
+                  'absolute right-0 flex items-center pt-[9px] pr-2',
+                  closeIconClassName
+                )}
+              >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   className="w-5 h-5 text-gray-400 cursor-pointer hover:text-gray-500"
