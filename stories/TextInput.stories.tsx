@@ -1,6 +1,7 @@
 import { Meta, Story } from '@storybook/react'
-import React from 'react'
 import { Props, TextInput } from '../src/components/TextInput'
+
+import React from 'react'
 
 const meta: Meta = {
   title: 'TextInput',
@@ -92,4 +93,23 @@ SensitiveCopiedDisabled.args = {
   className: 'max-w-sm',
   disabled: true,
   value: 'apikey1234apikey1234apikey1234apikey1234apikey1234apikey1234apikey1234apikey1234'
+}
+
+export const Searchable = Template.bind({})
+Searchable.args = {
+  type: 'text',
+  name: 'input-name',
+  searchable: true,
+  className: 'max-w-sm',
+  placeholder: 'Searchable input'
+}
+
+export const OnCloseIconClick = Template.bind({})
+OnCloseIconClick.args = {
+  type: 'text',
+  name: 'input-name',
+  searchable: true,
+  className: 'max-w-sm',
+  placeholder: 'Searchable input',
+  onCloseIconClick: () => console.log('Close icon clicked')
 }

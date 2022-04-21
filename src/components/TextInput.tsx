@@ -1,7 +1,8 @@
+import React, { Fragment, HTMLAttributes, createRef, forwardRef, useState } from 'react'
+
 import classNames from 'classnames'
-import React, { createRef, forwardRef, HTMLAttributes, useState } from 'react'
-import { useClipboard } from 'use-clipboard-copy'
 import styles from '../styles/input'
+import { useClipboard } from 'use-clipboard-copy'
 
 export interface Props extends HTMLAttributes<HTMLInputElement> {
   name: string
@@ -16,22 +17,71 @@ export interface Props extends HTMLAttributes<HTMLInputElement> {
   readOnly?: boolean
   sensitive?: boolean
   canBeCopied?: boolean
+  searchable?: boolean
+  onCloseIconClick?: () => void
 }
 
 export const TextInput = forwardRef<HTMLInputElement, Props>(function TextInput(
-  { type = 'text', sensitive = false, canBeCopied = false, ...props },
+  {
+    type = 'text',
+    sensitive = false,
+    canBeCopied = false,
+    searchable = false,
+    onCloseIconClick,
+    ...props
+  },
   ref
 ) {
   const [show, setShow] = useState(false)
   const clipboard = useClipboard({ copiedTimeout: 2000 })
   const inputRef = createRef<HTMLInputElement>()
 
-  if (sensitive || canBeCopied) {
+  if (sensitive || canBeCopied || searchable) {
     const inputType = sensitive ? 'password' : type
 
     return (
       <div className={classNames('relative', props.className)}>
-        <Input autoFocus {...props} type={show ? 'text' : inputType} ref={inputRef} />
+        {searchable && (
+          <Fragment>
+            <div className="absolute left-0 flex items-center pt-[9px] pl-2 pointer-events-none">
+              <svg
+                className="w-5 h-5 text-gray-400"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 20 20"
+                fill="currentColor"
+                aria-hidden="true"
+              >
+                <path
+                  fillRule="evenodd"
+                  d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
+                  clipRule="evenodd"
+                />
+              </svg>
+            </div>
+            {onCloseIconClick && (
+              <div className="absolute right-0 flex items-center pt-[9px] pr-2">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="w-5 h-5 text-gray-400 cursor-pointer hover:text-gray-500"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  strokeWidth={2}
+                  onClick={onCloseIconClick}
+                >
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              </div>
+            )}
+          </Fragment>
+        )}
+        <Input
+          autoFocus
+          {...props}
+          type={show ? 'text' : inputType}
+          ref={inputRef}
+          className={classNames(props.className, { 'pl-8': searchable })}
+        />
         {canBeCopied && (
           <button
             onClick={() => clipboard.copy(inputRef.current?.value)}
