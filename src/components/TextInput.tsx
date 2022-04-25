@@ -90,7 +90,6 @@ export const TextInput = forwardRef<HTMLInputElement, Props>(function TextInput(
           </Fragment>
         )}
         <Input
-          autoFocus
           {...props}
           type={show ? 'text' : inputType}
           ref={inputRef}
@@ -183,7 +182,7 @@ export const Input = forwardRef<HTMLInputElement, Props>(function TextInput(
   return (
     <input
       className={classNames(
-        'w-full text-gray-600 border-gray-300 rounded-md sm:text-sm shadow-sm focus:ring-primary-500 focus:border-primary-500 placeholder-gray-400',
+        'w-full text-gray-600 border-gray-300 rounded-md sm:text-sm shadow-sm focus:ring-primary-400 focus:border-primary-400 placeholder-gray-400',
         styles.dark,
         { 'cursor-not-allowed opacity-60 text-gray-500': disabled },
         {
