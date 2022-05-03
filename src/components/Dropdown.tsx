@@ -103,7 +103,6 @@ export const Dropdown = forwardRef<HTMLDivElement, Props>(function Dropdown(
                   )}
                 >
                   {activeOption?.label || buttonLabel}
-
                   <svg
                     className={classNames('w-5 h-5 ml-2 -mr-1', {
                       'opacity-0': activeOption && isClearable

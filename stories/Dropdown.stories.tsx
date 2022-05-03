@@ -1,6 +1,8 @@
 import { Dropdown, Props } from '../src/components/Dropdown'
 import { Meta, Story } from '@storybook/react'
 
+import React from 'react'
+
 const meta: Meta = {
   title: 'Dropdown',
   component: Dropdown,
