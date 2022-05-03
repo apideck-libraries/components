@@ -1,6 +1,7 @@
 import { Menu, Transition } from '@headlessui/react'
+import React, { ChangeEvent, ReactNode, forwardRef, useEffect, useRef, useState } from 'react'
+
 import classNames from 'classnames'
-import React, { ChangeEvent, forwardRef, ReactNode, useEffect, useRef, useState } from 'react'
 
 export interface Props {
   options: Option[]
@@ -16,6 +17,7 @@ export interface Props {
   isSearchable?: boolean
   onSelect?: (option: Option) => void
   isScrollable?: boolean
+  isClearable?: boolean
 }
 
 export interface Option {
@@ -43,6 +45,7 @@ export const Dropdown = forwardRef<HTMLDivElement, Props>(function Dropdown(
     trigger,
     isSearchable = false,
     isScrollable = false,
+    isClearable = false,
     ...other
   },
   ref
@@ -58,8 +61,7 @@ export const Dropdown = forwardRef<HTMLDivElement, Props>(function Dropdown(
     if (onSelect) onSelect(option)
   }
 
-  const onSearchChange = (e: ChangeEvent<HTMLInputElement>) => {
-    const text = e.currentTarget.value
+  const onSearchChange = (text: string) => {
     setSearchTerm(text)
     const results = options.filter(
       (option: Option) =>
@@ -93,21 +95,51 @@ export const Dropdown = forwardRef<HTMLDivElement, Props>(function Dropdown(
             {trigger ? (
               <Menu.Button className={buttonClassName}>{trigger}</Menu.Button>
             ) : (
-              <Menu.Button
-                className={classNames(
-                  'flex items-center justify-between w-full px-4 py-2 text-sm font-medium border rounded-md shadow-sm text-gray-800 bg-white border-gray-200 group hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-cool-gray-100 focus:ring-gray-300 dark:ring-gray-500 dark:bg-gray-800 dark:text-gray-200 dark:border-gray-500 dark:hover:bg-gray-700',
-                  buttonClassName
+              <div className="relative">
+                <Menu.Button
+                  className={classNames(
+                    'flex items-center justify-between w-full px-4 py-2 text-sm font-medium border rounded-md shadow-sm text-gray-800 bg-white border-gray-200 group hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-cool-gray-100 focus:ring-gray-300 dark:ring-gray-500 dark:bg-gray-800 dark:text-gray-200 dark:border-gray-500 dark:hover:bg-gray-700',
+                    buttonClassName
+                  )}
+                >
+                  {activeOption?.label || buttonLabel}
+
+                  <svg
+                    className={classNames('w-5 h-5 ml-2 -mr-1', {
+                      'opacity-0': activeOption && isClearable
+                    })}
+                    viewBox="0 0 20 20"
+                    fill="currentColor"
+                  >
+                    <path
+                      fillRule="evenodd"
+                      d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                      clipRule="evenodd"
+                    />
+                  </svg>
+                </Menu.Button>
+                {activeOption && isClearable && (
+                  <button
+                    className="absolute hover:bg-gray-100 rounded-full flex items-center justify-center p-1 top-2 right-2"
+                    style={{ top: 7 }}
+                    onClick={() => {
+                      setSearchTerm('')
+                      setActiveOption(null)
+                    }}
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      className="w-4 h-4"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                      strokeWidth={2}
+                    >
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                  </button>
                 )}
-              >
-                {activeOption?.label || buttonLabel}
-                <svg className="w-5 h-5 ml-2 -mr-1" viewBox="0 0 20 20" fill="currentColor">
-                  <path
-                    fillRule="evenodd"
-                    d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-                    clipRule="evenodd"
-                  />
-                </svg>
-              </Menu.Button>
+              </div>
             )}
             <Transition
               show={open}
@@ -145,7 +177,9 @@ export const Dropdown = forwardRef<HTMLDivElement, Props>(function Dropdown(
                       autoComplete="off"
                       autoFocus={true}
                       value={searchTerm}
-                      onChange={onSearchChange}
+                      onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                        onSearchChange(e.currentTarget.value)
+                      }
                       data-testid="search-input"
                     />
                     {searchTerm?.length > 0 && (

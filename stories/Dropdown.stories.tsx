@@ -1,6 +1,5 @@
-import { Meta, Story } from '@storybook/react'
-import React from 'react'
 import { Dropdown, Props } from '../src/components/Dropdown'
+import { Meta, Story } from '@storybook/react'
 
 const meta: Meta = {
   title: 'Dropdown',
@@ -207,4 +206,13 @@ IsSearchableAndScrollable.args = {
   align: 'left',
   isSearchable: true,
   isScrollable: true
+}
+
+export const IsClearable = Template.bind({})
+IsClearable.args = {
+  options: [...connectorOptions, ...connectorOptions],
+  align: 'left',
+  isSearchable: true,
+  isScrollable: true,
+  isClearable: true
 }
