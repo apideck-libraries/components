@@ -1,5 +1,6 @@
+import React, { HTMLAttributes, ReactNode, forwardRef } from 'react'
+
 import classNames from 'classnames'
-import React, { forwardRef, HTMLAttributes, ReactNode } from 'react'
 
 export interface Props extends HTMLAttributes<HTMLDivElement> {
   title: string
@@ -119,7 +120,7 @@ export const Alert = forwardRef<HTMLDivElement, Props>(function Alert(
     >
       <div className="flex">
         <div className="flex-shrink-0">{icon[variant]}</div>
-        <div className="ml-3">
+        <div className="ml-3 w-full">
           {title ? (
             <h3
               data-testid="alert-title"
