@@ -17,7 +17,7 @@ export interface Props {
   isSearchable?: boolean
   onSelect?: (option: Option) => void
   isScrollable?: boolean
-  isClearable?: boolean
+  onClear?: () => void
 }
 
 export interface Option {
@@ -45,7 +45,7 @@ export const Dropdown = forwardRef<HTMLDivElement, Props>(function Dropdown(
     trigger,
     isSearchable = false,
     isScrollable = false,
-    isClearable = false,
+    onClear,
     ...other
   },
   ref
@@ -105,7 +105,7 @@ export const Dropdown = forwardRef<HTMLDivElement, Props>(function Dropdown(
                   {activeOption?.label || buttonLabel}
                   <svg
                     className={classNames('w-5 h-5 ml-2 -mr-1', {
-                      'opacity-0': activeOption && isClearable
+                      'opacity-0': activeOption && onClear
                     })}
                     viewBox="0 0 20 20"
                     fill="currentColor"
@@ -117,13 +117,14 @@ export const Dropdown = forwardRef<HTMLDivElement, Props>(function Dropdown(
                     />
                   </svg>
                 </Menu.Button>
-                {activeOption && isClearable && (
+                {activeOption && onClear && (
                   <button
                     className="absolute hover:bg-gray-100 rounded-full flex items-center justify-center p-1 top-2 right-2"
                     style={{ top: 7 }}
                     onClick={() => {
                       setSearchTerm('')
                       setActiveOption(null)
+                      onClear()
                     }}
                   >
                     <svg

@@ -216,5 +216,5 @@ IsClearable.args = {
   align: 'left',
   isSearchable: true,
   isScrollable: true,
-  isClearable: true
+  onClear: () => console.log('cleared!')
 }
