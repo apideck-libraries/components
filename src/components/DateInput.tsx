@@ -374,7 +374,7 @@ export const DateInput: React.FC<Props> = ({
                   className={classNames(
                     'text-sm leading-loose text-center transition duration-100 ease-in-out rounded-md cursor-pointer',
                     {
-                      'text-gray-200 hover:bg-transparent !cursor-default':
+                      '!text-gray-200 hover:!bg-transparent !cursor-default':
                         (minDate && isBeforeMinDate(dayNumber)) ||
                         (maxDate && isAfterMaxDate(dayNumber)),
                       'font-bold': isToday(dayNumber),
