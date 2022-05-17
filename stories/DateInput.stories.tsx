@@ -30,13 +30,23 @@ const meta: Meta = {
 
 export default meta
 
-const Template: Story<Props> = args => <DateInput {...args} />
+const Template: Story<Props> = (args) => <DateInput {...args} />
 
 export const Default = Template.bind({})
 Default.args = { type: 'date', name: 'input-name' }
 
 export const Small = Template.bind({})
 Small.args = { type: 'date', name: 'input-name', containerClassName: 'max-w-sm' }
+
+export const DateRange = Template.bind({})
+DateRange.args = {
+  type: 'datetime',
+  name: 'input-name',
+  containerClassName: 'max-w-xs ml-24',
+  minDate: new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDate() - 21),
+  maxDate: new Date(),
+  isRange: true
+}
 
 export const DateTime = Template.bind({})
 DateTime.args = { type: 'datetime', name: 'input-name', containerClassName: 'max-w-sm' }

@@ -13,6 +13,9 @@ export interface Props {
   required?: boolean
   className?: string
   containerClassName?: string
+  minDate?: string | number | Date
+  maxDate?: string | number | Date
+  isRange?: boolean
 }
 
 export const DateInput: React.FC<Props> = ({
@@ -24,17 +27,21 @@ export const DateInput: React.FC<Props> = ({
   className = '',
   containerClassName = '',
   onChange,
+  minDate,
+  maxDate,
+  isRange = false,
   ...other
 }) => {
   const inputRef = useRef<HTMLInputElement>(null)
   const datePickerRef = useRef<HTMLDivElement>(null)
   const [showDatePicker, setShowDatePicker] = useState<boolean>(false)
   const [datePickerValue, setDatePickerValue] = useState<string>(value)
+  const [hoveringDay, setHoveringDay] = useState<number | any>()
   const [year, setYear] = useState<number>(
-    value ? new Date(value).getFullYear() : new Date().getFullYear()
+    value ? new Date(value).getFullYear() : new Date(minDate ?? new Date()).getFullYear()
   )
   const [month, setMonth] = useState<number>(
-    value ? new Date(value).getMonth() : new Date().getMonth()
+    value ? new Date(value).getMonth() : new Date(minDate ?? new Date()).getMonth()
   )
   const [day, setDay] = useState<number | any>(value ? new Date(value).getDate() : null)
   const [time, setTime] = useState<string>('00:00')
@@ -133,6 +140,67 @@ export const DateInput: React.FC<Props> = ({
     return today.toDateString() === selectedDay.toDateString()
   }
 
+  const isMinDay = (day: number) => {
+    if (!minDate) return
+    const selectedDay = new Date(year, month, day)
+    const min = new Date(minDate)
+
+    return selectedDay.toDateString() === min.toDateString()
+  }
+
+  const isBeforeMinDate = (day: number) => {
+    if (!minDate) return
+    const selectedDay = new Date(year, month, day)
+    const min = new Date(minDate)
+
+    return selectedDay.getTime() < min.getTime() && !isMinDay(day)
+  }
+
+  const isAfterMinDate = (day: number) => {
+    if (!minDate) return
+    const selectedDay = new Date(year, month, day)
+    const min = new Date(minDate)
+
+    return selectedDay.getTime() > min.getTime()
+  }
+
+  const isAfterMaxDate = (day: number) => {
+    if (!maxDate) return
+    const selectedDay = new Date(year, month, day)
+    const max = new Date(maxDate)
+
+    return selectedDay.getTime() >= max.getTime()
+  }
+
+  const isBeforeHoverDay = (day: number) => {
+    const hover = new Date(year, month, hoveringDay)
+    const selectedDay = new Date(year, month, day)
+
+    return selectedDay.getTime() <= hover.getTime()
+  }
+
+  const isBeforeSelectedDay = (day: number) => {
+    if (!datePickerValue) return false
+    const selected = new Date(datePickerValue)
+    const selectedDay = new Date(year, month, day)
+
+    return selectedDay.getTime() <= selected.getTime()
+  }
+
+  const isHoverDay = (day: number) => {
+    const hover = new Date(year, month, hoveringDay)
+    const selectedDay = new Date(year, month, day)
+
+    return selectedDay.toDateString() === hover.toDateString()
+  }
+
+  const isSelectedDay = (day: number) => {
+    const selectedDay = new Date(year, month, day)
+    const selected = new Date(datePickerValue)
+
+    return selectedDay.toDateString() === selected.toDateString()
+  }
+
   const selectDay = (day: number) => {
     setDay(day)
     setShowDatePicker(false)
@@ -194,6 +262,7 @@ export const DateInput: React.FC<Props> = ({
       <div
         data-testid="datePicker"
         ref={datePickerRef}
+        style={{ minWidth: 360 }}
         className={classNames(
           'absolute top-0 right-0 z-20 p-4 mt-12 bg-white rounded-md shadow-md max-w-sm',
           {
@@ -210,7 +279,7 @@ export const DateInput: React.FC<Props> = ({
               value={year || ''}
               type="number"
               data-testid="year"
-              onChange={e => setYear(+e.target.value)}
+              onChange={(e) => setYear(+e.target.value)}
             />
             {type === 'datetime' && (
               <>
@@ -219,9 +288,8 @@ export const DateInput: React.FC<Props> = ({
                   value={time}
                   type="time"
                   data-testid="timeInput"
-                  onChange={e => setTime(e.target.value)}
+                  onChange={(e) => setTime(e.target.value)}
                 />
-                <span className="ml-1 text-sm text-gray-500">(UTC)</span>
               </>
             )}
           </div>
@@ -280,7 +348,7 @@ export const DateInput: React.FC<Props> = ({
         </div>
 
         <div className="flex flex-wrap -mx-1">
-          {blankDays?.map(day => {
+          {blankDays?.map((day) => {
             return (
               <div
                 key={day}
@@ -294,12 +362,32 @@ export const DateInput: React.FC<Props> = ({
               <div style={{ width: '14.28%' }} className="px-1 mb-1" key={index}>
                 <div
                   data-testid={`day-${dayNumber}`}
-                  onClick={() => selectDay(dayNumber)}
+                  onClick={() => {
+                    if (
+                      !(minDate && isBeforeMinDate(dayNumber)) &&
+                      !(maxDate && isAfterMaxDate(dayNumber))
+                    )
+                      selectDay(dayNumber)
+                  }}
+                  onMouseOver={() => setHoveringDay(dayNumber)}
+                  onMouseOut={() => setHoveringDay(null)}
                   className={classNames(
                     'text-sm leading-loose text-center transition duration-100 ease-in-out rounded-md cursor-pointer',
                     {
+                      'text-gray-200 hover:bg-transparent !cursor-default':
+                        (minDate && isBeforeMinDate(dayNumber)) ||
+                        (maxDate && isAfterMaxDate(dayNumber)),
                       'font-bold': isToday(dayNumber),
-                      'text-gray-700 hover:bg-primary-200': !isToday(dayNumber)
+                      'text-gray-700 hover:bg-primary-200': !isToday(dayNumber),
+                      'bg-primary-300 -mr-1 pr-1 rounded-r-none': isMinDay(dayNumber) && isRange,
+                      'bg-primary-200 -mx-1.5 px-1.5 rounded-none':
+                        isAfterMinDate(dayNumber) &&
+                        (isBeforeHoverDay(dayNumber) || isBeforeSelectedDay(dayNumber)) &&
+                        !isAfterMaxDate(dayNumber) &&
+                        isRange,
+                      'rounded-r bg-primary-300':
+                        (isHoverDay(dayNumber) || isSelectedDay(dayNumber)) && isRange,
+                      '!bg-primary-200': isSelectedDay(dayNumber)
                     }
                   )}
                 >
