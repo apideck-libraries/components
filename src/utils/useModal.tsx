@@ -10,7 +10,10 @@ import React, {
 import { Modal } from '../components/Modal'
 
 interface ContextProps {
-  addModal: (content: any, options?: { className?: string; style?: CSSProperties }) => void
+  addModal: (
+    content: any,
+    options?: { className?: string; style?: CSSProperties; onClose?: any; isOpen?: boolean }
+  ) => void
   removeModal: () => void
 }
 

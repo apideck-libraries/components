@@ -75,3 +75,11 @@ WithForm.args = {
   isOpen: true,
   style: { maxWidth: 460 }
 }
+export const WithCloseIcon = Template.bind({})
+WithCloseIcon.args = {
+  children: <FormComponent />,
+  isOpen: true,
+  style: { maxWidth: 460 },
+  hasCloseIcon: true,
+  onClose: () => console.log('onclose')
+}
