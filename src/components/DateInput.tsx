@@ -81,7 +81,7 @@ export const DateInput: React.FC<Props> = ({
     }
 
     getNumberOfDays()
-  }, [month, year])
+  }, [month, year, minDate])
 
   useEffect(() => {
     const formattedDate = (day: number): string => {
