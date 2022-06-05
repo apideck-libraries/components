@@ -128,7 +128,7 @@ export const DateInput: React.FC<Props> = ({
     if (value && type === 'datetime' && time === '00:00') {
       const timeString = new Date(value.toString()).toLocaleTimeString('en', {
         timeStyle: 'short',
-        hour12: false,
+        hour12: false
       })
       setTime(timeString)
     }

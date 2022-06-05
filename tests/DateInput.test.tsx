@@ -1,7 +1,5 @@
 import '@testing-library/jest-dom/extend-expect'
 
-import * as React from 'react'
-
 import { fireEvent, render, screen } from '@testing-library/react'
 
 import { Default as DateInput } from '../stories/DateInput.stories'
@@ -100,7 +98,7 @@ describe('Date Input', () => {
     fireEvent.click(input)
     const day1 = screen.getByTestId('day-1')
     fireEvent.click(day1)
-    expect(input.value).toEqual('2021-01-01 11:15')
+    expect(input.value).toEqual('2021-01-01 12:15')
   })
 
   it('should be disabled', () => {
