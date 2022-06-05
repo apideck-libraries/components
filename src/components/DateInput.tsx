@@ -129,7 +129,6 @@ export const DateInput: React.FC<Props> = ({
       const timeString = new Date(value.toString()).toLocaleTimeString('en', {
         timeStyle: 'short',
         hour12: false,
-        timeZone: 'UTC'
       })
       setTime(timeString)
     }
