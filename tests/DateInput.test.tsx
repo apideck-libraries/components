@@ -3,6 +3,7 @@ import '@testing-library/jest-dom/extend-expect'
 import { fireEvent, render, screen } from '@testing-library/react'
 
 import { Default as DateInput } from '../stories/DateInput.stories'
+import React from 'react'
 import userEvent from '@testing-library/user-event'
 
 describe('Date Input', () => {
