@@ -35,7 +35,7 @@ export const Toast: React.FC<Props> = ({
       }
     }
     return
-  }, [id, removeToast, autoClose])
+  }, [id, removeToast, autoClose, closeAfter])
 
   const icon = {
     info: (
@@ -140,7 +140,7 @@ export const Toast: React.FC<Props> = ({
                     {description}
                   </p>
                 ) : null}
-                {image ? <img src={image} className="mt-2 rounded-md" /> : null}
+                {image ? <img src={image} alt="toast" className="mt-2 rounded-md" /> : null}
               </div>
             </div>
           </div>
