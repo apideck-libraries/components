@@ -239,7 +239,7 @@ export const Dropdown = forwardRef<HTMLDivElement, Props>(function Dropdown(
                                     <img
                                       src={option.imageUrl}
                                       className="h-6 w-6 rounded mr-2"
-                                      alt="option image"
+                                      alt="option"
                                     />
                                   )}
                                   {option.label}
@@ -250,7 +250,7 @@ export const Dropdown = forwardRef<HTMLDivElement, Props>(function Dropdown(
                                     <img
                                       src={option.imageUrl}
                                       className="h-6 w-6 rounded mr-2"
-                                      alt="option image"
+                                      alt="option"
                                     />
                                   )}
                                   {option.label}
