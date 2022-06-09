@@ -98,6 +98,7 @@ export const TextInput = forwardRef<HTMLInputElement, Props>(function TextInput(
         {canBeCopied && (
           <button
             onClick={() => clipboard.copy(inputRef.current?.value)}
+            type="button"
             className="absolute right-0 bg-white dark:bg-gray-800 top-[5px] p-1 mr-2 flex items-center justify-center text-gray-400 hover:text-gray-500 dark:text-white transition-all duration-200 rounded-md hover:bg-gray-100 focus:outline-none"
             data-testid="copy-button"
           >
@@ -131,9 +132,10 @@ export const TextInput = forwardRef<HTMLInputElement, Props>(function TextInput(
         {sensitive && (
           <button
             onClick={() => setShow(!show)}
+            type="button"
             className={classNames(
               'absolute right-0 bg-white dark:bg-gray-800 top-[5px] p-1 mr-3 flex items-center justify-center text-gray-400 hover:text-gray-500 dark:text-white transition-all duration-200 rounded-md hover:bg-gray-100 focus:outline-none',
-              canBeCopied ? 'mr-[37px]' : 'mr-[11px]'
+              canBeCopied ? 'mr-[35px]' : 'mr-[11px]'
             )}
             data-testid="show-button"
           >
