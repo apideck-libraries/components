@@ -113,3 +113,28 @@ OnCloseIconClick.args = {
   placeholder: 'Searchable input',
   onCloseIconClick: () => console.log('Close icon clicked')
 }
+
+export const Prepend = Template.bind({})
+Prepend.args = {
+  name: 'input-name',
+  prepend: 'https://',
+  className: 'max-w-sm',
+  placeholder: 'apideck.com'
+}
+
+export const Append = Template.bind({})
+Append.args = {
+  name: 'input-name',
+  append: '.com',
+  className: 'max-w-sm',
+  placeholder: 'apideck'
+}
+
+export const PreAppend = Template.bind({})
+PreAppend.args = {
+  name: 'input-name',
+  prepend: 'https://',
+  append: '.com',
+  className: 'max-w-sm',
+  placeholder: 'apideck'
+}

@@ -21,6 +21,8 @@ export interface Props extends HTMLAttributes<HTMLInputElement> {
   onCloseIconClick?: () => void
   searchIconClassName?: string
   closeIconClassName?: string
+  prepend?: string
+  append?: string
 }
 
 export const TextInput = forwardRef<HTMLInputElement, Props>(function TextInput(
@@ -32,6 +34,8 @@ export const TextInput = forwardRef<HTMLInputElement, Props>(function TextInput(
     onCloseIconClick,
     searchIconClassName = '',
     closeIconClassName = '',
+    prepend,
+    append,
     ...props
   },
   ref
@@ -169,6 +173,32 @@ export const TextInput = forwardRef<HTMLInputElement, Props>(function TextInput(
               </svg>
             )}
           </button>
+        )}
+      </div>
+    )
+  }
+
+  if (prepend || append) {
+    return (
+      <div className={classNames('relative flex rounded-md shadow-sm', props.className)}>
+        {prepend && (
+          <span className="inline-flex items-center px-3 rounded-l-md border border-r-0 border-gray-300 bg-gray-50 text-gray-500 text-sm">
+            {prepend}
+          </span>
+        )}
+        <Input
+          {...props}
+          type={type}
+          ref={ref}
+          className={classNames('rounded-none', {
+            'rounded-r-md': prepend && !append,
+            'rounded-l-md': append && !prepend
+          })}
+        />
+        {append && (
+          <span className="inline-flex items-center px-3 rounded-r-md border border-l-0 border-gray-300 bg-gray-50 text-gray-500 text-sm">
+            {append}
+          </span>
         )}
       </div>
     )
