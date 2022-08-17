@@ -31,7 +31,7 @@ export const Modal = React.forwardRef<HTMLDivElement, Props>(function Modal(prop
         leaveTo="opacity-0"
       >
         <div
-          className="fixed inset-0 z-40 flex items-end bg-gray-400 bg-opacity-75 dark:bg-gray-600 sm:items-center sm:justify-center"
+          className="fixed inset-0 z-40 flex items-end bg-gray-400 bg-opacity-75 dark:bg-gray-600 dark:bg-opacity-75 sm:items-center sm:justify-center"
           data-testid="backdrop"
           onClick={onClose}
         >
@@ -42,7 +42,7 @@ export const Modal = React.forwardRef<HTMLDivElement, Props>(function Modal(prop
             leave="transition ease-in duration-150"
             leaveFrom="opacity-100 scale-100"
             leaveTo="opacity-0  transform translate-y-1/4 scale-95"
-            className={`relative w-full p-5 overflow-y-auto bg-white dark:bg-gray-800 dark-text-gray-400 shadow-lg rounded-t-lg sm:p-6 no-scrollbar sm:rounded-lg sm:m-4 sm:max-w-xl ${className}`}
+            className={`relative w-full p-5 overflow-y-auto bg-white dark:bg-gray-800 dark:text-gray-400 shadow-lg rounded-t-lg sm:p-6 no-scrollbar sm:rounded-lg sm:m-4 sm:max-w-xl ${className}`}
             style={{ maxHeight: '90%', ...style }}
             ref={ref}
             role="dialog"

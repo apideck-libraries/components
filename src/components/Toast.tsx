@@ -144,7 +144,7 @@ export const Toast: React.FC<Props> = ({
               </div>
             </div>
           </div>
-          <div className="flex border-l border-gray-200 group">
+          <div className="flex border-l border-gray-200 dark:border-gray-700 group">
             <button
               className="flex items-center justify-center w-full p-3 text-sm font-medium text-gray-600 border border-transparent rounded-none rounded-r-lg hover:text-gray-500 focus:outline-none focus:ring-1 focus:ring-gray-300"
               onClick={() => removeToast(id)}
