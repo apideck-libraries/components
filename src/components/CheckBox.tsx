@@ -67,7 +67,7 @@ const Wrapper = ({
       {children}
       <span
         className={classNames(
-          'inline-block ml-2 text-sm text-gray-600 dark:text-white dark:focus:text-white dark:bg-gray-800 dark:focus:bg-gray-900',
+          'inline-block ml-2 text-sm text-gray-600 dark:text-white dark:focus:text-white dark:focus:bg-gray-900',
           {
             'cursor-not-allowed': disabled
           }

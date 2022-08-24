@@ -28,7 +28,7 @@ export const Button = forwardRef<HTMLButtonElement, Props>(function Button(
   ref
 ) {
   const baseStyles =
-    'inline-flex items-center justify-center border border-transparent leading-4 font-medium rounded transition duration-300 ease-in-out'
+    'inline-flex items-center justify-center border border-transparent leading-4 font-medium rounded transition duration-300 ease-in-out whitespace-nowrap'
 
   const variantStyles = {
     primary:
