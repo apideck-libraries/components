@@ -8,6 +8,7 @@ export interface Props extends HTMLAttributes<HTMLInputElement> {
   label?: string
   value?: boolean
   className?: string
+  labelClassName?: string
   disabled?: boolean
   defaultChecked?: boolean
   required?: boolean
@@ -16,14 +17,14 @@ export interface Props extends HTMLAttributes<HTMLInputElement> {
 }
 
 export const CheckBox = forwardRef<HTMLInputElement, Props>(function CheckBox(
-  { className = '', label, value = false, disabled, name, valid, ...other },
+  { className = '', labelClassName = '', label, value = false, disabled, name, valid, ...other },
   ref
 ) {
   return (
-    <Wrapper label={label} disabled={disabled} name={name}>
+    <Wrapper label={label} disabled={disabled} name={name} labelClassName={labelClassName}>
       <input
         className={classNames(
-          'w-5 h-5 text-primary-600 border-gray-300 shadow-sm rounded-md focus:ring-primary-500 focus:border-primary-500',
+          'w-5 h-5 text-primary-600 border-gray-300 shadow-sm rounded-md focus:ring-primary-500 focus:border-primary-500 hover:bg-gray-600 dark:hover:bg-gray-700',
           { 'cursor-not-allowed opacity-50': disabled },
           styles.dark,
           {
@@ -50,19 +51,23 @@ const Wrapper = ({
   children,
   label,
   disabled,
-  name
+  name,
+  labelClassName
 }: {
   name: string
   label?: string
   disabled?: boolean
+  labelClassName?: string
   children: ReactNode
 }) =>
   label ? (
     <label
       htmlFor={name}
-      className={classNames({
-        'cursor-not-allowed': disabled
-      })}
+      className={classNames(
+        { 'cursor-not-allowed': disabled },
+        labelClassName,
+        'flex items-center'
+      )}
     >
       {children}
       <span
