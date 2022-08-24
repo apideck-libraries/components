@@ -26,6 +26,7 @@ export interface Option {
   onClick?: () => void
   borderTop?: boolean
   className?: string
+  labelClassName?: string
   imageUrl?: string
   value?: string | number
 }
@@ -119,7 +120,7 @@ export const Dropdown = forwardRef<HTMLDivElement, Props>(function Dropdown(
                 </Menu.Button>
                 {activeOption && onClear && (
                   <button
-                    className="absolute hover:bg-gray-100 rounded-full flex items-center justify-center p-1 top-2 right-2"
+                    className="absolute hover:bg-gray-100 rounded-full flex items-center justify-center p-1 top-2 right-2 dark:bg-gray-700"
                     style={{ top: 7 }}
                     onClick={() => {
                       setSearchTerm('')
@@ -173,7 +174,7 @@ export const Dropdown = forwardRef<HTMLDivElement, Props>(function Dropdown(
                       type="text"
                       ref={searchInputRef}
                       placeholder="Search"
-                      className="w-full text-gray-600 border border-transparent bg-gray-100 rounded-md sm:text-sm focus:ring-transparent focus:border-gray-200 placeholder-gray-400 py-2"
+                      className="w-full text-gray-600 border border-transparent bg-gray-100 rounded-md sm:text-sm focus:ring-transparent focus:border-gray-200 placeholder-gray-400 py-2 dark:bg-gray-700 dark:text-gray-300 dark:focus:border-gray-400"
                       autoComplete="off"
                       autoFocus={true}
                       value={searchTerm}
@@ -184,7 +185,7 @@ export const Dropdown = forwardRef<HTMLDivElement, Props>(function Dropdown(
                     />
                     {searchTerm?.length > 0 && (
                       <button
-                        className="text-gray-400 absolute right-5 top-[21px] rounded-full hover:text-gray-300"
+                        className="text-gray-400 absolute right-5 top-[21px] rounded-full hover:text-gray-300 dark:text-gray-700 dark:hover:text-gray-500"
                         onClick={() => setSearchTerm('')}
                       >
                         <svg
@@ -216,8 +217,9 @@ export const Dropdown = forwardRef<HTMLDivElement, Props>(function Dropdown(
                           const labelClassName = classNames(
                             active
                               ? 'bg-gray-100 text-gray-900 dark:bg-gray-700 dark:text-gray-100'
-                              : 'text-gray-900',
-                            'flex-1 min-w-0 px-2 text-sm truncate cursor-pointer rounded-md py-1.5 mx-2 flex items-center'
+                              : 'text-gray-900 dark:text-gray-100',
+                            'flex-1 min-w-0 px-2 text-sm truncate cursor-pointer rounded-md py-1.5 mx-2 flex items-center dark:bg-gray-800 dark:text-gray-200',
+                            option.labelClassName || ''
                           )
 
                           return (
