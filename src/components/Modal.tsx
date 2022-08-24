@@ -31,7 +31,7 @@ export const Modal = React.forwardRef<HTMLDivElement, Props>(function Modal(prop
         leaveTo="opacity-0"
       >
         <div
-          className="fixed inset-0 z-40 flex items-end bg-gray-400 bg-opacity-75 dark:bg-gray-600 dark:bg-opacity-75 sm:items-center sm:justify-center"
+          className="fixed inset-0 z-50 flex items-end bg-gray-400 bg-opacity-75 dark:bg-gray-600 dark:bg-opacity-75 sm:items-center sm:justify-center"
           data-testid="backdrop"
           onClick={onClose}
         >
