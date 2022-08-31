@@ -182,7 +182,12 @@ export const TextInput = forwardRef<HTMLInputElement, Props>(function TextInput(
     return (
       <div className={classNames('relative flex rounded-md shadow-sm', props.className)}>
         {prepend && (
-          <span className="inline-flex items-center px-3 rounded-l-md border border-r-0 border-gray-300 bg-gray-50 text-gray-500 text-sm">
+          <span
+            className={classNames(
+              'inline-flex items-center px-3 rounded-l-md border border-r-0 border-gray-300 bg-gray-50 text-gray-500 text-sm',
+              styles.dark
+            )}
+          >
             {prepend}
           </span>
         )}
@@ -196,7 +201,12 @@ export const TextInput = forwardRef<HTMLInputElement, Props>(function TextInput(
           })}
         />
         {append && (
-          <span className="inline-flex items-center px-3 rounded-r-md border border-l-0 border-gray-300 bg-gray-50 text-gray-500 text-sm">
+          <span
+            className={classNames(
+              'inline-flex items-center px-3 rounded-r-md border border-l-0 border-gray-300 bg-gray-50 text-gray-500 text-sm',
+              styles.dark
+            )}
+          >
             {append}
           </span>
         )}
