@@ -107,11 +107,11 @@ export const Alert = forwardRef<HTMLDivElement, Props>(function Alert(
       className={classNames(
         'rounded-md p-4',
         {
-          'bg-yellow-50': variant === 'warning',
-          'bg-red-50': variant === 'danger',
-          'bg-green-50': variant === 'success',
-          'bg-blue-50': variant === 'info',
-          'bg-primary-50': variant === 'primary'
+          'bg-yellow-50 dark:bg-yellow-600/75 dark:border-yellow-600': variant === 'warning',
+          'bg-red-50 dark:bg-red-600/75 dark:border-red-600': variant === 'danger',
+          'bg-green-50 dark:bg-green-600/75 dark:border-green-600': variant === 'success',
+          'bg-blue-50 dark:bg-blue-600/75 dark:border-blue-600': variant === 'info',
+          'bg-primary-50 dark:bg-primary-600/75 dark:border-primary-600': variant === 'primary'
         },
         className
       )}
@@ -124,7 +124,7 @@ export const Alert = forwardRef<HTMLDivElement, Props>(function Alert(
           {title ? (
             <h3
               data-testid="alert-title"
-              className={classNames('text-sm font-medium', {
+              className={classNames('text-sm font-medium dark:text-white', {
                 'text-yellow-800': variant === 'warning',
                 'text-red-800': variant === 'danger',
                 'text-green-800': variant === 'success',
@@ -140,11 +140,11 @@ export const Alert = forwardRef<HTMLDivElement, Props>(function Alert(
               data-testid="alert-description"
               className={classNames('text-sm ', {
                 'mt-2': title,
-                'text-yellow-700': variant === 'warning',
-                'text-red-700': variant === 'danger',
-                'text-green-700': variant === 'success',
-                'text-blue-700': variant === 'info',
-                'text-primary-700': variant === 'primary'
+                'text-yellow-700 dark:text-yellow-100': variant === 'warning',
+                'text-red-700 dark:text-red-100': variant === 'danger',
+                'text-green-700 dark:text-green-100': variant === 'success',
+                'text-blue-700 dark:text-blue-100': variant === 'info',
+                'text-primary-700 dark:text-primary-100': variant === 'primary'
               })}
             >
               {description || children}
@@ -161,15 +161,15 @@ export const Alert = forwardRef<HTMLDivElement, Props>(function Alert(
                 className={classNames(
                   'inline-flex rounded-md p-1.5 focus:outline-none focus:ring-2 focus:ring-offset-2',
                   {
-                    'bg-yellow-50 text-yellow-500 hover:bg-yellow-100 focus:ring-offset-yellow-50 focus:ring-yellow-600':
+                    'bg-yellow-50 text-yellow-500 hover:bg-yellow-100 focus:ring-offset-yellow-50 focus:ring-yellow-600 dark:bg-yellow-800 dark:text-yellow-100 dark:hover:text-white dark:hover:bg-yellow-700':
                       variant === 'warning',
-                    'bg-red-50 text-red-500 hover:bg-red-100 focus:ring-offset-red-50 focus:ring-red-600':
+                    'bg-red-50 text-red-500 hover:bg-red-100 focus:ring-offset-red-50 focus:ring-red-600 dark:bg-red-800 dark:text-red-100 dark:hover:text-white dark:hover:bg-red-700':
                       variant === 'danger',
-                    'bg-green-50 text-green-500 hover:bg-green-100 focus:ring-offset-green-50 focus:ring-green-600':
+                    'bg-green-50 text-green-500 hover:bg-green-100 focus:ring-offset-green-50 focus:ring-green-600 dark:bg-green-800 dark:text-green-100 dark:hover:text-white dark:hover:bg-green-700':
                       variant === 'success',
-                    'bg-blue-50 text-blue-500 hover:bg-blue-100 focus:ring-offset-blue-50 focus:ring-blue-600':
+                    'bg-blue-50 text-blue-500 hover:bg-blue-100 focus:ring-offset-blue-50 focus:ring-blue-600 dark:bg-blue-800 dark:text-blue-100 dark:hover:text-white dark:hover:bg-blue-700':
                       variant === 'info',
-                    'bg-primary-50 text-primary-500 hover:bg-primary-100 focus:ring-offset-primary-50 focus:ring-primary-600':
+                    'bg-primary-50 text-primary-500 hover:bg-primary-100 focus:ring-offset-primary-50 focus:ring-primary-600 dark:bg-primary-800 dark:text-primary-100 dark:hover:text-white dark:hover:bg-primary-700':
                       variant === 'primary'
                   }
                 )}

@@ -32,15 +32,15 @@ export const Button = forwardRef<HTMLButtonElement, Props>(function Button(
 
   const variantStyles = {
     primary:
-      'bg-primary-600 text-white shadow hover:shadow-md active:bg-primary-600 hover:bg-primary-700 focus:shadow-outline-primary dark:bg-gray-800 dark:text-gray-200 dark:border-gray-500 dark:hover:bg-gray-700',
+      'bg-primary-600 text-white shadow hover:shadow-md active:bg-primary-600 hover:bg-primary-700 focus:shadow-outline-primary dark:hover:bg-primary-500',
     secondary:
-      'border border-primary-200 text-primary-700 bg-primary-50 hover:bg-primary-100 shadow hover:shadow-md focus:shadow-outline-primary dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 dark:hover:bg-gray-800',
+      'border-primary-200 text-primary-700 bg-primary-50 hover:bg-primary-100 shadow hover:shadow-md focus:shadow-outline-primary dark:bg-gray-800 dark:text-gray-300 dark:hover:bg-gray-700 dark:border-transparent',
     outline:
-      'border border-gray-300 text-gray-600 shadow hover:shadow-md hover:text-gray-700 dark:border-gray-500 dark:text-gray-400 dark:hover:text-gray-200',
+      'border-gray-300 text-gray-600 shadow hover:shadow-md hover:text-gray-700 dark:border-gray-300 dark:text-white dark:hover:text-gray-400',
     danger:
-      'bg-red-500 text-white shadow hover:shadow-md active:bg-red-600 hover:bg-red-700 focus:shadow-outline-red',
+      'bg-red-500 text-white shadow hover:shadow-md active:bg-red-600 hover:bg-red-700 focus:shadow-outline-red dark:hover:text-red-200 dark:border-transparent',
     'danger-outline':
-      'border border-red-300 text-red-600 shadow hover:shadow-md active:border-red-400 hover:border-red-400 focus:shadow-outline-red dark:border-red-400 dark:text-red-400 dark:hover:text-red-300 dark:hover:border-red-300'
+      'border-red-300 text-red-600 shadow hover:shadow-md active:border-red-400 hover:border-red-400 focus:shadow-outline-red dark:border-red-400 dark:text-red-400 dark:hover:text-red-300 dark:hover:border-red-300'
   }
 
   const sizeStyles = {
