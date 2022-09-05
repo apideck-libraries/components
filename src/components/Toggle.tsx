@@ -12,6 +12,7 @@ export interface Props {
   className?: string
   label?: string | React.ReactNode
   labelClassName?: string
+  style?: React.CSSProperties
 }
 
 export const Toggle = forwardRef<any, Props>(function Toggle(
