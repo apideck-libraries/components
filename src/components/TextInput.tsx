@@ -23,9 +23,9 @@ export interface Props extends HTMLAttributes<HTMLInputElement> {
   closeIconClassName?: string
   prepend?: string
   append?: string
-  min?: number
-  max?: number
-  step?: number
+  min?: string | number | undefined
+  max?: string | number | undefined
+  step?: string | number | undefined
 }
 
 export const TextInput = forwardRef<HTMLInputElement, Props>(function TextInput(
