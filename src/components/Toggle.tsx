@@ -56,7 +56,7 @@ export const ToggleComponent = forwardRef<HTMLButtonElement, Props>(function Tog
       <span
         data-testid="toggler"
         className={classNames(
-          'pointer-events-none inline-block h-5 w-5 rounded-full bg-white dark:bg-gray-200 shadow transform ring-0 transition ease-in-out duration-700',
+          'pointer-events-none inline-block h-5 w-5 rounded-full bg-white dark:bg-gray-400 shadow transform ring-0 transition ease-in-out duration-700',
           {
             'translate-x-5': isEnabled,
             'translate-x-0': !isEnabled,
