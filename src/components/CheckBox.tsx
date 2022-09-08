@@ -9,6 +9,7 @@ export interface Props extends HTMLAttributes<HTMLInputElement> {
   value?: boolean
   className?: string
   labelClassName?: string
+  labelDescription?: string
   disabled?: boolean
   defaultChecked?: boolean
   required?: boolean
@@ -17,11 +18,27 @@ export interface Props extends HTMLAttributes<HTMLInputElement> {
 }
 
 export const CheckBox = forwardRef<HTMLInputElement, Props>(function CheckBox(
-  { className = '', labelClassName = '', label, value = false, disabled, name, valid, ...other },
+  {
+    className = '',
+    labelClassName = '',
+    label,
+    value = false,
+    disabled,
+    name,
+    valid,
+    labelDescription,
+    ...other
+  },
   ref
 ) {
   return (
-    <Wrapper label={label} disabled={disabled} name={name} labelClassName={labelClassName}>
+    <Wrapper
+      label={label}
+      disabled={disabled}
+      name={name}
+      labelClassName={labelClassName}
+      labelDescription={labelDescription}
+    >
       <input
         className={classNames(
           'w-5 h-5 text-primary-600 border-gray-300 shadow-sm rounded-md focus:ring-primary-500 focus:border-primary-500 hover:bg-gray-100 dark:hover:bg-gray-700',
@@ -52,34 +69,35 @@ const Wrapper = ({
   label,
   disabled,
   name,
-  labelClassName
+  labelClassName,
+  labelDescription
 }: {
   name: string
   label?: string
   disabled?: boolean
   labelClassName?: string
+  labelDescription?: string
   children: ReactNode
 }) =>
   label ? (
     <label
       htmlFor={name}
-      className={classNames(
-        { 'cursor-not-allowed': disabled },
-        labelClassName,
-        'flex items-center'
-      )}
+      className={classNames({ 'cursor-not-allowed': disabled }, labelClassName, 'flex items-start')}
     >
       {children}
-      <span
-        className={classNames(
-          'inline-block ml-2 text-sm text-gray-600 dark:text-white dark:focus:text-white dark:focus:bg-gray-900',
-          {
-            'cursor-not-allowed': disabled
-          }
-        )}
-      >
-        {label}
-      </span>
+      <div className="inline-block ml-2 text-sm ">
+        <span
+          className={classNames(
+            'text-gray-700 dark:text-gray-100 dark:focus:text-white dark:focus:bg-transparent font-medium',
+            {
+              'cursor-not-allowed': disabled
+            }
+          )}
+        >
+          {label}
+        </span>
+        {labelDescription && <p className="text-gray-500 dark:text-gray-400">{labelDescription}</p>}
+      </div>
     </label>
   ) : (
     <Fragment>{children}</Fragment>

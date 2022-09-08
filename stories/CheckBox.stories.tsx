@@ -20,13 +20,20 @@ const meta: Meta = {
 
 export default meta
 
-const Template: Story<Props> = args => <CheckBox {...args} />
+const Template: Story<Props> = (args) => <CheckBox {...args} />
 
 export const Default = Template.bind({})
 Default.args = { name: 'input-name' }
 
 export const WithLabel = Template.bind({})
 WithLabel.args = { name: 'input-name', label: 'Check me' }
+
+export const WithLabelDescription = Template.bind({})
+WithLabelDescription.args = {
+  name: 'input-name',
+  label: 'Check me',
+  labelDescription: 'This is a description'
+}
 
 export const WithValue = Template.bind({})
 WithValue.args = { name: 'input-name', label: 'Uncheck me', value: true }
