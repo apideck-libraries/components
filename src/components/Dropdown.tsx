@@ -18,6 +18,7 @@ export interface Props {
   onSelect?: (option: Option) => void
   isScrollable?: boolean
   onClear?: () => void
+  iconClassName?: string
 }
 
 export interface Option {
@@ -47,6 +48,7 @@ export const Dropdown = forwardRef<HTMLDivElement, Props>(function Dropdown(
     isSearchable = false,
     isScrollable = false,
     onClear,
+    iconClassName = '',
     ...other
   },
   ref
@@ -105,7 +107,7 @@ export const Dropdown = forwardRef<HTMLDivElement, Props>(function Dropdown(
                 >
                   {activeOption?.label || buttonLabel}
                   <svg
-                    className={classNames('w-5 h-5 ml-2 -mr-1', {
+                    className={classNames('w-5 h-5 ml-2 -mr-1', iconClassName, {
                       'opacity-0': activeOption && onClear
                     })}
                     viewBox="0 0 20 20"
