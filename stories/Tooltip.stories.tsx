@@ -14,14 +14,21 @@ const meta: Meta = {
 
 export default meta
 
-const Template: Story<Props> = args => <Tooltip {...args} />
+const Template: Story<Props> = (args) => <Tooltip {...args} />
 
 export const Default = Template.bind({})
 Default.args = { text: 'Hey there!', children: <Button text="Hover for tooltip" /> }
 
-export const AlignRight = Template.bind({})
-AlignRight.args = {
+export const AlignPointerRight = Template.bind({})
+AlignPointerRight.args = {
   text: 'Align pointer right!',
   children: <Button text="Align right tooltip" />,
   alignPointerRight: true
+}
+
+export const AlignRight = Template.bind({})
+AlignRight.args = {
+  text: 'Align right!',
+  children: <Button text="Align right tooltip" />,
+  alignRight: true
 }

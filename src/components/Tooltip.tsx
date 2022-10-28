@@ -15,7 +15,6 @@ export interface Props {
 export const Tooltip = ({
   children,
   text,
-  alignCenter = false,
   alignRight = false,
   alignPointerRight = false,
   styles,
@@ -49,7 +48,7 @@ export const Tooltip = ({
   }
   return (
     <div
-      className={classNames('relative', { 'flex justify-center': alignCenter })}
+      className="relative"
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
       data-testid="tooltip-container"
