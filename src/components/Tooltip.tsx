@@ -6,12 +6,21 @@ import classNames from 'classnames'
 export interface Props {
   text?: string | ReactNode
   styles?: CSSProperties
+  alignRight?: boolean
   alignPointerRight?: boolean
   className?: string
   children: ReactNode
 }
 
-export const Tooltip = ({ children, text, alignPointerRight = false, styles, ...other }: Props) => {
+export const Tooltip = ({
+  children,
+  text,
+  alignCenter = false,
+  alignRight = false,
+  alignPointerRight = false,
+  styles,
+  ...other
+}: Props) => {
   if (!text) return <>{children}</>
   const ref = createRef<HTMLDivElement>()
 
@@ -40,14 +49,17 @@ export const Tooltip = ({ children, text, alignPointerRight = false, styles, ...
   }
   return (
     <div
-      className="relative"
+      className={classNames('relative', { 'flex justify-center': alignCenter })}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
       data-testid="tooltip-container"
       {...other}
     >
       <div
-        className="absolute z-10 flex items-center px-3 py-2 text-sm text-gray-800 whitespace-no-wrap transition-all duration-150 bg-white border border-gray-200 rounded shadow-sm dark:text-gray-300 dark:border-gray-700 dark:bg-gray-800"
+        className={classNames(
+          'absolute z-10 flex items-center px-3 py-2 text-sm text-gray-800 whitespace-no-wrap transition-all duration-150 bg-white border border-gray-200 rounded shadow-sm dark:text-gray-300 dark:border-gray-700 dark:bg-gray-800',
+          { 'right-0': alignRight }
+        )}
         style={{ top: '100%', opacity: 0, display: 'none', ...styles }}
         data-testid="tooltip"
         ref={ref}
@@ -57,7 +69,7 @@ export const Tooltip = ({ children, text, alignPointerRight = false, styles, ...
           className={classNames(
             'absolute w-3 h-3 bg-white border-t border-l border-gray-200 dark:text-gray-300 dark:border-gray-700 dark:bg-gray-800',
             {
-              'right-2': alignPointerRight,
+              'right-2': alignPointerRight || (alignRight && !alignPointerRight),
               'left-2': !alignPointerRight
             }
           )}
