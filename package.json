@@ -24,7 +24,7 @@
     "view-tailwind": "tailwind-config-viewer -o",
     "release": "tsdx build && np",
     "build-tailwind": "NODE_ENV=production npx tailwindcss -o ./dist/tailwind.css --minify && yarn copy-css-base",
-    "copy-css-base": "cp ./src/styles/base.css ./dist/base.css",
+    "copy-css-base": "cp ./src/styles/base.css ./dist/styles.css",
     "postinstall": "patch-package"
   },
   "peerDependencies": {
