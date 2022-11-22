@@ -1,5 +1,5 @@
-import { Meta, Story } from '@storybook/react'
 import { Chip, Props } from '../src/components/Chip'
+import { Meta, Story } from '@storybook/react'
 
 import React from 'react'
 
@@ -34,7 +34,11 @@ const meta: Meta = {
 
 export default meta
 
-const Template: Story<Props> = (args) => <Chip {...args} />
+const Template: Story<Props> = (args) => (
+  <div className="apideck">
+    <Chip {...args} />
+  </div>
+)
 
 export const Default = Template.bind({})
 Default.args = { label: 'Chip text', className: 'blob' }

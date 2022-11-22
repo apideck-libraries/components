@@ -14,7 +14,11 @@ const meta: Meta = {
 
 export default meta
 
-const Template: Story<Props> = args => <Modal {...args} />
+const Template: Story<Props> = (args) => (
+  <div className="apideck">
+    <Modal {...args} />
+  </div>
+)
 
 export const Default = Template.bind({})
 Default.args = {
@@ -25,9 +29,9 @@ Default.args = {
 
 export const WithStyles = Template.bind({})
 WithStyles.args = {
-  children: <Button text="Modal with custom styles" />,
+  children: <Button text="Modal with custom styles" className="w-full" />,
   isOpen: true,
-  style: { maxWidth: 200, borderRadius: 20 }
+  style: { maxWidth: 300, borderRadius: 50 }
 }
 
 const FormComponent = () => {

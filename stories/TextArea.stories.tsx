@@ -30,7 +30,11 @@ const meta: Meta = {
 
 export default meta
 
-const Template: Story<Props> = args => <TextArea {...args} />
+const Template: Story<Props> = (args) => (
+  <div className="apideck">
+    <TextArea {...args} />
+  </div>
+)
 
 export const Default = Template.bind({})
 Default.args = { name: 'input-name', placeholder: 'Text Area Component' }

@@ -13,7 +13,11 @@ const meta: Meta = {
 
 export default meta
 
-const Template: Story<Props> = args => <Select {...args} />
+const Template: Story<Props> = (args) => (
+  <div className="apideck">
+    <Select {...args} />
+  </div>
+)
 
 const options = [
   {

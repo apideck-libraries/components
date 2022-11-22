@@ -158,7 +158,7 @@ export const Dropdown = forwardRef<HTMLDivElement, Props>(function Dropdown(
                 static
                 data-testid="dropdown-items"
                 className={classNames(
-                  'absolute shadow-sm z-10 bg-white origin-top-right dark:bg-gray-800 border divide-y rounded-md outline-none border-cool-gray-200 divide-cool-gray-100 dark:divide-gray-400 dark:border-gray-500',
+                  'absolute shadow-sm z-10 bg-white origin-top-right dark:bg-gray-800 border divide-y rounded-md outline-none border-cool-gray-200 divide-cool-gray-100 dark:divide-gray-400 dark:border-gray-700',
                   {
                     'right-0': align === 'right',
                     'left-0 ': align === 'left',

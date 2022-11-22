@@ -13,7 +13,11 @@ const meta: Meta = {
 
 export default meta
 
-const Template: Story<Props> = (args) => <Dropdown {...args} />
+const Template: Story<Props> = (args) => (
+  <div className="apideck">
+    <Dropdown {...args} />
+  </div>
+)
 
 const options = [
   { label: 'Add to Apideck', href: `https://app.apideck.com/unify/unified-apis/lead` },

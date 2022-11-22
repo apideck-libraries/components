@@ -14,7 +14,11 @@ const meta: Meta = {
 
 export default meta
 
-const Template: Story<Props> = (args) => <Toast {...args} />
+const Template: Story<Props> = (args) => (
+  <div className="apideck">
+    <Toast {...args} />
+  </div>
+)
 
 export const Default = Template.bind({})
 Default.args = { title: 'Info Toast', description: 'I am here to inform you about some stuff' }

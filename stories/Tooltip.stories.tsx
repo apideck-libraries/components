@@ -14,7 +14,11 @@ const meta: Meta = {
 
 export default meta
 
-const Template: Story<Props> = (args) => <Tooltip {...args} />
+const Template: Story<Props> = (args) => (
+  <div className="apideck">
+    <Tooltip {...args} />
+  </div>
+)
 
 export const Default = Template.bind({})
 Default.args = { text: 'Hey there!', children: <Button text="Hover for tooltip" /> }

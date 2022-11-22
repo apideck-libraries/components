@@ -30,7 +30,11 @@ const meta: Meta = {
 
 export default meta
 
-const Template: Story<Props> = (args) => <TextInput {...args} />
+const Template: Story<Props> = (args) => (
+  <div className="apideck">
+    <TextInput {...args} />
+  </div>
+)
 
 export const Default = Template.bind({})
 Default.args = {

@@ -1,4 +1,5 @@
-import '../src/styles/tailwind.css'
+import '../dist/styles.css'
+// import '../dist/tailwind.css'
 
 export const parameters = {
   // https://storybook.js.org/docs/react/essentials/actions#automatically-matching-args

@@ -77,5 +77,7 @@ export const Modal = React.forwardRef<HTMLDivElement, Props>(function Modal(prop
     </Transition>
   )
 
-  return mounted ? createPortal(modalComponent, document.body) : null
+  return mounted
+    ? createPortal(modalComponent, document.getElementsByClassName('apideck')[0])
+    : null
 })

@@ -20,7 +20,11 @@ const meta: Meta = {
 
 export default meta
 
-const Template: Story<Props> = args => <Button {...args} />
+const Template: Story<Props> = (args) => (
+  <div className="apideck">
+    <Button {...args} />
+  </div>
+)
 
 export const Primary = Template.bind({})
 Primary.args = { text: 'Button text' }

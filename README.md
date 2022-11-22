@@ -1,6 +1,6 @@
-# React Component Library
+# Apideck Component Library
 
-An open-source UI component library for efficient development of beautiful React applications.
+An open-source UI component library for the efficient development of beautiful React applications.
 
 Go to [developers.apideck.com/components](https://developers.apideck.com/components) for the full documentation.
 
@@ -10,6 +10,25 @@ Install the component library
 
 ```sh
 yarn add @apideck/components
+```
+
+The styles are scoped to the `apideck` class name so add it to the top-level parent or body tag.
+
+```tsx
+import { ModalProvider, ToastProvider } from '@apideck/components'
+import { AppProps } from 'next/app'
+
+const App = ({ Component, pageProps }: AppProps) => {
+  return (
+    <div className="apideck">
+      <ModalProvider>
+        <ToastProvider>{children}</ToastProvider>
+      </ModalProvider>
+    </div>
+  )
+}
+
+export default App
 ```
 
 Use components inside your project:
@@ -30,46 +49,44 @@ If you are NOT using Tailwind CSS in your project, make sure to include the styl
 import '@apideck/react-vault/dist/styles.css'
 ```
 
-The components library is styled using [Tailwind CSS](https://tailwindcss.com/). If you were to use it in a project that also uses Tailwind CSS, you do not have to include the `styles.css` file but you should include the package path in the content or purge path of the `tailwind.config.js`.
-Also make sure you have the Tailwindcss Forms plugin installed.
+The components library is styled using [Tailwind CSS](https://tailwindcss.com/). If you were to use it in a project that also uses Tailwind CSS, you do not have to include the `styles.css` file but you should include the package path in the content path of the `tailwind.config.js`.
 
 ```js
 // tailwind.config.js
 
 module.exports = {
-  content: [
-    './node_modules/@apideck/components/**/*.js',
-  ],
-  plugins: [require('@tailwindcss/forms')]
+  content: ['./node_modules/@apideck/components/**/*.js'],
   ...
 }
 ```
 
-Also install the
-
 If want to overwrite the primary color you can add your custom colors to the `primary` color option inside your Tailwind configuration:
 
-```
-...
-theme: {
-  extend: {
-    colors: {
-      primary: {
-        50:  '#faf6f9',
-        100: '#fae7f7',
-        200: '#f5c4f3',
-        300: '#f39dee',
-        400: '#f469e7',
-        500: '#f53fe1',
-        600: '#e909ef',
-        700: '#c81ead',
-        800: '#9c1a81',
-        900: '#7c1762',
+```js
+// tailwind.config.js
+
+module.exports = {
+  content: ['./node_modules/@apideck/components/**/*.js'],
+  theme: {
+    extend: {
+      colors: {
+        primary: {
+          50:  '#faf6f9',
+          100: '#fae7f7',
+          200: '#f5c4f3',
+          300: '#f39dee',
+          400: '#f469e7',
+          500: '#f53fe1',
+          600: '#e909ef',
+          700: '#c81ead',
+          800: '#9c1a81',
+          900: '#7c1762',
+        }
       }
     }
   }
+  ...
 }
-...
 ```
 
 ### Components

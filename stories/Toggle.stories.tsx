@@ -13,7 +13,11 @@ const meta: Meta = {
 
 export default meta
 
-const Template: Story<Props> = (args) => <Toggle {...args} />
+const Template: Story<Props> = (args) => (
+  <div className="apideck">
+    <Toggle {...args} />
+  </div>
+)
 
 export const Default = Template.bind({})
 Default.args = { isEnabled: false, onToggle: () => {} }

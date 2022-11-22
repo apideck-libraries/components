@@ -1,6 +1,7 @@
-import { Meta, Story } from '@storybook/react'
-import React from 'react'
 import { Alert, Props } from '../src/components/Alert'
+import { Meta, Story } from '@storybook/react'
+
+import React from 'react'
 
 const meta: Meta = {
   title: 'Alert',
@@ -19,7 +20,11 @@ const meta: Meta = {
 
 export default meta
 
-const Template: Story<Props> = (args) => <Alert {...args} />
+const Template: Story<Props> = (args) => (
+  <div className="apideck">
+    <Alert {...args} />
+  </div>
+)
 
 export const Info = Template.bind({})
 Info.args = { title: 'Info alert', description: `I'm here to inform you about something` }
