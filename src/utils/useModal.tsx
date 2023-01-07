@@ -18,6 +18,7 @@ interface ContextProps {
       onClose?: any
       isOpen?: boolean
       preventBackdropClick?: boolean
+      hasCloseIcon?: boolean
     }
   ) => void
   removeModal: () => void
