@@ -8,11 +8,21 @@ export interface Props extends React.HTMLAttributes<HTMLDivElement> {
   isOpen: boolean
   className?: string
   hasCloseIcon?: boolean
+  preventBackdropClick?: boolean
   style?: CSSProperties
 }
 
 export const Modal = React.forwardRef<HTMLDivElement, Props>(function Modal(props, ref) {
-  const { children, onClose, isOpen, hasCloseIcon, className = '', style = {}, ...other } = props
+  const {
+    children,
+    onClose,
+    isOpen,
+    hasCloseIcon,
+    preventBackdropClick,
+    className = '',
+    style = {},
+    ...other
+  } = props
 
   const [mounted, setMounted] = useState(false)
 
@@ -33,7 +43,11 @@ export const Modal = React.forwardRef<HTMLDivElement, Props>(function Modal(prop
         <div
           className="fixed inset-0 z-50 flex items-end bg-gray-400 bg-opacity-75 dark:bg-gray-600 dark:bg-opacity-75 sm:items-center sm:justify-center"
           data-testid="backdrop"
-          onClick={onClose}
+          onClick={() => {
+            if (!preventBackdropClick) {
+              onClose()
+            }
+          }}
         >
           <Transition.Child
             enter="transition ease-out duration-150"

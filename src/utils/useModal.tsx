@@ -12,7 +12,13 @@ import { Modal } from '../components/Modal'
 interface ContextProps {
   addModal: (
     content: any,
-    options?: { className?: string; style?: CSSProperties; onClose?: any; isOpen?: boolean }
+    options?: {
+      className?: string
+      style?: CSSProperties
+      onClose?: any
+      isOpen?: boolean
+      preventBackdropClick?: boolean
+    }
   ) => void
   removeModal: () => void
 }
