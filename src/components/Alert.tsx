@@ -139,7 +139,7 @@ export const Alert = forwardRef<HTMLDivElement, Props>(function Alert(
             <div
               data-testid="alert-description"
               className={classNames('text-sm ', {
-                'mt-2': title,
+                'mt-1': title,
                 'text-yellow-700 dark:text-yellow-100': variant === 'warning',
                 'text-red-700 dark:text-red-100': variant === 'danger',
                 'text-green-700 dark:text-green-100': variant === 'success',
