@@ -36,11 +36,11 @@ export const Button = forwardRef<HTMLButtonElement, Props>(function Button(
     secondary:
       'border-primary-200 text-primary-700 bg-primary-50 hover:bg-primary-100 shadow hover:shadow-md focus:shadow-outline-primary dark:bg-gray-800 dark:text-gray-300 dark:hover:bg-gray-700 dark:border-transparent',
     outline:
-      'border-gray-300 text-gray-600 shadow hover:shadow-md hover:text-gray-700 dark:border-gray-300 dark:text-white dark:hover:text-gray-400',
+      'border-gray-300 text-gray-600 shadow hover:shadow-md hover:text-gray-700 dark:border-gray-700/50 dark:text-white dark:hover:text-gray-400',
     danger:
       'bg-red-500 text-white shadow hover:shadow-md active:bg-red-600 hover:bg-red-700 dark:bg-red-700 dark:hover:bg-red-600 focus:shadow-outline-red dark:hover:text-red-200 dark:border-transparent',
     'danger-outline':
-      'border-red-300 text-red-600 shadow hover:shadow-md active:border-red-400 hover:border-red-400 focus:shadow-outline-red dark:border-red-400 dark:text-red-400 dark:hover:text-red-300 dark:hover:border-red-300'
+      'border-red-200 text-red-600 shadow hover:shadow-md active:border-red-300 hover:border-red-400 focus:shadow-outline-red dark:border-red-400 dark:text-red-400 dark:hover:text-red-300 dark:hover:border-red-300'
   }
 
   const sizeStyles = {
@@ -60,7 +60,7 @@ export const Button = forwardRef<HTMLButtonElement, Props>(function Button(
   const iconStyles = {
     primary: 'text-white ',
     secondary: 'text-primary-700',
-    outline: 'text-gray-600hover:text-gray-700',
+    outline: 'text-gray-600 hover:text-gray-700',
     danger: 'text-white ',
     'danger-outline': 'text-red-600 hover:border-red-400'
   }

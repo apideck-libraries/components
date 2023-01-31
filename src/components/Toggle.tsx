@@ -2,7 +2,6 @@ import React, { Fragment, forwardRef } from 'react'
 
 import { Switch } from '@headlessui/react'
 import classNames from 'classnames'
-import styles from '../styles/input'
 
 export interface Props {
   onToggle: (checked: boolean) => void
@@ -46,7 +45,7 @@ export const ToggleComponent = forwardRef<HTMLButtonElement, Props>(function Tog
           'bg-primary-600': isEnabled,
           'bg-gray-200': !isEnabled
         },
-        styles.dark,
+        'dark:border-gray-700 dark:text-white dark:focus:border-gray-700 dark:focus:ring-gray-700 dark:bg-gray-700',
         className
       )}
       aria-pressed={isEnabled}
