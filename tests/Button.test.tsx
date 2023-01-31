@@ -128,7 +128,7 @@ describe('Button', () => {
       const { getByRole } = render(<Button text="test" variant="danger-outline" />)
       const buttonElement = getByRole('button')
 
-      expect(buttonElement.classList.contains('border-red-300')).toBe(true)
+      expect(buttonElement.classList.contains('border-red-200')).toBe(true)
     })
   })
 
