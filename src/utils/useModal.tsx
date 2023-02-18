@@ -1,13 +1,5 @@
-import React, {
-  CSSProperties,
-  ReactNode,
-  createContext,
-  useCallback,
-  useContext,
-  useState
-} from 'react'
-
-import { Modal } from '../components/Modal'
+import React, { CSSProperties, createContext, useCallback, useContext, useState } from 'react'
+import { Modal } from '../components'
 
 interface ContextProps {
   addModal: (
@@ -26,32 +18,32 @@ interface ContextProps {
 
 const ModalContext = createContext<Partial<ContextProps>>({})
 
-export const ModalProvider = ({ children }: { children: ReactNode }) => {
+export const ModalProvider = ({ children }: { children: React.ReactNode }) => {
   const [isOpen, setIsOpen] = useState<boolean>(false)
-  const [modalContent, setModalContent] = useState<boolean | any>(false)
-  const [options, setOptions] = useState({})
+  const [modalContent, setModalContent] = useState<Array<boolean | any>>([])
+  const [options, setOptions] = useState<Array<{}>>([])
 
   const addModal = useCallback(
     (content, options) => {
-      setModalContent(content)
-      setOptions(options)
-      setTimeout(() => setIsOpen(true))
+      setModalContent((prevContent) => [...prevContent, content])
+      setOptions((prevOptions) => [...prevOptions, options])
+      setIsOpen(true)
     },
-    [setModalContent, setIsOpen]
+    [setModalContent, setOptions, setIsOpen]
   )
 
   const removeModal = useCallback(() => {
-    setIsOpen(false)
-    setTimeout(() => setModalContent(false), 300)
-  }, [setModalContent])
+    setModalContent((prevContent) => prevContent.slice(0, -1))
+    setOptions((prevOptions) => prevOptions.slice(0, -1))
+  }, [])
 
   return (
     <ModalContext.Provider value={{ addModal, removeModal }}>
-      {modalContent && (
-        <Modal isOpen={isOpen} onClose={() => removeModal()} {...options}>
-          {modalContent}
+      {modalContent.map((content, index) => (
+        <Modal key={index} isOpen={isOpen} onClose={() => removeModal()} {...options[index]}>
+          {content}
         </Modal>
-      )}
+      ))}
       {children}
     </ModalContext.Provider>
   )
