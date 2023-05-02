@@ -1,8 +1,8 @@
-import React, { Fragment, HTMLAttributes, createRef, forwardRef, useState } from 'react'
+import React, { Fragment, HTMLAttributes, createRef, forwardRef, useEffect, useState } from 'react'
 
 import classNames from 'classnames'
-import styles from '../styles/input'
 import { useClipboard } from 'use-clipboard-copy'
+import styles from '../styles/input'
 
 export interface Props extends HTMLAttributes<HTMLInputElement> {
   name: string
@@ -46,6 +46,12 @@ export const TextInput = forwardRef<HTMLInputElement, Props>(function TextInput(
   const [show, setShow] = useState(false)
   const clipboard = useClipboard({ copiedTimeout: 2000 })
   const inputRef = createRef<HTMLInputElement>()
+
+  useEffect(() => {
+    if (show) {
+      inputRef.current?.select()
+    }
+  }, [show])
 
   if (sensitive || canBeCopied || searchable) {
     const inputType = sensitive ? 'password' : type
@@ -138,7 +144,16 @@ export const TextInput = forwardRef<HTMLInputElement, Props>(function TextInput(
         )}
         {sensitive && (
           <button
-            onClick={() => setShow(!show)}
+            onClick={() => {
+              setShow(!show)
+              // if (true) {
+              //   setTimeout(() => {
+              //     inputRef.current?.select()
+
+              //     // inputRef.current?.setSelectionRange(0, inputRef.current?.value?.length)
+              //   }, 500)
+              // }
+            }}
             type="button"
             className={classNames(
               'absolute right-0 bg-white dark:bg-gray-800 top-[5px] p-1 mr-3 flex items-center justify-center text-gray-400 hover:text-gray-500 dark:text-white transition-all duration-200 rounded-md hover:bg-gray-100 focus:outline-none',
