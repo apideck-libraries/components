@@ -1,4 +1,12 @@
-import React, { Fragment, HTMLAttributes, createRef, forwardRef, useEffect, useState } from 'react'
+import React, {
+  Fragment,
+  HTMLAttributes,
+  ReactNode,
+  createRef,
+  forwardRef,
+  useEffect,
+  useState
+} from 'react'
 
 import classNames from 'classnames'
 import { useClipboard } from 'use-clipboard-copy'
@@ -21,8 +29,8 @@ export interface Props extends HTMLAttributes<HTMLInputElement> {
   onCloseIconClick?: () => void
   searchIconClassName?: string
   closeIconClassName?: string
-  prepend?: string
-  append?: string
+  prepend?: string | JSX.Element | ReactNode
+  append?: string | JSX.Element | ReactNode
   min?: string | number | undefined
   max?: string | number | undefined
   step?: string | number | undefined
