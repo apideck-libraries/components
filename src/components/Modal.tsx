@@ -65,7 +65,7 @@ export const Modal = React.forwardRef<HTMLDivElement, Props>(function Modal(prop
           >
             {hasCloseIcon && (
               <button
-                className="absolute top-4 right-4 sm:top-5 sm:right-5 text-gray-700 transition-all duration-200 rounded-full hover:bg-gray-100 focus:outline-none"
+                className="absolute top-4 right-4 sm:top-5 sm:right-5 text-gray-700 dark:text-gray-500 dark:hover:bg-gray-700 dark:hover:text-gray-300 transition-all duration-200 rounded-full hover:bg-gray-100 focus:outline-none"
                 onClick={onClose}
               >
                 <svg
