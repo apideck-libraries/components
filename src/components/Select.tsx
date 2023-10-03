@@ -5,7 +5,7 @@ import styles from '../styles/input'
 
 export interface Props extends HTMLAttributes<HTMLSelectElement> {
   name: string
-  options: { label: string; value: any }[]
+  options: { label: string; value: any; disabled?: boolean }[]
   disabled?: boolean
   required?: boolean
   multiple?: boolean
@@ -58,7 +58,7 @@ export const Select = forwardRef<HTMLSelectElement, Props>(function Select(
         const { value, label } = option
 
         return (
-          <option key={`${label}-${index}`} value={value}>
+          <option key={`${label}-${index}`} value={value} disabled={option?.disabled ?? false}>
             {label}
           </option>
         )
