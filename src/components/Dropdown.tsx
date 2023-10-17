@@ -30,6 +30,7 @@ export interface Option {
   labelClassName?: string
   imageUrl?: string
   value?: string | number
+  disabled?: boolean
 }
 
 export const Dropdown = forwardRef<HTMLDivElement, Props>(function Dropdown(
@@ -59,7 +60,7 @@ export const Dropdown = forwardRef<HTMLDivElement, Props>(function Dropdown(
   const searchInputRef = useRef<HTMLInputElement>(null)
 
   const onClick = (option: Option) => {
-    setActiveOption(option)
+    if (!option.disabled) setActiveOption(option)
     if (option.onClick) option.onClick()
     if (onSelect) onSelect(option)
   }
@@ -226,7 +227,10 @@ export const Dropdown = forwardRef<HTMLDivElement, Props>(function Dropdown(
 
                           return (
                             <div
-                              onClick={() => onClick(option)}
+                              onClick={(e) => {
+                                if (option.disabled) e.preventDefault()
+                                onClick(option)
+                              }}
                               data-testid={`item-${i}`}
                               className={classNames(
                                 'flex items-center justify-between min-w-0 cursor-pointer overflow-hidden',
@@ -234,6 +238,7 @@ export const Dropdown = forwardRef<HTMLDivElement, Props>(function Dropdown(
                                   'mt-1.5 pt-1.5 border-t border-gray-100 dark:border-gray-500':
                                     option.borderTop
                                 },
+                                !!option.disabled && 'opacity-50',
                                 option.className || ''
                               )}
                             >

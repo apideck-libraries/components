@@ -222,3 +222,13 @@ IsClearable.args = {
   isScrollable: true,
   onClear: () => console.log('cleared!')
 }
+
+const [first, ...rest] = connectorOptions
+export const WithDisabled = Template.bind({})
+WithDisabled.args = {
+  options: [{ ...first, disabled: true }, ...rest],
+  align: 'left',
+  isSearchable: true,
+  isScrollable: true,
+  onClear: () => console.log('cleared!')
+}
