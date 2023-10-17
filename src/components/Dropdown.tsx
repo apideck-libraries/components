@@ -60,7 +60,7 @@ export const Dropdown = forwardRef<HTMLDivElement, Props>(function Dropdown(
   const searchInputRef = useRef<HTMLInputElement>(null)
 
   const onClick = (option: Option) => {
-    if (!option.disabled) setActiveOption(option)
+    setActiveOption(option)
     if (option.onClick) option.onClick()
     if (onSelect) onSelect(option)
   }
@@ -215,7 +215,7 @@ export const Dropdown = forwardRef<HTMLDivElement, Props>(function Dropdown(
                   ) : null}
                   {menuOptions.map((option: Option, i: number) => {
                     return (
-                      <Menu.Item key={i}>
+                      <Menu.Item key={i} disabled={option.disabled}>
                         {({ active }) => {
                           const labelClassName = classNames(
                             active
@@ -227,10 +227,7 @@ export const Dropdown = forwardRef<HTMLDivElement, Props>(function Dropdown(
 
                           return (
                             <div
-                              onClick={(e) => {
-                                if (option.disabled) e.preventDefault()
-                                onClick(option)
-                              }}
+                              onClick={() => onClick(option)}
                               data-testid={`item-${i}`}
                               className={classNames(
                                 'flex items-center justify-between min-w-0 cursor-pointer overflow-hidden',
