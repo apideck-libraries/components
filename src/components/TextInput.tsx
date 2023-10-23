@@ -29,6 +29,7 @@ export interface Props extends HTMLAttributes<HTMLInputElement> {
   onCloseIconClick?: () => void
   searchIconClassName?: string
   closeIconClassName?: string
+  copyIconClassName?: string
   prepend?: string | JSX.Element | ReactNode
   append?: string | JSX.Element | ReactNode
   min?: string | number | undefined
@@ -45,6 +46,7 @@ export const TextInput = forwardRef<HTMLInputElement, Props>(function TextInput(
     onCloseIconClick,
     searchIconClassName = '',
     closeIconClassName = '',
+    copyIconClassName = '',
     prepend,
     append,
     ...props
@@ -120,7 +122,7 @@ export const TextInput = forwardRef<HTMLInputElement, Props>(function TextInput(
           <button
             onClick={() => clipboard.copy(inputRef.current?.value)}
             type="button"
-            className="absolute right-0 bg-white dark:bg-gray-800 top-[5px] p-1 mr-2 flex items-center justify-center text-gray-400 hover:text-gray-500 dark:text-white transition-all duration-200 rounded-md hover:bg-gray-100 focus:outline-none"
+            className={`absolute right-0 bg-white dark:bg-gray-800 top-[5px] p-1 mr-2 flex items-center justify-center text-gray-400 hover:text-gray-500 dark:text-white transition-all duration-200 rounded-md hover:bg-gray-100 focus:outline-none ${copyIconClassName}`}
             data-testid="copy-button"
           >
             {clipboard.copied ? (
