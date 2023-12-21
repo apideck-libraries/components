@@ -1,6 +1,7 @@
 import React, { CSSProperties, useEffect, useState } from 'react'
 
 import { Transition } from '@headlessui/react'
+import classNames from 'classnames'
 import { createPortal } from 'react-dom'
 
 export interface Props extends React.HTMLAttributes<HTMLDivElement> {
@@ -9,6 +10,7 @@ export interface Props extends React.HTMLAttributes<HTMLDivElement> {
   className?: string
   hasCloseIcon?: boolean
   preventBackdropClick?: boolean
+  backdropClassName?: string
   style?: CSSProperties
 }
 
@@ -20,6 +22,7 @@ export const Modal = React.forwardRef<HTMLDivElement, Props>(function Modal(prop
     hasCloseIcon,
     preventBackdropClick,
     className = '',
+    backdropClassName = '',
     style = {},
     ...other
   } = props
@@ -41,7 +44,10 @@ export const Modal = React.forwardRef<HTMLDivElement, Props>(function Modal(prop
         leaveTo="opacity-0"
       >
         <div
-          className="fixed inset-0 z-50 flex items-end bg-gray-400 bg-opacity-75 dark:bg-gray-700 dark:bg-opacity-75 sm:items-center sm:justify-center"
+          className={classNames(
+            'fixed inset-0 z-50 flex items-end bg-gray-400 bg-opacity-75 dark:bg-gray-700 dark:bg-opacity-75 sm:items-center justify-center',
+            backdropClassName
+          )}
           data-testid="backdrop"
           onClick={() => {
             if (!preventBackdropClick) {
