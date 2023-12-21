@@ -11,6 +11,8 @@ interface ContextProps {
       isOpen?: boolean
       preventBackdropClick?: boolean
       hasCloseIcon?: boolean
+      backdropClassName?: string
+      themeStyle?: 1 | 2 | 3
     }
   ) => void
   removeModal: () => void
