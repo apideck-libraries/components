@@ -41,7 +41,7 @@ export const CheckBox = forwardRef<HTMLInputElement, Props>(function CheckBox(
     >
       <input
         className={classNames(
-          'w-5 h-5 text-primary-600 border-gray-300 shadow-sm rounded-md focus:ring-primary-500 focus:border-primary-500 hover:bg-gray-100 dark:hover:bg-gray-700',
+          'w-5 h-5 text-primary-600 border-gray-300 shadow-sm rounded-md focus:ring-primary-500 focus:border-primary-500 hover:bg-gray-100 dark:hover:bg-gray-700 dark:!text-primary-600',
           { 'cursor-not-allowed opacity-50': disabled },
           styles.dark,
           {
