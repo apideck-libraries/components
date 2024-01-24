@@ -99,7 +99,7 @@
     "eslint-plugin-prettier": "^4.0.0",
     "husky": "4.3.8",
     "identity-obj-proxy": "^3.0.0",
-    "postcss": "^8.4.5",
+    "postcss": "^8.4.31",
     "prettier": "^2.6.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
