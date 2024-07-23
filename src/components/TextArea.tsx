@@ -11,6 +11,7 @@ export interface Props extends HTMLAttributes<HTMLTextAreaElement> {
   valid?: boolean
   autoFocus?: boolean
   rows?: number
+  placeholder?: string
 }
 
 export const TextArea = forwardRef<HTMLTextAreaElement, Props>(function TextArea(

@@ -35,6 +35,7 @@ export interface Props extends HTMLAttributes<HTMLInputElement> {
   min?: string | number | undefined
   max?: string | number | undefined
   step?: string | number | undefined
+  placeholder?: string
 }
 
 export const TextInput = forwardRef<HTMLInputElement, Props>(function TextInput(
