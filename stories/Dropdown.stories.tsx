@@ -1,7 +1,7 @@
-import { Dropdown, Props } from '../src/components/Dropdown'
 import { Meta, Story } from '@storybook/react'
+import { Dropdown, Option, Props } from '../src/components/Dropdown'
 
-import React from 'react'
+import React, { useState } from 'react'
 
 const meta: Meta = {
   title: 'Dropdown',
@@ -142,7 +142,7 @@ BorderTop.args = {
   align: 'left'
 }
 
-const connectorOptions = [
+export const connectorOptions = [
   {
     value: 'exact-online',
     label: 'Exact Online',
@@ -231,4 +231,63 @@ WithDisabled.args = {
   isSearchable: true,
   isScrollable: true,
   onClear: () => console.log('cleared!')
+}
+
+// --- Multi Select Stories ---
+
+// Uncontrolled Multi Select
+export const MultiSelectUncontrolled = Template.bind({})
+MultiSelectUncontrolled.args = {
+  options: connectorOptions,
+  align: 'left',
+  isMultiSelect: true,
+  isSearchable: true,
+  isScrollable: true,
+  buttonLabel: 'Select Connectors (Uncontrolled)',
+  onSelectionChange: (selected) => console.log('Uncontrolled selection:', selected),
+  onClear: () => console.log('Uncontrolled cleared!')
+}
+
+// Controlled Multi Select
+const MultiSelectControlledTemplate: Story<Props> = (args) => {
+  const [selected, setSelected] = useState<Option[]>([connectorOptions[1], connectorOptions[3]])
+
+  return (
+    <div className="apideck">
+      <Dropdown
+        {...args}
+        selectedOptions={selected}
+        onSelectionChange={(newSelection) => {
+          console.log('Controlled selection change:', newSelection)
+          setSelected(newSelection)
+        }}
+        onClear={() => {
+          console.log('Controlled cleared!')
+          setSelected([])
+        }}
+      />
+      <div className="mt-4 p-4 bg-gray-100 rounded dark:bg-gray-700">
+        <p className="text-sm font-medium text-gray-700 dark:text-gray-200">
+          Current Selection (Controlled):
+        </p>
+        <pre className="mt-1 text-xs text-gray-600 dark:text-gray-300">
+          {JSON.stringify(
+            selected.map((s) => s.value),
+            null,
+            2
+          )}
+        </pre>
+      </div>
+    </div>
+  )
+}
+
+export const MultiSelectControlled = MultiSelectControlledTemplate.bind({})
+MultiSelectControlled.args = {
+  options: connectorOptions,
+  align: 'left',
+  isMultiSelect: true,
+  isSearchable: true,
+  isScrollable: true,
+  buttonLabel: 'Select Connectors (Controlled)'
 }

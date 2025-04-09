@@ -2,9 +2,16 @@ import '@testing-library/jest-dom/extend-expect'
 
 import * as React from 'react'
 
-import { fireEvent, render } from '@testing-library/react'
+import { fireEvent, render, screen, within } from '@testing-library/react'
 
-import { Default as Dropdown } from '../stories/Dropdown.stories'
+import {
+  connectorOptions,
+  Default as Dropdown,
+  MultiSelectControlled,
+  MultiSelectUncontrolled
+} from '../stories/Dropdown.stories'
+
+import { Props } from '../src/components/Dropdown'
 
 describe('Dropdown', () => {
   const options = [
@@ -108,5 +115,157 @@ describe('Dropdown', () => {
     fireEvent.click(item0)
 
     expect(MockFunction).toBeCalled()
+  })
+
+  // --- Multi Select Tests ---
+
+  it('should render multi-select checkboxes when isMultiSelect is true', () => {
+    render(
+      <MultiSelectUncontrolled
+        options={connectorOptions}
+        {...(MultiSelectUncontrolled.args as Partial<Props>)}
+      />
+    )
+    const button = screen.getByRole('button', { name: /select connectors \(uncontrolled\)/i })
+    fireEvent.click(button)
+
+    const itemsContainer = screen.getByTestId('dropdown-items')
+    const checkboxes = within(itemsContainer).getAllByRole('checkbox', { hidden: true })
+    expect(checkboxes.length).toBe(connectorOptions.length)
+    expect(checkboxes[0]).not.toBeChecked()
+  })
+
+  it('should select multiple items in uncontrolled multi-select mode', () => {
+    const handleSelectionChange = jest.fn()
+    render(
+      <MultiSelectUncontrolled
+        options={connectorOptions}
+        {...(MultiSelectUncontrolled.args as Partial<Props>)}
+        onSelectionChange={handleSelectionChange}
+      />
+    )
+    const button = screen.getByRole('button', { name: /select connectors \(uncontrolled\)/i })
+    fireEvent.click(button)
+
+    const item0 = screen.getByTestId('item-0')
+    const item2 = screen.getByTestId('item-2')
+
+    fireEvent.click(item0)
+    expect(button).toHaveTextContent('1 selected')
+    expect(handleSelectionChange).toHaveBeenCalledWith([
+      expect.objectContaining({ value: 'exact-online' })
+    ])
+
+    fireEvent.click(item2)
+    expect(button).toHaveTextContent('2 selected')
+    expect(handleSelectionChange).toHaveBeenCalledWith([
+      expect.objectContaining({ value: 'exact-online' }),
+      expect.objectContaining({ value: 'quickbooks' })
+    ])
+
+    fireEvent.click(item0)
+    expect(button).toHaveTextContent('1 selected')
+    expect(handleSelectionChange).toHaveBeenCalledWith([
+      expect.objectContaining({ value: 'quickbooks' })
+    ])
+  })
+
+  it('should clear selection in uncontrolled multi-select mode', () => {
+    const handleSelectionChange = jest.fn()
+    const handleClear = jest.fn()
+    render(
+      <MultiSelectUncontrolled
+        options={connectorOptions}
+        {...(MultiSelectUncontrolled.args as Partial<Props>)}
+        onSelectionChange={handleSelectionChange}
+        onClear={handleClear}
+      />
+    )
+    const button = screen.getByRole('button', { name: /select connectors \(uncontrolled\)/i })
+    fireEvent.click(button)
+
+    const item0 = screen.getByTestId('item-0')
+    fireEvent.click(item0)
+    expect(button).toHaveTextContent('1 selected')
+
+    const clearButton = screen.getByTestId('clear-button')
+    fireEvent.click(clearButton)
+
+    expect(button).toHaveTextContent(/select connectors \(uncontrolled\)/i)
+    expect(handleSelectionChange).toHaveBeenLastCalledWith([])
+    expect(handleClear).toHaveBeenCalledTimes(1)
+
+    fireEvent.click(button)
+    const checkbox0 = within(screen.getByTestId('dropdown-items')).getAllByRole('checkbox', {
+      hidden: true
+    })[0]
+    expect(checkbox0).not.toBeChecked()
+  })
+
+  it('should reflect controlled selection in multi-select mode', () => {
+    render(
+      <MultiSelectControlled
+        options={connectorOptions}
+        {...(MultiSelectControlled.args as Partial<Props>)}
+      />
+    )
+    const button = screen.getByRole('button', { name: /2 selected/i })
+    expect(button).toHaveTextContent('2 selected')
+
+    fireEvent.click(button)
+    const itemsContainer = screen.getByTestId('dropdown-items')
+    const checkboxes = within(itemsContainer).getAllByRole('checkbox', { hidden: true })
+
+    expect(checkboxes[0]).not.toBeChecked()
+    expect(checkboxes[1]).toBeChecked()
+    expect(checkboxes[2]).not.toBeChecked()
+    expect(checkboxes[3]).toBeChecked()
+  })
+
+  it('should call onSelectionChange and update selection in controlled multi-select mode', () => {
+    render(
+      <MultiSelectControlled
+        options={connectorOptions}
+        {...(MultiSelectControlled.args as Partial<Props>)}
+      />
+    )
+    const button = screen.getByRole('button', { name: /2 selected/i })
+    fireEvent.click(button)
+
+    const item0 = screen.getByTestId('item-0')
+    fireEvent.click(item0)
+
+    expect(button).toHaveTextContent('3 selected')
+
+    fireEvent.click(button)
+    fireEvent.click(button)
+    const itemsContainer = screen.getByTestId('dropdown-items')
+    const checkboxes = within(itemsContainer).getAllByRole('checkbox', { hidden: true })
+    expect(checkboxes[0]).toBeChecked()
+    expect(checkboxes[1]).toBeChecked()
+    expect(checkboxes[3]).toBeChecked()
+  })
+
+  it('should clear selection via onClear in controlled multi-select mode', () => {
+    render(
+      <MultiSelectControlled
+        options={connectorOptions}
+        {...(MultiSelectControlled.args as Partial<Props>)}
+      />
+    )
+    const button = screen.getByRole('button', { name: /2 selected/i })
+    expect(button).toHaveTextContent('2 selected')
+
+    const clearButton = screen.getByTestId('clear-button')
+    fireEvent.click(clearButton)
+
+    expect(button).toHaveTextContent(/select connectors \(controlled\)/i)
+
+    fireEvent.click(button)
+    const itemsContainer = screen.getByTestId('dropdown-items')
+    const checkboxes = within(itemsContainer).getAllByRole('checkbox', { hidden: true })
+    checkboxes.forEach((checkbox) => {
+      expect(checkbox).not.toBeChecked()
+    })
   })
 })

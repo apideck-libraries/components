@@ -14,8 +14,11 @@ export interface Props {
   align?: 'left' | 'right'
   upward?: boolean
   selectedOption?: Option
+  selectedOptions?: Option[]
+  isMultiSelect?: boolean
   isSearchable?: boolean
   onSelect?: (option: Option) => void
+  onSelectionChange?: (options: Option[]) => void
   isScrollable?: boolean
   onClear?: () => void
   iconClassName?: string
@@ -45,24 +48,80 @@ export const Dropdown = forwardRef<HTMLDivElement, Props>(function Dropdown(
     upward = false,
     onSelect,
     selectedOption,
+    selectedOptions,
+    isMultiSelect = false,
     trigger,
     isSearchable = false,
     isScrollable = false,
     onClear,
+    onSelectionChange,
     iconClassName = '',
     ...other
   },
   ref
 ) {
   const [activeOption, setActiveOption] = useState<Option | null>(selectedOption || null)
+  const [internalSelectedOptions, setInternalSelectedOptions] = useState<Option[]>([])
   const [filteredOptions, setFilteredOptions] = useState<Option[]>(options)
   const [searchTerm, setSearchTerm] = useState('')
   const searchInputRef = useRef<HTMLInputElement>(null)
 
-  const onClick = (option: Option) => {
-    setActiveOption(option)
-    if (option.onClick) option.onClick()
-    if (onSelect) onSelect(option)
+  const currentSelectedOptions = selectedOptions || internalSelectedOptions
+
+  useEffect(() => {
+    if (selectedOption) {
+      setActiveOption(selectedOption)
+    } else if (!isMultiSelect) {
+      setActiveOption(null)
+    }
+  }, [selectedOption, isMultiSelect])
+
+  useEffect(() => {
+    if (isMultiSelect && selectedOptions !== undefined) {
+      setInternalSelectedOptions(selectedOptions)
+    }
+  }, [selectedOptions, isMultiSelect])
+
+  const handleItemClick = (option: Option) => {
+    if (isMultiSelect) {
+      const isSelected = currentSelectedOptions.some((o) => o.value === option.value)
+      let newSelection: Option[]
+
+      if (isSelected) {
+        newSelection = currentSelectedOptions.filter((o) => o.value !== option.value)
+      } else {
+        newSelection = [...currentSelectedOptions, option]
+      }
+
+      if (selectedOptions === undefined) {
+        setInternalSelectedOptions(newSelection)
+      }
+
+      if (onSelectionChange) {
+        onSelectionChange(newSelection)
+      }
+    } else {
+      setActiveOption(option)
+      if (option.onClick) option.onClick()
+      if (onSelect) onSelect(option)
+    }
+  }
+
+  const handleClear = (event?: React.MouseEvent<HTMLButtonElement>) => {
+    event?.stopPropagation()
+    setSearchTerm('')
+    if (isMultiSelect) {
+      if (selectedOptions === undefined) {
+        setInternalSelectedOptions([])
+      }
+      if (onSelectionChange) {
+        onSelectionChange([])
+      }
+      if (onClear) onClear()
+    } else {
+      setActiveOption(null)
+      if (onClear) onClear()
+    }
   }
 
   const onSearchChange = (text: string) => {
@@ -75,13 +134,15 @@ export const Dropdown = forwardRef<HTMLDivElement, Props>(function Dropdown(
     setFilteredOptions(results)
   }
 
-  useEffect(() => {
-    if (selectedOption) {
-      setActiveOption(selectedOption)
-    }
-  }, [selectedOption])
-
   const menuOptions = searchTerm?.length ? filteredOptions : options
+
+  const displayLabel = isMultiSelect
+    ? currentSelectedOptions.length > 0
+      ? `${currentSelectedOptions.length} selected`
+      : buttonLabel
+    : activeOption?.label || buttonLabel
+
+  const canClear = onClear && (isMultiSelect ? currentSelectedOptions.length > 0 : !!activeOption)
 
   return (
     <Menu
@@ -92,7 +153,9 @@ export const Dropdown = forwardRef<HTMLDivElement, Props>(function Dropdown(
       {...other}
     >
       {({ open }) => {
-        setTimeout(() => searchInputRef.current?.focus())
+        if (open && isSearchable) {
+          setTimeout(() => searchInputRef.current?.focus(), 50)
+        }
 
         return (
           <>
@@ -106,10 +169,10 @@ export const Dropdown = forwardRef<HTMLDivElement, Props>(function Dropdown(
                     buttonClassName
                   )}
                 >
-                  {activeOption?.label || buttonLabel}
+                  {displayLabel}
                   <svg
                     className={classNames('w-5 h-5 ml-2 -mr-1', iconClassName, {
-                      'opacity-0': activeOption && onClear
+                      'opacity-0': canClear
                     })}
                     viewBox="0 0 20 20"
                     fill="currentColor"
@@ -121,15 +184,14 @@ export const Dropdown = forwardRef<HTMLDivElement, Props>(function Dropdown(
                     />
                   </svg>
                 </Menu.Button>
-                {activeOption && onClear && (
+                {canClear && (
                   <button
+                    type="button"
                     className="absolute hover:bg-gray-100 rounded-full flex items-center justify-center p-1 top-2 right-2 dark:bg-gray-700"
                     style={{ top: 7 }}
-                    onClick={() => {
-                      setSearchTerm('')
-                      setActiveOption(null)
-                      onClear()
-                    }}
+                    onClick={handleClear}
+                    aria-label="Clear selection"
+                    data-testid="clear-button"
                   >
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -156,7 +218,6 @@ export const Dropdown = forwardRef<HTMLDivElement, Props>(function Dropdown(
               className="min-w-sm"
             >
               <Menu.Items
-                static
                 data-testid="dropdown-items"
                 className={classNames(
                   'absolute shadow-sm z-10 bg-white origin-top-right dark:bg-gray-800 border divide-y rounded-md outline-none border-cool-gray-200 divide-cool-gray-100 dark:divide-gray-400 dark:border-gray-700',
@@ -179,7 +240,6 @@ export const Dropdown = forwardRef<HTMLDivElement, Props>(function Dropdown(
                       placeholder="Search"
                       className="w-full text-gray-600 border border-transparent bg-gray-100 rounded-md sm:text-sm focus:ring-transparent focus:border-gray-200 placeholder-gray-400 py-2 dark:bg-gray-700 dark:text-gray-300 dark:focus:border-gray-400"
                       autoComplete="off"
-                      autoFocus={true}
                       value={searchTerm}
                       onChange={(e: ChangeEvent<HTMLInputElement>) =>
                         onSearchChange(e.currentTarget.value)
@@ -188,8 +248,10 @@ export const Dropdown = forwardRef<HTMLDivElement, Props>(function Dropdown(
                     />
                     {searchTerm?.length > 0 && (
                       <button
+                        type="button"
                         className="text-gray-400 absolute right-5 top-[21px] rounded-full hover:text-gray-300 dark:text-gray-700 dark:hover:text-gray-500"
-                        onClick={() => setSearchTerm('')}
+                        onClick={() => onSearchChange('')}
+                        aria-label="Clear search"
                       >
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
@@ -197,7 +259,7 @@ export const Dropdown = forwardRef<HTMLDivElement, Props>(function Dropdown(
                           fill="none"
                           viewBox="0 0 24 24"
                           stroke="currentColor"
-                          strokeWidth="{2}"
+                          strokeWidth={2}
                         >
                           <path
                             strokeLinecap="round"
@@ -214,8 +276,12 @@ export const Dropdown = forwardRef<HTMLDivElement, Props>(function Dropdown(
                     <p className="px-4 text-gray-500 text-sm">No results</p>
                   ) : null}
                   {menuOptions.map((option: Option, i: number) => {
+                    const isSelected =
+                      isMultiSelect && currentSelectedOptions.some((o) => o.value === option.value)
+                    const isDisabled = !!option.disabled
+
                     return (
-                      <Menu.Item key={i} disabled={option.disabled}>
+                      <Menu.Item key={i} disabled={isDisabled}>
                         {({ active }) => {
                           const labelClassName = classNames(
                             active
@@ -227,7 +293,7 @@ export const Dropdown = forwardRef<HTMLDivElement, Props>(function Dropdown(
 
                           return (
                             <div
-                              onClick={() => onClick(option)}
+                              onClick={() => handleItemClick(option)}
                               data-testid={`item-${i}`}
                               className={classNames(
                                 'flex items-center justify-between min-w-0 cursor-pointer overflow-hidden',
@@ -235,10 +301,21 @@ export const Dropdown = forwardRef<HTMLDivElement, Props>(function Dropdown(
                                   'mt-1.5 pt-1.5 border-t border-gray-100 dark:border-gray-500':
                                     option.borderTop
                                 },
-                                !!option.disabled && 'opacity-50',
+                                isDisabled && 'opacity-50',
                                 option.className || ''
                               )}
                             >
+                              {isMultiSelect && (
+                                <input
+                                  type="checkbox"
+                                  checked={isSelected}
+                                  readOnly
+                                  className="mr-2 h-4 w-4 rounded border-gray-300 text-primary-600 focus:ring-primary-500 focus:ring-offset-0 dark:bg-gray-700 dark:border-gray-600 dark:checked:bg-primary-500 dark:checked:border-primary-500 dark:focus:ring-primary-500 pointer-events-none shrink-0 transition-colors duration-200"
+                                  tabIndex={-1}
+                                  aria-hidden="true"
+                                />
+                              )}
+
                               {option.href?.length ? (
                                 <a href={option.href} className={labelClassName}>
                                   {option.imageUrl && (
