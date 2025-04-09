@@ -310,7 +310,7 @@ export const Dropdown = forwardRef<HTMLDivElement, Props>(function Dropdown(
                                   type="checkbox"
                                   checked={isSelected}
                                   readOnly
-                                  className="mr-2 h-4 w-4 rounded border-gray-300 text-primary-600 focus:ring-primary-500 focus:ring-offset-0 dark:bg-gray-700 dark:border-gray-600 dark:checked:bg-primary-500 dark:checked:border-primary-500 dark:focus:ring-primary-500 pointer-events-none shrink-0 transition-colors duration-200"
+                                  className="ml-4 h-4 w-4 rounded border-gray-300 text-primary-600 focus:ring-primary-500 focus:ring-offset-0 dark:bg-gray-700 dark:border-gray-600 dark:checked:bg-primary-500 dark:checked:border-primary-500 dark:focus:ring-primary-500 pointer-events-none shrink-0 transition-colors duration-200"
                                   tabIndex={-1}
                                   aria-hidden="true"
                                 />
