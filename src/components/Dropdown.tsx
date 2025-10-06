@@ -2,6 +2,7 @@ import { Menu, Transition } from '@headlessui/react'
 import React, { ChangeEvent, ReactNode, forwardRef, useEffect, useRef, useState } from 'react'
 
 import classNames from 'classnames'
+import { useOutsideClick } from '../utils/useOutsideClick'
 
 export interface Props {
   options: Option[]
@@ -64,9 +65,18 @@ export const Dropdown = forwardRef<HTMLDivElement, Props>(function Dropdown(
   const [internalSelectedOptions, setInternalSelectedOptions] = useState<Option[]>([])
   const [filteredOptions, setFilteredOptions] = useState<Option[]>(options)
   const [searchTerm, setSearchTerm] = useState('')
+  const [isOpen, setIsOpen] = useState(false)
   const searchInputRef = useRef<HTMLInputElement>(null)
+  const dropdownRef = useRef<HTMLDivElement>(null)
 
   const currentSelectedOptions = selectedOptions || internalSelectedOptions
+
+  // Close dropdown when clicking outside in multi-select mode
+  useOutsideClick(dropdownRef, () => {
+    if (isMultiSelect && isOpen) {
+      setIsOpen(false)
+    }
+  })
 
   useEffect(() => {
     if (selectedOption) {
@@ -100,10 +110,12 @@ export const Dropdown = forwardRef<HTMLDivElement, Props>(function Dropdown(
       if (onSelectionChange) {
         onSelectionChange(newSelection)
       }
+      // Keep dropdown open in multi-select mode
     } else {
       setActiveOption(option)
       if (option.onClick) option.onClick()
       if (onSelect) onSelect(option)
+      setIsOpen(false) // Close dropdown in single-select mode
     }
   }
 
@@ -144,23 +156,43 @@ export const Dropdown = forwardRef<HTMLDivElement, Props>(function Dropdown(
 
   const canClear = onClear && (isMultiSelect ? currentSelectedOptions.length > 0 : !!activeOption)
 
+  // Merge refs to support both internal and forwarded refs
+  const setRefs = (node: HTMLDivElement | null) => {
+    // @ts-ignore - TypeScript has issues with ref assignment
+    dropdownRef.current = node
+    if (typeof ref === 'function') {
+      ref(node)
+    } else if (ref) {
+      // @ts-ignore - TypeScript has issues with ref assignment
+      ref.current = node
+    }
+  }
+
   return (
     <Menu
       as="div"
       className={classNames('relative inline-block', className)}
-      ref={ref}
+      ref={setRefs}
       data-testid="dropdown"
       {...other}
     >
       {({ open }) => {
-        if (open && isSearchable) {
+        // Sync internal state with Menu's open state
+        const menuIsOpen = isMultiSelect ? isOpen : open
+
+        if (menuIsOpen && isSearchable) {
           setTimeout(() => searchInputRef.current?.focus(), 50)
         }
 
         return (
           <>
             {trigger ? (
-              <Menu.Button className={buttonClassName}>{trigger}</Menu.Button>
+              <Menu.Button
+                className={buttonClassName}
+                onClick={() => isMultiSelect && setIsOpen(!isOpen)}
+              >
+                {trigger}
+              </Menu.Button>
             ) : (
               <div className="relative">
                 <Menu.Button
@@ -168,6 +200,7 @@ export const Dropdown = forwardRef<HTMLDivElement, Props>(function Dropdown(
                     'flex items-center justify-between w-full px-4 py-2 text-sm font-medium border rounded-md shadow-sm text-gray-800 bg-white border-gray-200 group hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-cool-gray-100 focus:ring-gray-300 dark:ring-gray-500 dark:bg-gray-800 dark:text-gray-200 dark:border-gray-500 dark:hover:bg-gray-700',
                     buttonClassName
                   )}
+                  onClick={() => isMultiSelect && setIsOpen(!isOpen)}
                 >
                   {displayLabel}
                   <svg
@@ -208,7 +241,7 @@ export const Dropdown = forwardRef<HTMLDivElement, Props>(function Dropdown(
               </div>
             )}
             <Transition
-              show={open}
+              show={menuIsOpen}
               enter="transition ease-out duration-300"
               enterFrom="transform opacity-0 scale-95"
               enterTo="transform opacity-100 scale-100"
@@ -218,6 +251,7 @@ export const Dropdown = forwardRef<HTMLDivElement, Props>(function Dropdown(
               className="min-w-sm"
             >
               <Menu.Items
+                static={isMultiSelect}
                 data-testid="dropdown-items"
                 className={classNames(
                   'absolute shadow-sm z-10 bg-white origin-top-right dark:bg-gray-800 border divide-y rounded-md outline-none border-cool-gray-200 divide-cool-gray-100 dark:divide-gray-400 dark:border-gray-700',

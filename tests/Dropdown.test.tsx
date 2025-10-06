@@ -94,10 +94,14 @@ describe('Dropdown', () => {
     fireEvent.click(item0)
     expect(button).toHaveTextContent(options[0].label)
 
+    // Re-open dropdown after single-select closes it
+    fireEvent.click(button)
     const item1 = getByTestId('item-1')
     fireEvent.click(item1)
     expect(button).toHaveTextContent(options[1].label)
 
+    // Re-open dropdown after single-select closes it
+    fireEvent.click(button)
     const item2 = getByTestId('item-2')
     fireEvent.click(item2)
     expect(button).toHaveTextContent(options[2].label)
@@ -267,5 +271,35 @@ describe('Dropdown', () => {
     checkboxes.forEach((checkbox) => {
       expect(checkbox).not.toBeChecked()
     })
+  })
+
+  it('should keep dropdown open when selecting items in multi-select mode', () => {
+    render(
+      <MultiSelectUncontrolled
+        options={connectorOptions}
+        {...(MultiSelectUncontrolled.args as Partial<Props>)}
+      />
+    )
+    const button = screen.getByRole('button', { name: /select connectors \(uncontrolled\)/i })
+    fireEvent.click(button)
+
+    // Verify dropdown is open
+    const itemsContainer = screen.getByTestId('dropdown-items')
+    expect(itemsContainer).toBeInTheDocument()
+
+    // Click first item
+    const item0 = screen.getByTestId('item-0')
+    fireEvent.click(item0)
+
+    // Verify dropdown is still open after first selection
+    expect(screen.getByTestId('dropdown-items')).toBeInTheDocument()
+
+    // Click second item without re-opening
+    const item2 = screen.getByTestId('item-2')
+    fireEvent.click(item2)
+
+    // Verify dropdown is still open and both items are selected
+    expect(screen.getByTestId('dropdown-items')).toBeInTheDocument()
+    expect(button).toHaveTextContent('2 selected')
   })
 })
